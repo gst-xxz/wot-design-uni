@@ -1,20 +1,15 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
-
-.wot-theme-dark {
-  @include b(checkbox-group) {
-    background-color: $-dark-background2;
-  }
+.wot-theme-dark .wd-checkbox-group {
+  background-color: #1b1b1b
 }
-@include b(checkbox-group) {
-  background-color: $-checkbox-bg;
 
-  // 上下20px 左右15px 内部间隔12px
-  @include when(button) {
-    width: 100%;
-    padding: 8px 3px 20px 15px;
-    box-sizing: border-box;
-    overflow: hidden;
-    height: auto;
-  }
+.wd-checkbox-group {
+  background-color: var(--wot-checkbox-bg, var(--wot-color-white, rgb(255, 255, 255)))
+}
+
+.wd-checkbox-group.is-button {
+  width: 100%;
+  padding: 8px 3px 20px 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: auto
 }

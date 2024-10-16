@@ -1,39 +1,37 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-.wot-theme-dark {
-  @include b(loadmore) {
-    color: $-dark-color;
-  }
+.wot-theme-dark .wd-loadmore {
+  color: #fff
 }
 
-@include b(loadmore) {
+.wd-loadmore {
   width: 100%;
-  height: $-loadmore-height;
-  line-height: $-loadmore-height;
+  height: var(--wot-loadmore-height, 48px);
+  line-height: var(--wot-loadmore-height, 48px);
   text-align: center;
-  color: $-loadmore-color;
+  color: var(--wot-loadmore-color, rgba(0, 0, 0, .45))
+}
 
-  @include edeep(loading) {
-    display: inline-block;
-    margin-right: 8px;
-    vertical-align:  middle;
-    width: $-loadmore-loading-size;
-    height: $-loadmore-loading-size;
-  }
-  @include e(text) {
-    display: inline-block;
-    font-size: $-loadmore-fs;
-    vertical-align: middle;
+ .wd-loadmore__loading {
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  width: var(--wot-loadmore-loading-size, var(--wot-fs-title, 16px));
+  height: var(--wot-loadmore-loading-size, var(--wot-fs-title, 16px))
+}
 
-    @include when(light) {
-      margin: 0 6px;
-      color: $-loadmore-error-color;
-    }
-  }
-  @include edeep(refresh) {
-    display: inline-block;
-    color: $-loadmore-error-color;
-    vertical-align: middle;
-    font-size: $-loadmore-refresh-fs;
-  }
+.wd-loadmore__text {
+  display: inline-block;
+  font-size: var(--wot-loadmore-fs, 14px);
+  vertical-align: middle
+}
+
+.wd-loadmore__text.is-light {
+  margin: 0 6px;
+  color: var(--wot-loadmore-error-color, var(--wot-color-theme, #4d80f0))
+}
+
+ .wd-loadmore__refresh {
+  display: inline-block;
+  color: var(--wot-loadmore-error-color, var(--wot-color-theme, #4d80f0));
+  vertical-align: middle;
+  font-size: var(--wot-loadmore-refresh-fs, var(--wot-fs-title, 16px))
 }

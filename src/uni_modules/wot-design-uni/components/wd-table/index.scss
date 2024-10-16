@@ -1,137 +1,95 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
 
-.wot-theme-dark {
-  @include b(table) {
-    background: $-dark-background;
-
-    @include when(border) {
-      border: 1px solid $-dark-border-color;
-    }
-
-    @include e(cell) {
-      color: $-dark-color;
-      background: $-dark-background2;
-
-      @include when(stripe) {
-        background: $-dark-background4;
-      }
-
-      @include when(border) {
-        border-right: 1px solid $-dark-border-color;
-        border-bottom: 1px solid $-dark-border-color;
-      }
-
-      @include when(shadow) {
-        &::after {
-          background: linear-gradient(270deg, rgba(17, 17, 17, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
-        }
-      }
-    }
-  }
-}
-
-
-
-@include b(table) {
+.wd-table {
   position: relative;
   width: 100%;
   overflow: auto;
-  background: $-table-bg;
+  background: var(--wot-table-bg, #ffffff)
+}
 
-  @include when(border) {
-    border: 1px solid $-table-border-color;
-  }
+.wd-table.is-border {
+  border: 1px solid var(--wot-table-border-color, #ececec)
+}
 
+.wd-table .wd-table-col:last-child .wd-table__cell.is-border {
+  border-right: none
+}
 
-  :deep() {
-    .wd-table-col:last-child {
-      .wd-table__cell {
-        @include when(border) {
-          border-right: none;
-        }
-      }
-    }
-  }
+.wd-table__header {
+  width: 100%;
+  height: 50px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap
+}
 
-  @include e(header) {
-    width: 100%;
-    height: 50px;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
+.wd-table__body {
+  width: 100%;
+  box-sizing: border-box
+}
 
-  @include e(body) {
-    width: 100%;
-    box-sizing: border-box;
-  }
+.wd-table__content {
+  display: flex
+}
 
-  @include e(content) {
-    display: flex;
-  }
+.wd-table__cell {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background: var(--wot-table-bg, #ffffff);
+  width: 100px;
+  min-height: 50px;
+  padding: 8px 10px;
+  font-size: var(--wot-table-font-size, 13px);
+  color: var(--wot-table-color, var(--wot-font-gray-1, rgba(0, 0, 0, .9)));
+  --wot-sort-button-height: 30px
+}
 
-  @include e(cell) {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    background: $-table-bg;
-    width: 100px;
-    min-height: 50px;
-    padding: 8px 10px;
-    font-size: $-table-font-size;
-    color: $-table-color;
-    --wot-sort-button-height: 30px;
+.wd-table__cell.is-border {
+  border-right: 1px solid var(--wot-table-border-color, #ececec);
+  border-bottom: 1px solid var(--wot-table-border-color, #ececec)
+}
 
-    @include when(border) {
-      border-right: 1px solid $-table-border-color;
-      border-bottom: 1px solid $-table-border-color;
-    }
+.wd-table__cell.is-stripe {
+  background: var(--wot-table-stripe-bg, #f3f3f3)
+}
 
-    @include when(stripe) {
-      background: $-table-stripe-bg;
-    }
+.wd-table__cell.is-fixed {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  left: 0
+}
 
-    @include when(fixed) {
-      position: sticky;
-      z-index: 1;
-      left: 0;
-    }
+.wd-table__cell.is-shadow:after {
+  content: " ";
+  position: absolute;
+  right: -.9375rem;
+  top: 0;
+  width: .9375rem;
+  height: 100%;
+  background: linear-gradient(270deg,rgba(255,255,255,0),rgba(0,0,0,.04))
+}
 
-    @include when(shadow) {
-      &::after {
-        content: ' ';
-        position: absolute;
-        height: 100%;
-        right: -30rpx;
-        top: 0;
-        width: 30rpx;
-        height: 100%;
-        background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.04) 100%);
-      }
-    }
+.wd-table__cell.is-left {
+  justify-content: flex-start
+}
 
-    @include when(left) {
-      justify-content: flex-start;
-    }
+.wd-table__cell.is-center {
+  justify-content: center
+}
 
-    @include when(center) {
-      justify-content: center;
-    }
+.wd-table__cell.is-right {
+  justify-content: flex-end
+}
 
-    @include when(right) {
-      justify-content: flex-end;
-    }
-  }
-
-
-  @include e(value) {
-    @include when(ellipsis) {
-      word-break: break-all;
-      @include multiEllipsis(2);
-    }
-  }
+.wd-table__value.is-ellipsis {
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden
 }

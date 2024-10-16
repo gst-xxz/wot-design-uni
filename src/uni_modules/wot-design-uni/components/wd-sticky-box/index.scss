@@ -1,6 +1,4 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
 
-@include b(sticky-box) {
-  position: relative;
+.wd-sticky-box {
+  position: relative
 }

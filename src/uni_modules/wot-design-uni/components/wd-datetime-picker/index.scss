@@ -1,245 +1,232 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
-
-.wot-theme-dark {
-  @include b(picker) {
-    @include e(cell) {
-      background-color: $-dark-background2;
-      color: $-dark-color;
-    }
-
-    @include e(title) {
-      color: $-dark-color;
-    }
-
-    @include e(label) {
-      color: $-dark-color;
-    }
-    @include e(value) {
-      color: $-dark-color;
-    }
-
-    @include e(placeholder) {
-      color: $-dark-color-gray;
-    }
-  
-
-    @include when(border) {
-      .wd-picker__cell {
-        @include halfPixelBorder('top', $-cell-padding, $-dark-border-color);
-      }
-    }
-
-    :deep(.wd-picker__arrow){
-      color: $-dark-color;
-    }
-
-    @include e(action) {
-      @include m(cancel) {
-        color: $-dark-color;
-      }
-    }
-
-    @include e(region) {
-      color: $-dark-color;
-  
-      @include when(active) {
-        background: $-picker-region-bg-active-color;
-        color: $-dark-color;
-      }
-    }
-
-  }
+.wot-theme-dark .wd-picker__cell {
+  background-color: #1b1b1b;
+  color: #fff
 }
 
-@include b(picker) {
-  @include edeep(popup) {
-    border-radius: 16px 16px 0px 0px;
-  }
+.wot-theme-dark .wd-picker__title,.wot-theme-dark .wd-picker__label,.wot-theme-dark .wd-picker__value {
+  color: #fff
+}
 
-  @include e(wraper) {
-    padding-bottom: var(--window-bottom);
-  }
+.wot-theme-dark .wd-picker__placeholder {
+  color: #595959
+}
 
-  @include when(border) {
-    .wd-picker__cell {
-      @include halfPixelBorder("top", $-cell-padding);
-    }
-  }
-  @include when(large) {
-    .wd-picker__cell {
-      font-size: $-cell-title-fs-large;
-    }
-    :deep(.wd-picker__arrow) {
-      font-size: $-cell-icon-size-large;
-    }
-  }
-  @include when(error) {
-    .wd-picker__value,
-    .wd-picker__placeholder {
-      color: $-input-error-color;
-    }
+.wot-theme-dark .wd-picker.is-border .wd-picker__cell {
+  position: relative
+}
 
-    :deep(.wd-picker__arrow){
-      color: $-input-error-color;
-    }
-  }
-  @include when(align-right) {
-    .wd-picker__value {
-      text-align: right;
-    }
-  }
-  @include e(cell) {
-    position: relative;
-    display: flex;
-    padding: $-cell-wrapper-padding $-cell-padding;
-    align-items: flex-start;
-    background-color: $-color-white;
-    text-decoration: none;
-    color: $-cell-title-color;
-    font-size: $-cell-title-fs;
-    overflow: hidden;
-    line-height: $-cell-line-height;
+.wot-theme-dark .wd-picker.is-border .wd-picker__cell:after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: calc(100% - var(--wot-cell-padding, var(--wot-size-side-padding, 15px)));
+  height: 1px;
+  left: var(--wot-cell-padding, var(--wot-size-side-padding, 15px));
+  top: 0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  background: var(--wot-dark-border-color, #3a3a3c)
+}
 
-    @include when(disabled) {
-      .wd-picker__value {
-        color: $-input-disabled-color;
-      }
-    }
-  }
+.wot-theme-dark .wd-picker .wd-picker__arrow,.wot-theme-dark .wd-picker__action--cancel,.wot-theme-dark .wd-picker__region {
+  color: #fff
+}
 
-  @include when(disabled) {
-    .wd-picker__value {
-      color: $-picker-column-disabled-color;
-    }
-  }
+.wot-theme-dark .wd-picker__region.is-active {
+  background: var(--wot-picker-region-bg-active-color, var(--wot-color-theme, #4d80f0));
+  color: #fff
+}
 
-  @include e(error-message){
-    color: $-form-item-error-message-color;
-    font-size: $-form-item-error-message-font-size;
-    line-height: $-form-item-error-message-line-height;
-    text-align: left;
-    vertical-align: middle;
-  }
+ .wd-picker__popup {
+  border-radius: 16px 16px 0 0
+}
 
-  @include e(label) {
-    position: relative;
-    width: $-input-cell-label-width;
-    margin-right: $-cell-padding;
-    color: $-cell-title-color;
-    box-sizing: border-box;
+.wd-picker__wraper {
+  padding-bottom: var(--window-bottom)
+}
 
-    @include when(required) {
-      padding-left: 12px;
+.wd-picker.is-border .wd-picker__cell {
+  position: relative
+}
 
-      &::after {
-        position: absolute;
-        left: 0;
-        top: 2px;
-        content: "*";
-        font-size: $-cell-required-size;
-        line-height: 1.1;
-        color: $-cell-required-color;
-      }
-    }
-  }
+.wd-picker.is-border .wd-picker__cell:after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: calc(100% - var(--wot-cell-padding, var(--wot-size-side-padding, 15px)));
+  height: 1px;
+  left: var(--wot-cell-padding, var(--wot-size-side-padding, 15px));
+  top: 0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  background: var(--wot-color-border-light, #e8e8e8)
+}
 
-  @include e(value-wraper) {
-    display: flex;
-  }
+.wd-picker.is-large .wd-picker__cell {
+  font-size: var(--wot-cell-title-fs-large, 16px)
+}
 
-  @include e(value) {
-    flex: 1;
-    margin-right: 10px;
-    color: $-cell-value-color;
-    
-    @include when(ellipsis) {
-      @include lineEllipsis;
-    }
-  }
+.wd-picker.is-large .wd-picker__arrow {
+  font-size: var(--wot-cell-icon-size-large, 18px)
+}
 
-  @include e(body) {
-    flex: 1;
-  }
+.wd-picker.is-error .wd-picker__value,.wd-picker.is-error .wd-picker__placeholder,.wd-picker.is-error .wd-picker__arrow {
+  color: var(--wot-input-error-color, var(--wot-color-danger, #fa4350))
+}
 
-  @include e(placeholder) {
-    color: $-input-placeholder-color;
-  }
+.wd-picker.is-align-right .wd-picker__value {
+  text-align: right
+}
 
-  @include edeep(arrow) {
-    display: block;
-    font-size: $-cell-icon-size;
-    color: $-cell-arrow-color;
-    line-height: $-cell-line-height;
-  }
+.wd-picker__cell {
+  position: relative;
+  display: flex;
+  padding: var(--wot-cell-wrapper-padding, 10px) var(--wot-cell-padding, var(--wot-size-side-padding, 15px));
+  align-items: flex-start;
+  background-color: var(--wot-color-white, rgb(255, 255, 255));
+  text-decoration: none;
+  color: var(--wot-cell-title-color, rgba(0, 0, 0, .85));
+  font-size: var(--wot-cell-title-fs, 14px);
+  overflow: hidden;
+  line-height: var(--wot-cell-line-height, 24px)
+}
 
-  @include e(toolbar) {
-    position: relative;
-    display: flex;
-    font-size: $-picker-toolbar-fs;
-    height: $-picker-toolbar-height;
-    line-height: $-picker-action-height;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-  }
+.wd-picker__cell.is-disabled .wd-picker__value {
+  color: var(--wot-input-disabled-color, #d9d9d9)
+}
 
-  @include e(action) {
-    display: block;
-    border: none;
-    outline: none;
-    font-size: $-picker-toolbar-fs;
-    color: $-picker-toolbar-finish-color;
-    background: transparent;
-    padding: 24px 15px 14px 15px;
+.wd-picker.is-disabled .wd-picker__value {
+  color: var(--wot-picker-column-disabled-color, rgba(0, 0, 0, .25))
+}
 
-    @include m(cancel) {
-      color: $-picker-toolbar-cancel-color;
-    }
+.wd-picker__error-message {
+  color: var(--wot-form-item-error-message-color, var(--wot-color-danger, #fa4350));
+  font-size: var(--wot-form-item-error-message-font-size, var(--wot-fs-secondary, 12px));
+  line-height: var(--wot-form-item-error-message-line-height, 24px);
+  text-align: left;
+  vertical-align: middle
+}
 
-    @include when(loading) {
-      color: $-picker-loading-button-color;
-    }
-  }
-  @include e(title) {
-    display: block;
-    float: 1;
-    color: $-picker-toolbar-title-color;
-  }
+.wd-picker__label {
+  position: relative;
+  width: var(--wot-input-cell-label-width, 33%);
+  margin-right: var(--wot-cell-padding, var(--wot-size-side-padding, 15px));
+  color: var(--wot-cell-title-color, rgba(0, 0, 0, .85));
+  box-sizing: border-box
+}
 
-  @include e(region-tabs) {
-    display: flex;
-  }
+.wd-picker__label.is-required {
+  padding-left: 12px
+}
 
-  @include e(region) {
-    width: 50%;
-    display: inline-block;
-    color: $-picker-region-color;
-    text-align: center;
-    padding: 14px 0;
-    font-size: $-picker-region-fs;
-    line-height: 16px;
-    transition: all 0.15s ease-out;
+.wd-picker__label.is-required:after {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  content: "*";
+  font-size: var(--wot-cell-required-size, 18px);
+  line-height: 1.1;
+  color: var(--wot-cell-required-color, var(--wot-color-danger, #fa4350))
+}
 
-    @include when(active) {
-      background: $-picker-region-bg-active-color;
-      color: $-color-white;
-    }
-  }
+.wd-picker__value-wraper {
+  display: flex
+}
 
-  @include e(region-time) {
-    font-size: 16px;
-    margin-top: 2px;
-  }
+.wd-picker__value {
+  flex: 1;
+  margin-right: 10px;
+  color: var(--wot-cell-value-color, rgba(0, 0, 0, .85))
+}
 
-  @include e(hidden) {
-    visibility: hidden;
-    overflow: hidden;
-    height: 0;
-  }
+.wd-picker__value.is-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
 
-  @include e(show) {
-    visibility: visible;
-    height: auto;
-  }
+.wd-picker__body {
+  flex: 1
+}
+
+.wd-picker__placeholder {
+  color: var(--wot-input-placeholder-color, #bfbfbf)
+}
+
+ .wd-picker__arrow {
+  display: block;
+  font-size: var(--wot-cell-icon-size, 16px);
+  color: var(--wot-cell-arrow-color, rgba(0, 0, 0, .25));
+  line-height: var(--wot-cell-line-height, 24px)
+}
+
+.wd-picker__toolbar {
+  position: relative;
+  display: flex;
+  font-size: var(--wot-picker-toolbar-fs, var(--wot-fs-title, 16px));
+  height: var(--wot-picker-toolbar-height, 54px);
+  line-height: var(--wot-picker-action-height, 16px);
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box
+}
+
+.wd-picker__action {
+  display: block;
+  border: none;
+  outline: none;
+  font-size: var(--wot-picker-toolbar-fs, var(--wot-fs-title, 16px));
+  color: var(--wot-picker-toolbar-finish-color, var(--wot-color-theme, #4d80f0));
+  background: transparent;
+  padding: 24px 15px 14px
+}
+
+.wd-picker__action--cancel {
+  color: var(--wot-picker-toolbar-cancel-color, #666666)
+}
+
+.wd-picker__action.is-loading {
+  color: var(--wot-picker-loading-button-color, rgba(0, 0, 0, .25))
+}
+
+.wd-picker__title {
+  display: block;
+  float: 1;
+  color: var(--wot-picker-toolbar-title-color, rgba(0, 0, 0, .85))
+}
+
+.wd-picker__region-tabs {
+  display: flex
+}
+
+.wd-picker__region {
+  width: 50%;
+  display: inline-block;
+  color: var(--wot-picker-region-color, rgba(0, 0, 0, .45));
+  text-align: center;
+  padding: 14px 0;
+  font-size: var(--wot-picker-region-fs, 14px);
+  line-height: 16px;
+  transition: all .15s ease-out
+}
+
+.wd-picker__region.is-active {
+  background: var(--wot-picker-region-bg-active-color, var(--wot-color-theme, #4d80f0));
+  color: var(--wot-color-white, rgb(255, 255, 255))
+}
+
+.wd-picker__region-time {
+  font-size: 16px;
+  margin-top: 2px
+}
+
+.wd-picker__hidden {
+  visibility: hidden;
+  overflow: hidden;
+  height: 0
+}
+
+.wd-picker__show {
+  visibility: visible;
+  height: auto
 }

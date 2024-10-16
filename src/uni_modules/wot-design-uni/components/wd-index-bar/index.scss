@@ -1,39 +1,34 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
 
-.wot-theme-dark {
-  @include b(index-bar) {
-    @include e(index) {
-      color: $-color-white;
-    }
-  }
+.wot-theme-dark .wd-index-bar__index {
+  color: var(--wot-color-white, rgb(255, 255, 255))
 }
 
-@include b(index-bar) {
+.wd-index-bar {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100%
+}
 
-  @include e(content) {
-    width: 100%;
-    height: 100%;
-  }
+.wd-index-bar__content {
+  width: 100%;
+  height: 100%
+}
 
-  @include e(sidebar) {
-    position: absolute;
-    top: 50%;
-    right: 4px;
-    transform: translateY(-50%);
-  }
+.wd-index-bar__sidebar {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
 
-  @include e(index) {
-    font-size: 12px;
-    font-weight: $-fw-medium;
-    color: $-color-title;
-    padding: 4px 6px;
+.wd-index-bar__index {
+  font-size: 12px;
+  font-weight: var(--wot-fw-medium, 500);
+  color: var(--wot-color-title, var(--wot-color-black, rgb(0, 0, 0)));
+  padding: 4px 6px
+}
 
-    @include when(active) {
-      color: $-color-theme;
-    }
-  }
+.wd-index-bar__index.is-active {
+  color: var(--wot-color-theme, #4d80f0)
 }

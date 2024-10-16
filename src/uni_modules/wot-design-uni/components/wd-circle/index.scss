@@ -1,18 +1,16 @@
-@import "../common/abstracts/variable.scss";
-@import "../common/abstracts/_mixin.scss";
-
-@include b(circle) {
+.wd-circle {
   position: relative;
   display: inline-block;
-  text-align: center;
+  text-align: center
+}
 
-  @include e(text) {
-    position: absolute;
-    z-index: 1;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
-    color: $-circle-text-color;
-  }
+.wd-circle__text {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--wot-circle-text-color, var(--wot-color-content, #262626))
 }

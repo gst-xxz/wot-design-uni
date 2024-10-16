@@ -1,37 +1,34 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-
 .wot-theme-dark {
-  background-color: $-dark-background2;
-  @include b(status-tip) {
-    @include e(text) {
-      color: $-dark-color3;
-    }
-  }
+  background-color: #1b1b1b
 }
 
-@include b(status-tip) {
-  padding: $-statustip-padding;
+.wot-theme-dark .wd-status-tip__text {
+  color: rgba(232,230,227,.8)
+}
+
+.wd-status-tip {
+  padding: var(--wot-statustip-padding, 5px 10px);
   width: 100%;
   margin: 0 auto;
-  color: $-statustip-color;
-  font-size: $-statustip-fs;
+  color: var(--wot-statustip-color, rgba(0, 0, 0, .45));
+  font-size: var(--wot-statustip-fs, var(--wot-fs-content, 14px));
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center
+}
 
-  @include edeep(image) {
-    margin: 0 auto;
-    width: 160px;
-    height: 160px;
-  }
-  @include e(text) {
-    margin: 20px auto 0;
-    font-size: $-statustip-fs;
-    line-height: $-statustip-line-height;
-    color: $-statustip-color;
-    text-align: center;
-    word-break: break-all;
-  }
+ .wd-status-tip__image {
+  margin: 0 auto;
+  width: 160px;
+  height: 160px
+}
+
+.wd-status-tip__text {
+  margin: 20px auto 0;
+  font-size: var(--wot-statustip-fs, var(--wot-fs-content, 14px));
+  line-height: var(--wot-statustip-line-height, 16px);
+  color: var(--wot-statustip-color, rgba(0, 0, 0, .45));
+  text-align: center;
+  word-break: break-all
 }

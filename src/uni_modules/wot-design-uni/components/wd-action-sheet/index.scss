@@ -1,204 +1,193 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-
-.wot-theme-dark {
-  @include b(action-sheet) {
-    background-color: $-dark-background2;
-    color: $-dark-color;
-
-    @include e(action) {
-      color: $-dark-color;
-      background: $-dark-background2;
-
-      &:not(.wd-action-sheet__action--disabled):not(.wd-action-sheet__action--loading):active {
-        background: $-dark-background4;
-      }
-
-      @include m(disabled) {
-        color: $-dark-color-gray;
-      }
-    }
-
-    @include e(subname) {
-      color: $-dark-color3;
-    }
-
-    @include e(cancel) {
-      color: $-dark-color;
-      background: $-dark-background4;
-
-      &:active {
-        background: $-dark-background5;
-      }
-    }
-
-    :deep(.wd-action-sheet__close) {
-      color: $-dark-color3;
-    }
-
-    @include e(panel-title) {
-      color: $-dark-color;
-    }
-
-    @include e(header) {
-      color: $-dark-color;
-    }
-  }
+.wot-theme-dark .wd-action-sheet {
+  background-color: #1b1b1b;
+  color: #fff
 }
 
-:deep(.wd-action-sheet__popup) {
-  border-radius: $-action-sheet-radius $-action-sheet-radius 0 0;
+.wot-theme-dark .wd-action-sheet__action {
+  color: #fff;
+  background: #1b1b1b
 }
 
-@include b(action-sheet) {
-  background-color: $-color-white;
-  padding-bottom: 1px;
+.wot-theme-dark .wd-action-sheet__action:not(.wd-action-sheet__action--disabled):not(.wd-action-sheet__action--loading):active {
+  background: #323233
+}
 
-  @include edeep(popup) {
-    border-radius: $-action-sheet-radius $-action-sheet-radius 0 0;
-  }
+.wot-theme-dark .wd-action-sheet__action--disabled {
+  color: #595959
+}
 
-  @include e(actions) {
-    padding: 8px 0;
-    max-height: 50vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+.wot-theme-dark .wd-action-sheet__subname {
+  color: rgba(232,230,227,.8)
+}
 
-  @include e(action) {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: $-action-sheet-action-height;
-    line-height: $-action-sheet-action-height;
-    color: $-action-sheet-color;
-    font-size: $-action-sheet-fs;
-    text-align: center;
-    border: none;
-    background: $-action-sheet-bg;
-    outline: none;
+.wot-theme-dark .wd-action-sheet__cancel {
+  color: #fff;
+  background: #323233
+}
 
-    &:after {
-      display: none;
-    }
+.wot-theme-dark .wd-action-sheet__cancel:active {
+  background: #646566
+}
 
-    &:not(&--disabled):not(&--loading):active {
-      background: $-action-sheet-active-color;
-    }
+.wot-theme-dark .wd-action-sheet .wd-action-sheet__close {
+  color: rgba(232,230,227,.8)
+}
 
-    @include m(disabled) {
-      color: $-action-sheet-disabled-color;
-      cursor: not-allowed;
-    }
+.wot-theme-dark .wd-action-sheet__panel-title,.wot-theme-dark .wd-action-sheet__header {
+  color: #fff
+}
 
-    @include m(loading) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: initial;
-    }
-  }
-  
-  @include edeep(action-loading){
-    width: $-action-sheet-loading-size;
-    height: $-action-sheet-loading-size;
-  }
+.wd-action-sheet {
+  background-color: var(--wot-color-white, rgb(255, 255, 255));
+  padding-bottom: 1px
+}
 
-  @include e(name) {
-    display: inline-block;
-  }
+ .wd-action-sheet__popup {
+  border-radius: var(--wot-action-sheet-radius, 16px) var(--wot-action-sheet-radius, 16px) 0 0
+}
 
-  @include e(subname) {
-    display: inline-block;
-    margin-left: 4px;
-    font-size: $-action-sheet-subname-fs;
-    color: $-action-sheet-subname-color;
-  }
+.wd-action-sheet__actions {
+  padding: 8px 0;
+  max-height: 50vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch
+}
 
-  @include e(cancel) {
-    display: block;
-    width: calc(100% - 48px);
-    line-height: $-action-sheet-cancel-height;
-    padding: 0;
-    color: $-action-sheet-cancel-color;
-    font-size: $-action-sheet-fs;
-    text-align: center;
-    border-radius: $-action-sheet-cancel-radius;
-    border: none;
-    background: $-action-sheet-cancel-bg;
-    outline: none;
-    margin: 0 auto 24px;
-    font-weight: $-action-sheet-weight;
+.wd-action-sheet__action {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--wot-action-sheet-action-height, 48px);
+  line-height: var(--wot-action-sheet-action-height, 48px);
+  color: var(--wot-action-sheet-color, rgba(0, 0, 0, .85));
+  font-size: var(--wot-action-sheet-fs, var(--wot-fs-title, 16px));
+  text-align: center;
+  border: none;
+  background: var(--wot-action-sheet-bg, var(--wot-color-white, rgb(255, 255, 255)));
+  outline: none
+}
 
-    &:active {
-      background: $-action-sheet-active-color;
-    }
+.wd-action-sheet__action:after {
+  display: none
+}
 
-    &:after {
-      display: none;
-    }
-  }
+.wd-action-sheet__action:not(.wd-action-sheet__action--disabled):not(.wd-action-sheet__action--loading):active {
+  background: var(--wot-action-sheet-active-color, var(--wot-color-bg, #f5f5f5))
+}
 
-  @include e(header) {
-    color: $-action-sheet-color;
-    position: relative;
-    height: $-action-sheet-title-height;
-    line-height: $-action-sheet-title-height;
-    text-align: center;
-    font-size: $-action-sheet-title-fs;
-    font-weight: $-action-sheet-weight;
-  }
+.wd-action-sheet__action--disabled {
+  color: var(--wot-action-sheet-disabled-color, rgba(0, 0, 0, .25));
+  cursor: not-allowed
+}
 
-  @include edeep(close) {
-    position: absolute;
-    top: $-action-sheet-close-top;
-    right: $-action-sheet-close-right;
-    color: $-action-sheet-close-color;
-    font-size: $-action-sheet-close-fs;
-    transform: rotate(-45deg);
-    line-height: 1.1;
-  }
+.wd-action-sheet__action--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: initial
+}
 
-  @include e(panels) {
-    height: 84px;
-    overflow-y: hidden;
+ .wd-action-sheet__action-loading {
+  width: var(--wot-action-sheet-loading-size, 20px);
+  height: var(--wot-action-sheet-loading-size, 20px)
+}
 
-    &:first-of-type {
-      margin-top: 20px;
-    }
+.wd-action-sheet__name {
+  display: inline-block
+}
 
-    &:last-of-type {
-      margin-bottom: 12px;
-    }
-  }
+.wd-action-sheet__subname {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: var(--wot-action-sheet-subname-fs, var(--wot-fs-secondary, 12px));
+  color: var(--wot-action-sheet-subname-color, rgba(0, 0, 0, .45))
+}
 
-  @include e(panels-content) {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+.wd-action-sheet__cancel {
+  display: block;
+  width: calc(100% - 48px);
+  line-height: var(--wot-action-sheet-cancel-height, 44px);
+  padding: 0;
+  color: var(--wot-action-sheet-cancel-color, #131415);
+  font-size: var(--wot-action-sheet-fs, var(--wot-fs-title, 16px));
+  text-align: center;
+  border-radius: var(--wot-action-sheet-cancel-radius, 22px);
+  border: none;
+  background: var(--wot-action-sheet-cancel-bg, rgb(240, 240, 240));
+  outline: none;
+  margin: 0 auto 24px;
+  font-weight: var(--wot-action-sheet-weight, 500)
+}
 
-  @include e(panel) {
-    width: 88px;
-    flex: 0 0 auto;
-    display: inline-block;
-    padding: $-action-sheet-panel-padding;
-  }
+.wd-action-sheet__cancel:active {
+  background: var(--wot-action-sheet-active-color, var(--wot-color-bg, #f5f5f5))
+}
 
-  @include e(panel-img) {
-    display: block;
-    width: $-action-sheet-panel-img-fs;
-    height: $-action-sheet-panel-img-fs;
-    margin: 0 auto;
-    margin-bottom: 7px;
-    border-radius: $-action-sheet-panel-img-radius;
-  }
+.wd-action-sheet__cancel:after {
+  display: none
+}
 
-  @include e(panel-title) {
-    font-size: $-action-sheet-subname-fs;
-    line-height: 1.2;
-    text-align: center;
-    color: $-action-sheet-color;
-    @include lineEllipsis;
-  }
+.wd-action-sheet__header {
+  color: var(--wot-action-sheet-color, rgba(0, 0, 0, .85));
+  position: relative;
+  height: var(--wot-action-sheet-title-height, 64px);
+  line-height: var(--wot-action-sheet-title-height, 64px);
+  text-align: center;
+  font-size: var(--wot-action-sheet-title-fs, var(--wot-fs-title, 16px));
+  font-weight: var(--wot-action-sheet-weight, 500)
+}
+
+ .wd-action-sheet__close {
+  position: absolute;
+  top: var(--wot-action-sheet-close-top, 25px);
+  right: var(--wot-action-sheet-close-right, 15px);
+  color: var(--wot-action-sheet-close-color, rgba(0, 0, 0, .65));
+  font-size: var(--wot-action-sheet-close-fs, var(--wot-fs-title, 16px));
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  line-height: 1.1
+}
+
+.wd-action-sheet__panels {
+  height: 84px;
+  overflow-y: hidden
+}
+
+.wd-action-sheet__panels:first-of-type {
+  margin-top: 20px
+}
+
+.wd-action-sheet__panels:last-of-type {
+  margin-bottom: 12px
+}
+
+.wd-action-sheet__panels-content {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch
+}
+
+.wd-action-sheet__panel {
+  width: 88px;
+  flex: 0 0 auto;
+  display: inline-block;
+  padding: var(--wot-action-sheet-panel-padding, 12px 0 11px)
+}
+
+.wd-action-sheet__panel-img {
+  display: block;
+  width: var(--wot-action-sheet-panel-img-fs, 40px);
+  height: var(--wot-action-sheet-panel-img-fs, 40px);
+  margin: 0 auto 7px;
+  border-radius: var(--wot-action-sheet-panel-img-radius, 4px)
+}
+
+.wd-action-sheet__panel-title {
+  font-size: var(--wot-action-sheet-subname-fs, var(--wot-fs-secondary, 12px));
+  line-height: 1.2;
+  text-align: center;
+  color: var(--wot-action-sheet-color, rgba(0, 0, 0, .85));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
 }

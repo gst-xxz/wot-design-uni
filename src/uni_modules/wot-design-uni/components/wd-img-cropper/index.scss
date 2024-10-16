@@ -1,231 +1,195 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
-
-@include b(img-cropper) {
-  background: rgba(0, 0, 0, 1);
+.wd-img-cropper {
+  background: #000;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 1
+}
 
-  // 裁剪框包裹器
-  @include e(wrapper) {
-    position: relative;
-    background: rgba(0, 0, 0, 0.45);
-  }
+.wd-img-cropper__wrapper {
+  position: relative;
+  background: rgba(0,0,0,.45)
+}
 
-  @include e(cut) {
-    z-index: 9;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    pointer-events: none;
+.wd-img-cropper__cut {
+  z-index: 9;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none
+}
 
-    .wd-img-cropper__cut--top,
-    .wd-img-cropper__cut--bottom,
-    .wd-img-cropper__cut--left,
-    .wd-img-cropper__cut--right {
-      // 拖动中背景蒙层为0 拖动结束为0.85
-      background-color: rgba(0, 0, 0, 0.85);
-      transition: background 0.2s;
+.wd-img-cropper__cut .wd-img-cropper__cut--top,.wd-img-cropper__cut .wd-img-cropper__cut--bottom,.wd-img-cropper__cut .wd-img-cropper__cut--left,.wd-img-cropper__cut .wd-img-cropper__cut--right {
+  background-color: rgba(0,0,0,.85);
+  transition: background .2s
+}
 
-      @include when(hightlight) {
-        background-color: rgba(0, 0, 0, 0);
-      }
-    }
+.wd-img-cropper__cut .wd-img-cropper__cut--top.is-hightlight,.wd-img-cropper__cut .wd-img-cropper__cut--bottom.is-hightlight,.wd-img-cropper__cut .wd-img-cropper__cut--left.is-hightlight,.wd-img-cropper__cut .wd-img-cropper__cut--right.is-hightlight {
+  background-color: rgba(0,0,0,0)
+}
 
-    .wd-img-cropper__cut--bottom,
-    .wd-img-cropper__cut--right {
-      flex: auto;
-    }
+.wd-img-cropper__cut .wd-img-cropper__cut--bottom,.wd-img-cropper__cut .wd-img-cropper__cut--right {
+  flex: auto
+}
 
-    @include m(middle) {
-      display: flex;
-    }
+.wd-img-cropper__cut--middle {
+  display: flex
+}
 
-    @include m(body) {
-      // 若需要变化窗体大小，支持控制窗体的大小来控制下方所有对应的展示
-      background-color: transparent;
-      position: relative;
+.wd-img-cropper__cut--body {
+  background-color: transparent;
+  position: relative
+}
 
-      // 节选框的窗体最外部边缘线
-      &::before {
-        content: "";
-        border: 1px solid #fff;
-        width: calc(200% - 1px);
-        height: calc(200% - 1px);
-        position: absolute;
-        transform: scale(0.5) translate(-1px, -1px);
-        top: -50%;
-        left: -50%;
-      }
+.wd-img-cropper__cut--body:before {
+  content: "";
+  border: 1px solid #fff;
+  width: calc(200% - 1px);
+  height: calc(200% - 1px);
+  position: absolute;
+  -webkit-transform: scale(.5) translate(-1px,-1px);
+  transform: scale(.5) translate(-1px,-1px);
+  top: -50%;
+  left: -50%
+}
 
-      // 结算框对角尺寸
-      $border-size: 2px;
+.wd-img-cropper__cut--body .is-left-top:before,.wd-img-cropper__cut--body .is-left-bottom:before,.wd-img-cropper__cut--body .is-right-top:before,.wd-img-cropper__cut--body .is-right-bottom:before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background-color: #fff
+}
 
-      // 节选框的四个角
-      .is-left-top,
-      .is-left-bottom,
-      .is-right-top,
-      .is-right-bottom {
-        &::before {
-          content: "";
-          position: absolute;
-          width: $border-size;
-          height: 20px;
-          background-color: #fff;
-        }
+.wd-img-cropper__cut--body .is-left-top:after,.wd-img-cropper__cut--body .is-left-bottom:after,.wd-img-cropper__cut--body .is-right-top:after,.wd-img-cropper__cut--body .is-right-bottom:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #fff
+}
 
-        &::after {
-          content: "";
-          position: absolute;
-          width: 20px;
-          height: $border-size;
-          background-color: #fff;
-        }
-      }
+.wd-img-cropper__cut--body .is-left-top:before,.wd-img-cropper__cut--body .is-left-top:after {
+  left: -2px;
+  top: -2px
+}
 
-      .is-left-top {
+.wd-img-cropper__cut--body .is-left-bottom:before,.wd-img-cropper__cut--body .is-left-bottom:after {
+  left: -2px;
+  bottom: -2px
+}
 
-        &::before,
-        &::after {
-          left: -$border-size;
-          top: -$border-size;
-        }
-      }
+.wd-img-cropper__cut--body .is-right-top:before,.wd-img-cropper__cut--body .is-right-top:after {
+  right: -2px;
+  top: -2px
+}
 
-      .is-left-bottom {
+.wd-img-cropper__cut--body .is-right-bottom:before,.wd-img-cropper__cut--body .is-right-bottom:after {
+  right: -2px;
+  bottom: -2px
+}
 
-        &::before,
-        &::after {
-          left: -$border-size;
-          bottom: -$border-size;
-        }
-      }
+.wd-img-cropper__cut--body .is-gridlines-x,.wd-img-cropper__cut--body .is-gridlines-y {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex
+}
 
-      .is-right-top {
+.wd-img-cropper__cut--body .is-gridlines-x {
+  justify-content: center
+}
 
-        &::before,
-        &::after {
-          right: -$border-size;
-          top: -$border-size;
-        }
-      }
+.wd-img-cropper__cut--body .is-gridlines-x:before {
+  content: "";
+  display: inline-block;
+  width: 66.66%;
+  height: 200%;
+  border: 1px solid #fff;
+  border-top: none;
+  border-bottom: none;
+  -webkit-transform: scale(.5) translate(0,-50%);
+  transform: scale(.5) translateY(-50%)
+}
 
-      .is-right-bottom {
+.wd-img-cropper__cut--body .is-gridlines-y {
+  align-items: center
+}
 
-        &::before,
-        &::after {
-          right: -$border-size;
-          bottom: -$border-size;
-        }
-      }
+.wd-img-cropper__cut--body .is-gridlines-y:after {
+  content: "";
+  flex-shrink: 0;
+  display: inline-block;
+  width: 200%;
+  height: 66.66%;
+  border: 1px solid #fff;
+  border-left: none;
+  border-right: none;
+  -webkit-transform: scale(.5) translate(-50%,0);
+  transform: scale(.5) translate(-50%)
+}
 
-      // 内部网格线
-      .is-gridlines-x,
-      .is-gridlines-y {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: flex;
-      }
+.wd-img-cropper__img {
+  z-index: 2;
+  top: 0;
+  left: 0;
+  position: absolute;
+  border: none;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-origin: center;
+  transform-origin: center
+}
 
-      .is-gridlines-x {
-        justify-content: center;
+.wd-img-cropper__canvas {
+  position: fixed;
+  background: #fff;
+  width: 150px;
+  height: 150px;
+  z-index: 10;
+  top: -200%;
+  pointer-events: none
+}
 
-        &::before {
-          content: "";
-          display: inline-block;
-          width: 66.66%;
-          height: 200%;
-          border: 1px solid #fff;
-          border-top: none;
-          border-bottom: none;
-          transform: scale(0.5) translate(0, -50%);
-        }
-      }
+.wd-img-cropper__footer {
+  position: fixed;
+  z-index: 10;
+  bottom: 10px;
+  width: 100%;
+  height: 15vh;
+  text-align: center
+}
 
-      // 内部网格线 - y轴
-      .is-gridlines-y {
-        align-items: center;
+.wd-img-cropper__footer--button {
+  position: relative;
+  text-align: left;
+  margin: 0 20px;
+  padding-top: 4vh;
+  box-sizing: border-box
+}
 
-        &::after {
-          content: "";
-          flex-shrink: 0;
-          display: inline-block;
-          width: 200%;
-          height: 66.66%;
-          border: 1px solid #fff;
-          border-left: none;
-          border-right: none;
-          transform: scale(0.5) translate(-50%, 0);
-        }
-      }
-    }
-  }
+.wd-img-cropper__footer--button .is-cancel {
+  display: inline-block;
+  color: #fff;
+  font-size: 16px
+}
 
-  @include e(img) {
-    z-index: 2;
-    top: 0;
-    left: 0;
-    position: absolute;
-    border: none;
-    width: 100%;
-    backface-visibility: hidden;
-    transform-origin: center;
-  }
+.wd-img-cropper__footer--button .is-confirm {
+  position: absolute;
+  right: 0;
+  width: 56px;
+  border-radius: 16px;
+  font-size: 16px
+}
 
-  @include e(canvas) {
-    position: fixed;
-    background: white;
-    width: 150px;
-    height: 150px;
-    z-index: 10;
-    top: -200%;
-    pointer-events: none;
-  }
-
-  @include e(footer) {
-    position: fixed;
-    z-index: 10;
-    bottom: 10px;
-    width: 100%;
-    height: 15vh;
-    text-align: center;
-
-    @include m(button) {
-      position: relative;
-      text-align: left;
-      margin: 0 20px;
-      padding-top: 4vh;
-      // line-height: 32px;
-      box-sizing: border-box;
-
-      .is-cancel {
-        display: inline-block;
-        color: #fff;
-        font-size: 16px;
-      }
-
-      .is-confirm {
-        position: absolute;
-        right: 0;
-        // height: 32px;
-        width: 56px;
-        border-radius: 16px;
-        font-size: 16px;
-      }
-    }
-  }
-
-  @include edeep(rotate) {
-    font-size: $-img-cropper-icon-size;
-    color: $-img-cropper-icon-color;
-  }
+ .wd-img-cropper__rotate {
+  font-size: var(--wot-img-cropper-icon-size, var(--wot-fs-big, 24px));
+  color: var(--wot-img-cropper-icon-color, #fff)
 }

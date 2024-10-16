@@ -1,175 +1,171 @@
-@import "../common/abstracts/variable.scss";
-@import "../common/abstracts/_mixin.scss";
 
-.wot-theme-dark {
-  @include b(upload) {
-    @include e(evoke) {
-      background-color: $-dark-background4;
-      color: $-dark-color3;
-
-      @include when(disabled) {
-        color: $-dark-color-gray;
-      }
-    }
-
-    @include e(file) {
-      background-color: $-dark-background4;
-    }
-
-    @include e(file-name) {
-      color: $-dark-color3;
-    }
-  }
-
+.wot-theme-dark .wd-upload__evoke {
+  background-color: #323233;
+  color: rgba(232,230,227,.8)
 }
 
-@include b(upload) {
+.wot-theme-dark .wd-upload__evoke.is-disabled {
+  color: #595959
+}
+
+.wot-theme-dark .wd-upload__file {
+  background-color: #323233
+}
+
+.wot-theme-dark .wd-upload__file-name {
+  color: rgba(232,230,227,.8)
+}
+
+.wd-upload {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap
+}
 
-  @include e(evoke) {
-    position: relative;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: $-upload-size;
-    height: $-upload-size;
-    font-size: $-upload-evoke-icon-size;
-    background-color: $-upload-evoke-bg;
-    color: $-upload-evoke-color;
-    margin-bottom: 12px;
+.wd-upload__evoke {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: var(--wot-upload-size, 80px);
+  height: var(--wot-upload-size, 80px);
+  font-size: var(--wot-upload-evoke-icon-size, 32px);
+  background-color: var(--wot-upload-evoke-bg, rgba(0, 0, 0, .04));
+  color: var(--wot-upload-evoke-color, rgba(0, 0, 0, .25));
+  margin-bottom: 12px
+}
 
-    @include when(disabled) {
-      color: $-upload-evoke-disabled-color;
-    }
-  }
+.wd-upload__evoke.is-disabled {
+  color: var(--wot-upload-evoke-disabled-color, rgba(0, 0, 0, .09))
+}
 
-  @include e(evoke-num) {
-    font-size: 14px;
-    line-height: 14px;
-    margin-top: 8px;
-  }
+.wd-upload__evoke-num {
+  font-size: 14px;
+  line-height: 14px;
+  margin-top: 8px
+}
 
-  @include edeep(evoke-icon) {
-    width: 32px;
-    height: 32px;
-  }
+ .wd-upload__evoke-icon {
+  width: 32px;
+  height: 32px
+}
 
-  @include e(input) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    opacity: 0;
-  }
+.wd-upload__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0
+}
 
-  @include e(preview) {
-    position: relative;
-    width: $-upload-size;
-    height: $-upload-size;
-    margin: 0 12px 12px 0;
-  }
+.wd-upload__preview {
+  position: relative;
+  width: var(--wot-upload-size, 80px);
+  height: var(--wot-upload-size, 80px);
+  margin: 0 12px 12px 0
+}
 
-  @include e(preview-list) {
-    display: flex;
-  }
+.wd-upload__preview-list {
+  display: flex
+}
 
-  @include e(picture, file, video) {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+.wd-upload__picture,.wd-upload__file,.wd-upload__video {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%
+}
 
-  @include e(file, video) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: $-upload-evoke-bg;
-  }
+.wd-upload__file,.wd-upload__video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--wot-upload-evoke-bg, rgba(0, 0, 0, .04))
+}
 
-  @include e(video-icon, file-icon) {
-    font-size: $-upload-cover-icon-size;
-  }
+.wd-upload__video-icon,.wd-upload__file-icon {
+  font-size: var(--wot-upload-cover-icon-size, 22px)
+}
 
-  @include e(file-name, video-name) {
-    width: 100%;
-    font-size: $-upload-file-fs;
-    color: $-upload-file-color;
-    box-sizing: border-box;
-    padding: 0 4px;
-    text-align: center;
-    margin-top: 8px;
-    @include lineEllipsis()
-  }
+.wd-upload__file-name,.wd-upload__video-name {
+  width: 100%;
+  font-size: var(--wot-upload-file-fs, 12px);
+  color: var(--wot-upload-file-color, var(--wot-color-secondary, #595959));
+  box-sizing: border-box;
+  padding: 0 4px;
+  text-align: center;
+  margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
 
-  @include edeep(video-paly) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    color: $-color-white;
+ .wd-upload__video-paly {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  font-size: 24px;
+  color: var(--wot-color-white, rgb(255, 255, 255))
+}
 
-    &::before {
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
-    }
-  }
+ .wd-upload__video-paly:before {
+  background-color: rgba(0,0,0,.5);
+  border-radius: 50%
+}
 
-  @include edeep(close) {
-    position: absolute;
-    right: calc($-upload-close-icon-size / 2 * -1);
-    top: calc($-upload-close-icon-size / 2 * -1);
-    font-size: $-upload-close-icon-size;
-    z-index: 1;
-    color: $-upload-close-icon-color;
-    width: $-upload-close-icon-size;
-    height: $-upload-close-icon-size;
-    line-height: $-upload-close-icon-size;
+ .wd-upload__close {
+  position: absolute;
+  right: calc(var(--wot-upload-close-icon-size, 16px) / 2 * -1);
+  top: calc(var(--wot-upload-close-icon-size, 16px) / 2 * -1);
+  font-size: var(--wot-upload-close-icon-size, 16px);
+  z-index: 1;
+  color: var(--wot-upload-close-icon-color, rgba(0, 0, 0, .65));
+  width: var(--wot-upload-close-icon-size, 16px);
+  height: var(--wot-upload-close-icon-size, 16px);
+  line-height: var(--wot-upload-close-icon-size, 16px)
+}
 
-    &::after {
-      position: absolute;
-      content: "";
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: $-color-white;
-      left: 0;
-      z-index: -1;
-    }
-  }
+ .wd-upload__close:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--wot-color-white, rgb(255, 255, 255));
+  left: 0;
+  z-index: -1
+}
 
-  @include e(mask) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: $-upload-preview-name-bg;
-  }
+.wd-upload__mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--wot-upload-preview-name-bg, rgba(0, 0, 0, .6))
+}
 
-  @include e(progress-txt) {
-    font-size: $-upload-progress-fs;
-    line-height: $-upload-progress-fs;
-    margin-top: 9px;
-    color: $-color-white;
-  }
+.wd-upload__progress-txt {
+  font-size: var(--wot-upload-progress-fs, 14px);
+  line-height: var(--wot-upload-progress-fs, 14px);
+  margin-top: 9px;
+  color: var(--wot-color-white, rgb(255, 255, 255))
+}
 
-  @include edeep(icon) {
-    font-size: $-upload-preview-icon-size;
-    color: $-color-white;
-  }
+ .wd-upload__icon {
+  font-size: var(--wot-upload-preview-icon-size, 24px);
+  color: var(--wot-color-white, rgb(255, 255, 255))
+}
 
-  @include e(status-content) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
+.wd-upload__status-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%
 }

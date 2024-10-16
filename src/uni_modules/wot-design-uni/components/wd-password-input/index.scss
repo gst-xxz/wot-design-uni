@@ -1,124 +1,130 @@
-@import "../common/abstracts/variable";
-@import "../common/abstracts/mixin";
-
-.wot-theme-dark {
-  @include b(password-input) {
-    @include e(item) {
-      color: $-dark-color;
-      background: $-dark-background2;
-
-      @include when(border) {
-        border-color: $-dark-border-color;
-      }
-    }
-
-    @include e(mask) {
-      background-color: $-dark-color;
-    }
-
-    @include e(cursor) {
-      background-color: $-dark-color;
-    }
-
-    @include e(info) {
-      color: $-dark-color;
-
-      @include when(border) {
-        color: $-dark-color2;
-      }
-    }
-  }
+.wot-theme-dark .wd-password-input__item {
+  color: #fff;
+  background: #1b1b1b
 }
 
-@include b(password-input) {
+.wot-theme-dark .wd-password-input__item.is-border {
+  border-color: var(--wot-dark-border-color, #3a3a3c)
+}
+
+.wot-theme-dark .wd-password-input__mask,.wot-theme-dark .wd-password-input__cursor {
+  background-color: #fff
+}
+
+.wot-theme-dark .wd-password-input__info {
+  color: #fff
+}
+
+.wot-theme-dark .wd-password-input__info.is-border {
+  color: #f2270c
+}
+
+.wd-password-input {
   position: relative;
-  margin: 0 $-password-input-margin;
-  user-select: none;
-
-  @include e(security) {
-    display: flex;
-    width: 100%;
-    height: $-password-input-height;
-    cursor: pointer;
-  }
-
-  @include e(item) {
-    position: relative;
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: $-password-input-text-color;
-    font-size: $-password-input-font-size;
-    line-height: 1.2;
-    background: $-password-input-background;
-
-    @include when(border) {
-      border: 1px solid $-password-input-border-color;
-
-      &:not(:last-child) {
-        border-right: none;
-      }
-
-      &:first-child {
-        border-top-left-radius: $-password-input-radius;
-        border-bottom-left-radius: $-password-input-radius;
-      }
-
-      &:last-child {
-        border-top-right-radius: $-password-input-radius;
-        border-bottom-right-radius: $-password-input-radius;
-      }
-    }
-  }
-
-  @include e(mask) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: $-password-input-dot-size;
-    height: $-password-input-dot-size;
-    background: $-password-input-dot-color;
-    border-radius: 100%;
-    transform: translate(-50%, -50%);
-    visibility: hidden;
-  }
-
-  @include e(cursor) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: $-password-input-cursor-width;
-    height: $-password-input-cursor-height;
-    background: $-password-input-cursor-color;
-    transform: translate(-50%, -50%);
-    animation: $-password-input-cursor-duration cursor-flicker infinite;
-  }
-
-  @include e(info) {
-    margin-top: $-password-input-margin;
-    font-size: $-password-input-info-font-size;
-    text-align: center;
-    color: $-password-input-info-color;
-
-    @include when(error) {
-      color: $-password-input-error-info-color;
-    }
-
-  }
+  margin: 0 var(--wot-password-input-margin, 16px);
+  -webkit-user-select: none;
+  user-select: none
 }
 
-@keyframes cursor-flicker {
-  from {
-    opacity: 0;
+.wd-password-input__security {
+  display: flex;
+  width: 100%;
+  height: var(--wot-password-input-height, 50px);
+  cursor: pointer
+}
+
+.wd-password-input__item {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--wot-password-input-text-color, var(--wot-color-gray-8, #323233));
+  font-size: var(--wot-password-input-margin, 20px);
+  line-height: 1.2;
+  background: var(--wot-password-input-background, #fff)
+}
+
+.wd-password-input__item.is-border {
+  border: 1px solid var(--wot-password-border-color, #ebedf0)
+}
+
+.wd-password-input__item.is-border:not(:last-child) {
+  border-right: none
+}
+
+.wd-password-input__item.is-border:first-child {
+  border-top-left-radius: var(--wot-password-input-radius, 6px);
+  border-bottom-left-radius: var(--wot-password-input-radius, 6px)
+}
+
+.wd-password-input__item.is-border:last-child {
+  border-top-right-radius: var(--wot-password-input-radius, 6px);
+  border-bottom-right-radius: var(--wot-password-input-radius, 6px)
+}
+
+.wd-password-input__mask {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--wot-password-input-dot-size, 10px);
+  height: var(--wot-password-input-dot-size, 10px);
+  background: var(--wot-password-input-dot-color, var(--wot-color-gray-8, #323233));
+  border-radius: 100%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  visibility: hidden
+}
+
+.wd-password-input__cursor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--wot-password-input-cursor-width, 1px);
+  height: var(--wot-password-input-cursor-height, 40%);
+  background: var(--wot-password-input-cursor-color, var(--wot-color-gray-8, #323233));
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  -webkit-animation: var(--wot-password-input-cursor-duration,1s) cursor-flicker-991c123b infinite;
+  animation: var(--wot-password-input-cursor-duration,1s) cursor-flicker-991c123b infinite
+}
+
+.wd-password-input__info {
+  margin-top: var(--wot-password-input-margin, 16px);
+  font-size: var(--wot-password-input-info-font-size, var(--wot-fs-content, 14px));
+  text-align: center;
+  color: var(--wot-password-input-info-color, var(--wot-color-info, #909399))
+}
+
+.wd-password-input__info.is-error {
+  color: var(--wot-password-input-error-info-color, var(--wot-color-danger, #fa4350))
+}
+
+@-webkit-keyframes cursor-flicker-991c123b {
+  0% {
+      opacity: 0
   }
 
   50% {
-    opacity: 1;
+      opacity: 1
   }
 
-  100% {
-    opacity: 0;
+  to {
+      opacity: 0
+  }
+}
+
+@keyframes cursor-flicker-991c123b {
+  0% {
+      opacity: 0
+  }
+
+  50% {
+      opacity: 1
+  }
+
+  to {
+      opacity: 0
   }
 }

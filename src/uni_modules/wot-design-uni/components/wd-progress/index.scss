@@ -1,62 +1,60 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
-
-.wot-theme-dark {
-  @include b(progress) {
-    @include e(label) {
-      color: $-dark-color3;
-    }
-  }
+.wot-theme-dark .wd-progress__label {
+  color: rgba(232,230,227,.8)
 }
 
-@include b(progress) {
+.wd-progress {
   width: 100%;
-  height: $-progress-height;
+  height: var(--wot-progress-height, 3px);
   display: flex;
   align-items: center;
-  padding: $-progress-padding;
+  padding: var(--wot-progress-padding, 9px 0 8px)
+}
 
-  @include e(outer) {
-    display: block;
-    position: relative;
-    flex: 1;
-    height: $-progress-height;
-    border-radius: calc($-progress-height / 2);
-    background: $-progress-bg;
-  }
-  @include e(inner) {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    border-radius: calc($-progress-height / 2);
-    background: $-progress-color;
-    transition-property: width;
-    transition-timing-function: linear;
-    font-size: $-progress-icon-fs;
+.wd-progress__outer {
+  display: block;
+  position: relative;
+  flex: 1;
+  height: var(--wot-progress-height, 3px);
+  border-radius: calc(var(--wot-progress-height, 3px) / 2);
+  background: var(--wot-progress-bg, rgb(229, 229, 229))
+}
 
-    @include when(danger) {
-      background: $-progress-linear-danger-color;
-    }
-    @include when(success) {
-      background: $-progress-linear-success-color;
-    }
-  }
-  @include edeep(label) {
-    width: 30px;
-    margin-left: 9px;
-    color: $-progress-label-color;
-    font-size: $-progress-label-fs;
-  }
-  @include edeep(icon) {
-    font-size: $-progress-icon-fs;
+.wd-progress__inner {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: calc(var(--wot-progress-height, 3px) / 2);
+  background: var(--wot-progress-color, linear-gradient(315deg,#517cf0 0%,#769ef5 100%));
+  transition-property: width;
+  transition-timing-function: linear;
+  font-size: var(--wot-progress-icon-fs, 18px)
+}
 
-    @include when(danger) {
-      color: $-progress-danger-color;
-    }
-    @include when(success) {
-      color: $-progress-success-color;
-    }
-  }
+.wd-progress__inner.is-danger {
+  background: var(--wot-progress-linear-danger-color, linear-gradient(315deg,#e04350 0%,#ff5964 100%))
+}
+
+.wd-progress__inner.is-success {
+  background: var(--wot-progress-linear-success-color, linear-gradient(315deg,#20b080 0%,#2bd69d 100%))
+}
+
+ .wd-progress__label {
+  width: 30px;
+  margin-left: 9px;
+  color: var(--wot-progress-label-color, #333);
+  font-size: var(--wot-progress-label-fs, 14px)
+}
+
+ .wd-progress__icon {
+  font-size: var(--wot-progress-icon-fs, 18px)
+}
+
+ .wd-progress__icon.is-danger {
+  color: var(--wot-progress-danger-color, var(--wot-color-danger, #fa4350))
+}
+
+ .wd-progress__icon.is-success {
+  color: var(--wot-progress-success-color, var(--wot-color-success, #34d19d))
 }

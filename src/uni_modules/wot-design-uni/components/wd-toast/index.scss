@@ -1,65 +1,77 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
 
-@include b(toast) {
+
+.wd-toast {
   display: inline-block;
-  max-width: $-toast-max-width;
-  padding: $-toast-padding;
-  background-color: $-toast-bg;
-  border-radius: $-toast-radius;
+  max-width: var(--wot-toast-max-width, 300px);
+  padding: var(--wot-toast-padding, 16px 24px);
+  background-color: var(--wot-toast-bg, var(--wot-overlay-bg, rgba(0, 0, 0, .65)));
+  border-radius: var(--wot-toast-radius, 8px);
   color: #fff;
-  transition: all 0.2s;
-  font-size: $-toast-fs;
+  transition: all .2s;
+  font-size: var(--wot-toast-fs, var(--wot-fs-content, 14px));
   box-sizing: border-box;
-  box-shadow: $-toast-box-shadow;
+  box-shadow: var(--wot-toast-box-shadow, 0px 6px 16px 0px rgba(0, 0, 0, .08))
+}
 
-  @include e(msg) {
-    font-size: $-toast-fs;
-    line-height: 20px;
-    text-align: left;
-    font-family: "San Francisco", Rotobo, arial, "PingFang SC", "Noto SansCJK", "Microsoft Yahei", sans-serif;
-  }
-  @include edeep(icon) {
-    display: inline-block;
-    margin-right: $-toast-icon-margin-right;
-    font-size: $-toast-icon-size;
-  }
-  @include e(iconWrap){
-    font-size: 0;
-    line-height: 0;
-    vertical-align: middle;
-  }
-  @include e(iconBox){
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  @include e(iconSvg){
-    width: $-toast-icon-size;
-    height: $-toast-icon-size;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  @include e(loading) {
-    margin-bottom: 16px;
-    display: inline-block;
-  }
-  @include m(top) {
-    transform: translate3d(0, -40vh, 0);
-  }
-  @include m(middle){
-    transform: translate3d(0%,-18.8vh,0);
-  }
-  @include m(bottom) {
-    transform: translate3d(0, 40vh, 0);
-  }
-  @include m(with-icon) {
-    min-width: $-toast-with-icon-min-width;
-    display: inline-flex;
-    align-items: center;
-  }
-  @include m(loading) {
-    min-width: auto;
-    padding: $-toast-loading-padding;
-  }
+.wd-toast__msg {
+  font-size: var(--wot-toast-fs, var(--wot-fs-content, 14px));
+  line-height: 20px;
+  text-align: left;
+  font-family: San Francisco,Rotobo,arial,PingFang SC,Noto SansCJK,Microsoft Yahei,sans-serif
+}
+
+ .wd-toast__icon {
+  display: inline-block;
+  margin-right: var(--wot-toast-icon-margin-right, 12px);
+  font-size: var(--wot-toast-icon-size, 32px)
+}
+
+.wd-toast__iconWrap {
+  font-size: 0;
+  line-height: 0;
+  vertical-align: middle
+}
+
+.wd-toast__iconBox {
+  display: block;
+  width: 100%;
+  height: 100%
+}
+
+.wd-toast__iconSvg {
+  width: var(--wot-toast-icon-size, 32px);
+  height: var(--wot-toast-icon-size, 32px);
+  background-size: cover;
+  background-repeat: no-repeat
+}
+
+.wd-toast__loading {
+  margin-bottom: 16px;
+  display: inline-block
+}
+
+.wd-toast--top {
+  -webkit-transform: translate3d(0,-40vh,0);
+  transform: translate3d(0,-40vh,0)
+}
+
+.wd-toast--middle {
+  -webkit-transform: translate3d(0%,-18.8vh,0);
+  transform: translate3d(0,-18.8vh,0)
+}
+
+.wd-toast--bottom {
+  -webkit-transform: translate3d(0,40vh,0);
+  transform: translate3d(0,40vh,0)
+}
+
+.wd-toast--with-icon {
+  min-width: var(--wot-toast-with-icon-min-width, 150px);
+  display: inline-flex;
+  align-items: center
+}
+
+.wd-toast--loading {
+  min-width: auto;
+  padding: var(--wot-toast-loading-padding, 10px)
 }

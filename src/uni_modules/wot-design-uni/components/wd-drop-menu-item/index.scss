@@ -1,66 +1,61 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-
-.wot-theme-dark {
-  @include b(drop-item) {
-    color: $-dark-color;
-
-    @include e(tip) {
-      color: $-dark-color3;
-    }
-  }
+.wot-theme-dark .wd-drop-item {
+  color: #fff
 }
 
-@include b(drop-item) {
+.wot-theme-dark .wd-drop-item__tip {
+  color: rgba(232,230,227,.8)
+}
+
+.wd-drop-item {
   position: fixed;
   right: 0;
   left: 0;
   overflow: hidden;
-  font-size: $-drop-menu-item-fs;
-  color: $-drop-menu-item-color;
+  font-size: var(--wot-drop-menu-item-fs, var(--wot-fs-content, 14px));
+  color: var(--wot-drop-menu-item-color, var(--wot-color-content, #262626));
   width: 100%;
-  z-index: 101;
-  
-  .wd-drop-item__popup {
-    position: absolute;
-    max-height: 80%;
-  }
+  z-index: 101
+}
 
-  @include e(option) {
-    display: flex;
-    height: $-drop-menu-item-height;
-    line-height: $-drop-menu-item-height;
-    padding: 0 $-drop-menu-side-padding;
-    justify-content: space-between;
-    align-items: center;
-    transition: color .2s;
+.wd-drop-item .wd-drop-item__popup {
+  position: absolute;
+  max-height: 80%
+}
 
-    @include when(active) {
-      color: $-drop-menu-item-color-active;
-    }
-  }
+.wd-drop-item__option {
+  display: flex;
+  height: var(--wot-drop-menu-item-height, 48px);
+  line-height: var(--wot-drop-menu-item-height, 48px);
+  padding: 0 var(--wot-drop-menu-side-padding, var(--wot-size-side-padding, 15px));
+  justify-content: space-between;
+  align-items: center;
+  transition: color .2s
+}
 
-  @include e(title){
-    display: block;
-  }
+.wd-drop-item__option.is-active {
+  color: var(--wot-drop-menu-item-color-active, var(--wot-color-theme, #4d80f0))
+}
 
-  @include e(tip) {
-    display: inline-block;
-    color: $-drop-menu-item-color-tip;
-    font-size: $-drop-menu-item-fs-tip;
-    margin-left: 2px;
-  }
+.wd-drop-item__title {
+  display: block
+}
 
-  @include edeep(icon){
-    display: block;
-    font-size: $-drop-menu-option-check-size;
-  }
+.wd-drop-item__tip {
+  display: inline-block;
+  color: var(--wot-drop-menu-item-color-tip, rgba(0, 0, 0, .45));
+  font-size: var(--wot-drop-menu-item-fs-tip, var(--wot-fs-secondary, 12px));
+  margin-left: 2px
+}
 
-  @include e(modal) {
-    position: fixed;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    height: 100%;
-  }
+ .wd-drop-item__icon {
+  display: block;
+  font-size: var(--wot-drop-menu-option-check-size, 20px)
+}
+
+.wd-drop-item__modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.7);
+  height: 100%
 }

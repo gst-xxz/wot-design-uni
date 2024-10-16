@@ -1,149 +1,129 @@
-@import '../../common/abstracts/variable';
-@import '../../common/abstracts/mixin';
-
-.wot-theme-dark {
-  @include b(year) {
-    @include e(title) {
-      color: $-dark-color;
-    }
-
-    @include e(months) {
-      color: $-dark-color;
-    }
-
-    @include e(month) {
-
-      @include when(disabled) {
-        .wd-year__month-text {
-          color: $-dark-color-gray;
-        }
-      }
-    }
-  }
+.wot-theme-dark .wd-year__title,.wot-theme-dark .wd-year__months {
+  color: #fff
 }
 
-@include b(year) {
-  @include e(title) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 45px;
-    font-size: $-calendar-panel-title-fs;
-    color: $-calendar-panel-title-color;
-  }
+.wot-theme-dark .wd-year__month.is-disabled .wd-year__month-text {
+  color: #595959
+}
 
-  @include e(months) {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: $-calendar-day-fs;
-    color: $-calendar-day-color;
-  }
+.wd-year__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  font-size: var(--wot-calendar-panel-title-fs, 14px);
+  color: var(--wot-calendar-panel-title-color, rgba(0, 0, 0, .85))
+}
 
-  @include e(month) {
-    position: relative;
-    width: 25%;
-    height: $-calendar-day-height;
-    line-height: $-calendar-day-height;
-    text-align: center;
+.wd-year__months {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--wot-calendar-day-fs, 16px);
+  color: var(--wot-calendar-day-color, rgba(0, 0, 0, .85))
+}
 
-    @include when(disabled) {
-      .wd-year__month-text {
-        color: $-calendar-disabled-color;
-      }
-    }
+.wd-year__month {
+  position: relative;
+  width: 25%;
+  height: var(--wot-calendar-day-height, 64px);
+  line-height: var(--wot-calendar-day-height, 64px);
+  text-align: center
+}
 
-    @include when(current) {
-      color: $-calendar-active-color;
-    }
+.wd-year__month.is-disabled .wd-year__month-text {
+  color: var(--wot-calendar-disabled-color, rgba(0, 0, 0, .25))
+}
 
-    @include when(selected) {
-      color: #fff;
+.wd-year__month.is-current {
+  color: var(--wot-calendar-active-color, var(--wot-color-theme, #4d80f0))
+}
 
-      .wd-year__month-text {
-        border-radius: $-calendar-active-border;
-        background: $-calendar-active-color;
-      }
-    }
+.wd-year__month.is-selected {
+  color: #fff
+}
 
-    @include when(middle) {
-      background: $-calendar-range-color;
-    }
+.wd-year__month.is-selected .wd-year__month-text {
+  border-radius: var(--wot-calendar-active-border, 8px);
+  background: var(--wot-calendar-active-color, var(--wot-color-theme, #4d80f0))
+}
 
-    @include when(start) {
-      color: #fff;
+.wd-year__month.is-middle {
+  background: var(--wot-calendar-range-color, rgba(77, 128, 240, .09))
+}
 
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 50%;
-        bottom: 0;
-        content: '';
-        background: $-calendar-range-color;
-      }
+.wd-year__month.is-start {
+  color: #fff
+}
 
-      .wd-year__month-text {
-        background: $-calendar-active-color;
-        border-radius: $-calendar-active-border;
-      }
+.wd-year__month.is-start:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 50%;
+  bottom: 0;
+  content: "";
+  background: var(--wot-calendar-range-color, rgba(77, 128, 240, .09))
+}
 
-      &.is-without-end::after {
-        display: none;
-      }
-    }
+.wd-year__month.is-start .wd-year__month-text {
+  background: var(--wot-calendar-active-color, var(--wot-color-theme, #4d80f0));
+  border-radius: var(--wot-calendar-active-border, 8px)
+}
 
-    @include when(end) {
-      color: #fff;
+.wd-year__month.is-start.is-without-end:after {
+  display: none
+}
 
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 50%;
-        bottom: 0;
-        content: '';
-        background: $-calendar-range-color;
-      }
+.wd-year__month.is-end {
+  color: #fff
+}
 
-      .wd-year__month-text {
-        background: $-calendar-active-color;
-        border-radius: $-calendar-active-border;
-      }
-    }
+.wd-year__month.is-end:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 50%;
+  bottom: 0;
+  content: "";
+  background: var(--wot-calendar-range-color, rgba(77, 128, 240, .09))
+}
 
-    @include when(same) {
-      color: #fff;
+.wd-year__month.is-end .wd-year__month-text {
+  background: var(--wot-calendar-active-color, var(--wot-color-theme, #4d80f0));
+  border-radius: var(--wot-calendar-active-border, 8px)
+}
 
-      .wd-year__month-text {
-        background: $-calendar-active-color;
-        border-radius: $-calendar-active-border;
-      }
-    }
-  }
+.wd-year__month.is-same {
+  color: #fff
+}
 
-  @include e(month-text) {
-    width: $-calendar-month-width;
-    margin: 0 auto;
-    text-align: center;
-  }
+.wd-year__month.is-same .wd-year__month-text {
+  background: var(--wot-calendar-active-color, var(--wot-color-theme, #4d80f0));
+  border-radius: var(--wot-calendar-active-border, 8px)
+}
 
-  @include e(month-top) {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    line-height: 1.1;
-    font-size: $-calendar-info-fs;
-    text-align: center;
-  }
+.wd-year__month-text {
+  width: var(--wot-calendar-month-width, 50px);
+  margin: 0 auto;
+  text-align: center
+}
 
-  @include e(month-bottom) {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    line-height: 1.1;
-    font-size: $-calendar-info-fs;
-    text-align: center;
-  }
+.wd-year__month-top {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  line-height: 1.1;
+  font-size: var(--wot-calendar-info-fs, 10px);
+  text-align: center
+}
+
+.wd-year__month-bottom {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  line-height: 1.1;
+  font-size: var(--wot-calendar-info-fs, 10px);
+  text-align: center
 }

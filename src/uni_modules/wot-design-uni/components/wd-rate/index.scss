@@ -1,24 +1,22 @@
-@import './../common/abstracts/_mixin.scss';
-@import './../common/abstracts/variable.scss';
-
-@include b(rate) {
+.wd-rate {
   display: inline-block;
   vertical-align: middle;
-  line-height: 1;
+  line-height: 1
+}
 
-  @include e(item) {
-    position: relative;
-    display: inline-block;
-  }
-  @include e(item-star) {
-    display: inline-block;
-    vertical-align: top;
+.wd-rate__item {
+  position: relative;
+  display: inline-block
+}
 
-    @include m(active) {
-      position: absolute;
-      left: 0;
-      top: 0;
-      overflow: hidden;
-    }
-  }
+.wd-rate__item-star {
+  display: inline-block;
+  vertical-align: top
+}
+
+.wd-rate__item-star--active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden
 }

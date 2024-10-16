@@ -1,60 +1,57 @@
-@import './../common/abstracts/_mixin.scss';
-@import './../common/abstracts/variable.scss';
-
-.wot-theme-dark {
-  @include b(badge) {
-    @include e(content) {
-      border-color: $-dark-background2;
-    }
-  }
+.wot-theme-dark .wd-badge__content {
+  border-color: #1b1b1b
 }
 
-
-@include b(badge) {
+.wd-badge {
   position: relative;
   vertical-align: middle;
+  display: inline-block
+}
+
+.wd-badge__content {
   display: inline-block;
+  height: var(--wot-badge-height, 16px);
+  line-height: var(--wot-badge-height, 16px);
+  padding: var(--wot-badge-padding, 0 5px);
+  background-color: var(--wot-badge-bg, var(--wot-color-danger, #fa4350));
+  border-radius: calc(var(--wot-badge-height, 16px) / 2 + 2px);
+  color: var(--wot-badge-color, #fff);
+  font-size: var(--wot-badge-fs, 12px);
+  text-align: center;
+  white-space: nowrap;
+  border: var(--wot-badge-border, 2px solid var(--wot-badge-color, #fff));
+  font-weight: 500
+}
 
-  @include e(content) {
-    display: inline-block;
-    height: $-badge-height;
-    line-height: $-badge-height;
-    padding: $-badge-padding;
-    background-color: $-badge-bg;
-    border-radius: calc($-badge-height / 2 + 2px);
-    color: $-badge-color;
-    font-size: $-badge-fs;
-    text-align: center;
-    white-space: nowrap;
-    border: $-badge-border;
-    font-weight: 500;
+.wd-badge__content.is-fixed {
+  position: absolute;
+  -webkit-transform: translateY(-50%) translateX(50%);
+  transform: translateY(-50%) translate(50%)
+}
 
-    @include when(fixed) {
-      position: absolute;
-      transform: translateY(-50%) translateX(50%);
-    }
+.wd-badge__content.is-dot {
+  height: var(--wot-badge-dot-size, 6px);
+  width: var(--wot-badge-dot-size, 6px);
+  padding: 0;
+  border-radius: 50%
+}
 
-    @include when(dot) {
-      height: $-badge-dot-size;
-      width: $-badge-dot-size;
-      padding: 0;
-      border-radius: 50%;
-    }
+.wd-badge__content--primary {
+  background-color: var(--wot-badge-primary, var(--wot-color-theme, #4d80f0))
+}
 
-    @each $type in (primary, success, warning, info, danger) {
-      @include m($type) {
-        @if $type == primary {
-          background-color: $-badge-primary;
-        } @else if $type == success {
-          background-color: $-badge-success;
-        } @else if $type == warning {
-          background-color: $-badge-warning;
-        } @else if $type == info {
-          background-color: $-badge-info;
-        } @else {
-          background-color: $-badge-danger;
-        }
-      }
-    }
-  }
+.wd-badge__content--success {
+  background-color: var(--wot-badge-success, var(--wot-color-success, #34d19d))
+}
+
+.wd-badge__content--warning {
+  background-color: var(--wot-badge-warning, var(--wot-color-warning, #f0883a))
+}
+
+.wd-badge__content--info {
+  background-color: var(--wot-badge-info, var(--wot-color-info, #909399))
+}
+
+.wd-badge__content--danger {
+  background-color: var(--wot-badge-danger, var(--wot-color-danger, #fa4350))
 }

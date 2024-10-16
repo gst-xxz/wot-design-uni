@@ -1,22 +1,22 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-
-@include b(swipe-action) {
+.wd-swipe-action {
   position: relative;
-  overflow: hidden;
-  @include e(left) {
-    left: 0;
-    transform: translate3d(-100%, 0, 0);
-  }
-  @include e(right) {
-    right: 0;
-    transform: translate3d(100%, 0, 0);
-  }
+  overflow: hidden
 }
 
-.wd-swipe-action__left,
+.wd-swipe-action__left {
+  left: 0;
+  -webkit-transform: translate3d(-100%,0,0);
+  transform: translate3d(-100%,0,0)
+}
+
 .wd-swipe-action__right {
+  right: 0;
+  -webkit-transform: translate3d(100%,0,0);
+  transform: translate3d(100%,0,0)
+}
+
+.wd-swipe-action__left,.wd-swipe-action__right {
   position: absolute;
   top: 0;
-  height: 100%;
+  height: 100%
 }

@@ -1,20 +1,10 @@
-@import "./../../common/abstracts/_mixin.scss";
-@import "./../../common/abstracts/variable.scss";
+.wot-theme-dark .wd-key {
+  background: #1b1b1b;
+  color: #fff
+}
 
-.wot-theme-dark {
-  @include b(key) {
-    background: $-dark-background2;
-    color: $-dark-color;
-
-    &:active {
-      background-color: $-dark-background4;
-    }
-
-    @include m(active) {
-      background-color: $-dark-background4;
-    }
-
-  }
+.wot-theme-dark .wd-key:active,.wot-theme-dark .wd-key--active {
+  background-color: #323233
 }
 
 .wd-key-wrapper {
@@ -22,60 +12,59 @@
   flex: 1;
   flex-basis: 33%;
   box-sizing: border-box;
-  padding: 0 6px 6px 0;
-
-  @include m(wider) {
-    flex-basis: 66%;
-  }
+  padding: 0 6px 6px 0
 }
 
-@include b(key) {
+.wd-key-wrapper--wider {
+  flex-basis: 66%
+}
+
+.wd-key {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: $-number-keyboard-key-height;
-  font-size: $-number-keyboard-key-font-size;
+  height: var(--wot-number-keyboard-key-height, 48px);
+  font-size: var(--wot-number-keyboard-key-font-size, 28px);
   line-height: 1.5;
-  background: $-number-keyboard-key-background;
-  border-radius: $-number-keyboard-key-border-radius;
+  background: var(--wot-number-keyboard-key-background, var(--wot-color-white, rgb(255, 255, 255)));
+  border-radius: var(--wot-number-keyboard-key-border-radius, 8px)
+}
 
-  &:active {
-    background-color: $-number-keyboard-key-active-color;
-  }
+.wd-key:active {
+  background-color: var(--wot-number-keyboard-key-active-color, var(--wot-color-gray-3, #ebedf0))
+}
 
-  @include m(large) {
-    position: absolute;
-    top: 0;
-    right: 6px;
-    bottom: 6px;
-    left: 0;
-    height: auto;
-  }
+.wd-key--large {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  bottom: 6px;
+  left: 0;
+  height: auto
+}
 
-  @include m(delete, close) {
-    font-size: $-number-keyboard-delete-font-size;
-  }
+.wd-key--delete,.wd-key--close {
+  font-size: var(--wot-number-keyboard-delete-font-size, 16px)
+}
 
-  @include m(active) {
-    background-color: $-number-keyboard-key-active-color;
-  }
+.wd-key--active {
+  background-color: var(--wot-number-keyboard-key-active-color, var(--wot-color-gray-3, #ebedf0))
+}
 
-  @include m(close) {
-    color: $-number-keyboard-button-text-color;
-    background: $-number-keyboard-button-background;
+.wd-key--close {
+  color: var(--wot-number-keyboard-button-text-color, var(--wot-color-white, rgb(255, 255, 255)));
+  background: var(--wot-number-keyboard--button-background, var(--wot-color-theme, #4d80f0))
+}
 
-    &:active {
-      background: $-number-keyboard-button-background;
-      opacity: $-number-keyboard-button-active-opacity;
-    }
-  }
+.wd-key--close:active {
+  background: var(--wot-number-keyboard--button-background, var(--wot-color-theme, #4d80f0));
+  opacity: var(--wot-number-keyboard-button-active-opacity, .6)
+}
 
-  @include edeep(loading-icon) {
-    color: $-number-keyboard-button-text-color;
-  }
+ .wd-key__loading-icon {
+  color: var(--wot-number-keyboard-button-text-color, var(--wot-color-white, rgb(255, 255, 255)))
+}
 
-  @include edeep(icon) {
-    font-size: $-number-keyboard-icon-size;
-  }
-
+ .wd-key__icon {
+  font-size: var(--wot-number-keyboard-icon-size, 22px)
 }

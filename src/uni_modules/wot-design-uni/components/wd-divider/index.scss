@@ -1,32 +1,29 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-
-.wot-theme-dark {
-  @include b(divider) {
-    color: $-dark-color3;
-
-    @include e(line) {
-      background: $-dark-color-gray;
-    }
-  }
+.wot-theme-dark .wd-divider {
+  color: rgba(232,230,227,.8)
 }
 
-@include b(divider) {
+.wot-theme-dark .wd-divider__line {
+  background: #595959
+}
+
+.wd-divider {
   position: relative;
   display: flex;
-  padding: $-divider-padding;
+  padding: var(--wot-divider-padding, 0 var(--wot-size-side-padding, 15px));
   align-items: center;
-  color: $-divider-color;
-  font-size: $-divider-fs;
+  color: var(--wot-divider-color, rgba(0, 0, 0, .45));
+  font-size: var(--wot-divider-fs, 14px)
+}
 
-  @include e(line) {
-    display: block;
-    flex: 1;
-    height: 1px;
-    transform: scaleY(0.5);
-    background: $-divider-line-color;
-  }
-  @include e(content) {
-    padding: 0 12px;
-  }
+.wd-divider__line {
+  display: block;
+  flex: 1;
+  height: 1px;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  background: var(--wot-divider-line-color, rgba(0, 0, 0, .15))
+}
+
+.wd-divider__content {
+  padding: 0 12px
 }

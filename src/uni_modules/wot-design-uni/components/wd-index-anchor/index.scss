@@ -1,35 +1,19 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
-
-.wot-theme-dark {
-  @include b(index-anchor) {
-    background-color: $-color-gray-8;
-    color: $-color-white;
-  }
+.wot-theme-dark .wd-index-anchor {
+  background-color: var(--wot-color-gray-8, #323233);
+  color: var(--wot-color-white, rgb(255, 255, 255))
 }
 
-// #ifdef MP-DINGTALK
-@include b(index-anchor-ding) {
-  
-  @include when(sticky){
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-}
-// #endif
-
-@include b(index-anchor) {
-  background-color: $-color-gray-2;
+.wd-index-anchor {
+  background-color: var(--wot-color-gray-2, #f2f3f5);
   padding: 10px;
   font-size: 14px;
-  color: $-color-title;
+  color: var(--wot-color-title, var(--wot-color-black, rgb(0, 0, 0)))
+}
 
-  @include when(sticky){
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
+.wd-index-anchor.is-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1
 }

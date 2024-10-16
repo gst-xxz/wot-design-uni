@@ -1,37 +1,58 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+.wd-text.is-bold {
+  font-weight: 700
+}
 
+.wd-text.is-lines-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden
+}
 
+.wd-text.is-lines-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden
+}
 
-@include b(text) {
+.wd-text.is-lines-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden
+}
 
-  @include when(bold) {
-    font-weight: bold;
-  }
+.wd-text.is-lines-4 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden
+}
 
-  @for $i from 1 through 5 {
-    &.is-lines-#{$i} {
-      @include multiEllipsis($i);
-    }
-  }
+.wd-text.is-lines-5 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden
+}
 
-  @include when(default) {
-    color: $-text-info-color;
-  }
+.wd-text.is-default {
+  color: var(--wot-text-info-color, var(--wot-color-info, #909399))
+}
 
-  @include when(primary) {
-    color: $-text-primary-color;
-  }
+.wd-text.is-primary {
+  color: var(--wot-text-primary-color, var(--wot-color-theme, #4d80f0))
+}
 
-  @include when(error) {
-    color: $-text-error-color;
-  }
+.wd-text.is-error {
+  color: var(--wot-text-error-color, var(--wot-color-danger, #fa4350))
+}
 
-  @include when(warning) {
-    color: $-text-warning-color;
-  }
+.wd-text.is-warning {
+  color: var(--wot-text-warning-color, var(--wot-color-warning, #f0883a))
+}
 
-  @include when(success) {
-    color: $-text-success-color;
-  }
+.wd-text.is-success {
+  color: var(--wot-text-success-color, var(--wot-color-success, #34d19d))
 }

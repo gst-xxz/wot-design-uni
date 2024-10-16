@@ -1,235 +1,236 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-
-.wot-theme-dark {
-  @include b(step) {
-    @include e(icon) {
-      background: $-dark-background2;
-    }
-
-    @include e(content){
-      color: $-dark-color3;
-    }
-
-    @include e(line) {
-      background: $-dark-color-gray;
-    }
-
-    @include e(dot) {
-      background: $-dark-color-gray;
-    }
-
-    @include e(description) {
-      color: $-dark-color3;
-    }
-
-    @include when(wait) {
-      .wd-step__description {
-        color: $-dark-color-gray;
-      }
-    }
-
-    :deep(.wd-step__icon-outer),:deep(.wd-step__icon-inner){
-      color: $-dark-color3; 
-      border-color: $-dark-color-gray;
-    }
-  }
+.wot-theme-dark .wd-step__icon {
+  background: #1b1b1b
 }
 
+.wot-theme-dark .wd-step__content {
+  color: rgba(232,230,227,.8)
+}
 
-@include b(step) {
+.wot-theme-dark .wd-step__line,.wot-theme-dark .wd-step__dot {
+  background: #595959
+}
+
+.wot-theme-dark .wd-step__description {
+  color: rgba(232,230,227,.8)
+}
+
+.wot-theme-dark .wd-step.is-wait .wd-step__description {
+  color: #595959
+}
+
+.wot-theme-dark .wd-step .wd-step__icon-outer,.wot-theme-dark .wd-step .wd-step__icon-inner {
+  color: rgba(232,230,227,.8);
+  border-color: #595959
+}
+
+.wd-step {
   position: relative;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: top
+}
 
-  @include e(header) {
-    position: relative;
-    font-size: 0;
+.wd-step__header {
+  position: relative;
+  font-size: 0
+}
 
-    @include when(dot) {
-      .wd-step__line {
-        margin-top: -1px;
-      }
-    }
-  }
-  @include e(icon) {
-    display: inline-block;
-    position: relative;
-    width: $-steps-icon-size;
-    height: $-steps-icon-size;
-    background: #fff;
-    z-index: 1;
+.wd-step__header.is-dot .wd-step__line {
+  margin-top: -1px
+}
 
-    @include when(icon) {
-      width: $-steps-is-icon-width;
-      text-align: center;
-    }
-    @include when(dot) {
-      width: $-steps-dot-size;
-      height: $-steps-dot-size;
-      border: 1px solid transparent;
-      margin-left: -1px;
-      border-radius: 50%;
-      background: transparent;
-    }
-  }
-  @include edeep(icon-inner) {
-    font-size: $-steps-icon-size;
-    color: $-steps-inactive-color;
-  }
-  @include e(icon-outer) {
-    width: calc($-steps-icon-size - 2px);
-    height: calc($-steps-icon-size - 2px);
-    border: 1px solid $-steps-inactive-color;
-    color: $-steps-inactive-color;
-    text-align: center;
-    line-height: calc($-steps-icon-size - 2px);
-    border-radius: 50%;
-    font-size: $-steps-icon-text-fs;
-  }
-  @include e(line) {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background: $-steps-line-color;
-    transform: scaleY(0.5);
-    top: 50%;
-    left: 0;
-  }
-  @include e(dot) {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: $-steps-line-color;
-  }
-  @include e(content){
-    margin-top: 7px;
-    color: $-steps-inactive-color;
-    font-size: $-steps-label-fs;
-  }
-  @include e(title) {
-    font-weight: $-steps-title-fw;
-    line-height: 1.43;
+.wd-step__icon {
+  display: inline-block;
+  position: relative;
+  width: var(--wot-steps-icon-size, 22px);
+  height: var(--wot-steps-icon-size, 22px);
+  background: #fff;
+  z-index: 1
+}
 
-    @include when(description) {
-      font-size: $-steps-title-fs;
-    }
-  }
-  @include e(description) {
-    margin-top: 5px;
-    padding: 0 2px;
-    color: $-steps-description-color;
-  }
-  @include when(wait) {
-    .wd-step__description {
-      color: $-steps-inactive-color;
-    }
-  }
-  @include when(finished) {
-    :deep(.wd-step__icon-inner) {
-      color: $-steps-finished-color;
-    }
-    .wd-step__icon-outer {
-      color: $-steps-finished-color;
-      border-color: $-steps-finished-color;
-    }
-    .wd-step__title {
-      color: $-steps-finished-color;
-    }
-    .wd-step__dot {
-      background: $-steps-finished-color;
-    }
-  }
-  @include when(process) {
-    .wd-step__icon.is-icon {
-      :deep(.wd-step__icon-inner) {
-        color: $-steps-finished-color;
-      }
-    }
-    .wd-step__icon-outer {
-      color: #fff;
-      background: $-steps-finished-color;
-      border-color: $-steps-finished-color;
-    }
-    .wd-step__title {
-      color: $-steps-finished-color;
-    }
-    .wd-step__icon {
-      border-color: $-steps-finished-color;
+.wd-step__icon.is-icon {
+  width: var(--wot-steps-is-icon-width, 30px);
+  text-align: center
+}
 
-      &.is-dot {
-        &::after {
-          position: absolute;
-          content: '';
-          width: $-steps-dot-size + 10px;
-          height: $-steps-dot-size + 10px;
-          left: -5px;
-          top: -5px;
-          border-radius: 50%;
-          background: $-steps-finished-color;
-          opacity: 0.2;
-        }
-      }
-    }
-    .wd-step__dot {
-      background: $-steps-finished-color;
-    }
-  }
-  @include when(error) {
-    :deep(.wd-step__icon-inner), .wd-step__title {
-      color: $-steps-error-color;
-    }
-    .wd-step__icon-outer {
-      color: $-steps-error-color;
-      border-color: $-steps-error-color;
-    }
-    .wd-step__dot {
-      background: $-steps-error-color;
-    }
-  }
-  @include when(center) {
-    text-align: center;
+.wd-step__icon.is-dot {
+  width: var(--wot-steps-dot-size, 7px);
+  height: var(--wot-steps-dot-size, 7px);
+  border: 1px solid transparent;
+  margin-left: -1px;
+  border-radius: 50%;
+  background: transparent
+}
 
-    .wd-step__line {
-      left: 50%;
-      right: -50%;
-    }
-  }
-  @include when(vertical) {
-    display: block;
+ .wd-step__icon-inner {
+  font-size: var(--wot-steps-icon-size, 22px);
+  color: var(--wot-steps-inactive-color, rgba(0, 0, 0, .25))
+}
 
-    .wd-step__header {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
+.wd-step__icon-outer {
+  width: calc(var(--wot-steps-icon-size, 22px) - 2px);
+  height: calc(var(--wot-steps-icon-size, 22px) - 2px);
+  border: 1px solid var(--wot-steps-inactive-color, rgba(0, 0, 0, .25));
+  color: var(--wot-steps-inactive-color, rgba(0, 0, 0, .25));
+  text-align: center;
+  line-height: calc(var(--wot-steps-icon-size, 22px) - 2px);
+  border-radius: 50%;
+  font-size: var(--wot-steps-icon-text-fs, var(--wot-fs-content, 14px))
+}
 
-      &.is-dot {
-        top: 6px;
+.wd-step__line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: var(--wot-steps-line-color, rgba(0, 0, 0, .15));
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  top: 50%;
+  left: 0
+}
 
-        .wd-step__line {
-          margin-left: -1px;
-          margin-top: 0;
-        }
-      }
-    }
-    .wd-step__content {
-      margin-left: 30px;
-      margin-top: 0;
-      padding-bottom: 20px;
-    }
-    .wd-step__line {
-      top: 0;
-      left: 50%;
-      width: 1px;
-      height: 100%;
-      transform: scaleX(0.5);
-    }
-    .wd-step__icon.is-dot {
-      margin-left: 0;
-      margin-top: -1px;
-    }
-  }
+.wd-step__dot {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--wot-steps-line-color, rgba(0, 0, 0, .15))
+}
+
+.wd-step__content {
+  margin-top: 7px;
+  color: var(--wot-steps-inactive-color, rgba(0, 0, 0, .25));
+  font-size: var(--wot-steps-label-fs, var(--wot-fs-secondary, 12px))
+}
+
+.wd-step__title {
+  font-weight: var(--wot-steps-title-fw, var(--wot-fw-medium, 500));
+  line-height: 1.43
+}
+
+.wd-step__title.is-description {
+  font-size: var(--wot-steps-title-fs, var(--wot-fs-content, 14px))
+}
+
+.wd-step__description {
+  margin-top: 5px;
+  padding: 0 2px;
+  color: var(--wot-steps-description-color, rgba(0, 0, 0, .45))
+}
+
+.wd-step.is-wait .wd-step__description {
+  color: var(--wot-steps-inactive-color, rgba(0, 0, 0, .25))
+}
+
+.wd-step.is-finished .wd-step__icon-inner {
+  color: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-finished .wd-step__icon-outer {
+  color: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0));
+  border-color: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-finished .wd-step__title {
+  color: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-finished .wd-step__dot {
+  background: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-process .wd-step__icon.is-icon .wd-step__icon-inner {
+  color: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-process .wd-step__icon-outer {
+  color: #fff;
+  background: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0));
+  border-color: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-process .wd-step__title {
+  color: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-process .wd-step__icon {
+  border-color: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-process .wd-step__icon.is-dot:after {
+  position: absolute;
+  content: "";
+  width: var(--wot-steps-dot-size, 7px)10px;
+  height: var(--wot-steps-dot-size, 7px)10px;
+  left: -5px;
+  top: -5px;
+  border-radius: 50%;
+  background: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0));
+  opacity: .2
+}
+
+.wd-step.is-process .wd-step__dot {
+  background: var(--wot-steps-finished-color, var(--wot-color-theme, #4d80f0))
+}
+
+.wd-step.is-error .wd-step__icon-inner,.wd-step.is-error .wd-step__title {
+  color: var(--wot-steps-error-color, var(--wot-color-danger, #fa4350))
+}
+
+.wd-step.is-error .wd-step__icon-outer {
+  color: var(--wot-steps-error-color, var(--wot-color-danger, #fa4350));
+  border-color: var(--wot-steps-error-color, var(--wot-color-danger, #fa4350))
+}
+
+.wd-step.is-error .wd-step__dot {
+  background: var(--wot-steps-error-color, var(--wot-color-danger, #fa4350))
+}
+
+.wd-step.is-center {
+  text-align: center
+}
+
+.wd-step.is-center .wd-step__line {
+  left: 50%;
+  right: -50%
+}
+
+.wd-step.is-vertical {
+  display: block
+}
+
+.wd-step.is-vertical .wd-step__header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%
+}
+
+.wd-step.is-vertical .wd-step__header.is-dot {
+  top: 6px
+}
+
+.wd-step.is-vertical .wd-step__header.is-dot .wd-step__line {
+  margin-left: -1px;
+  margin-top: 0
+}
+
+.wd-step.is-vertical .wd-step__content {
+  margin-left: 30px;
+  margin-top: 0;
+  padding-bottom: 20px
+}
+
+.wd-step.is-vertical .wd-step__line {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(.5);
+  transform: scaleX(.5)
+}
+
+.wd-step.is-vertical .wd-step__icon.is-dot {
+  margin-left: 0;
+  margin-top: -1px
 }

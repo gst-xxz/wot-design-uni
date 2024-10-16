@@ -1,15 +1,9 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-
-.wot-theme-dark {
-  @include b(count-down) {
-    color: $-dark-color;
-  }
+.wot-theme-dark .wd-count-down {
+  color: #fff
 }
 
-
-@include b(count-down) {
-  color: $-count-down-text-color;
-  font-size: $-count-down-font-size;
-  line-height: $-count-down-line-height;
+.wd-count-down {
+  color: var(--wot-count-down-text-color, var(--wot-color-gray-8, #323233));
+  font-size: var(--wot-count-down-font-size, var(--wot-fs-content, 14px));
+  line-height: var(--wot-count-down-line-height, 20px)
 }

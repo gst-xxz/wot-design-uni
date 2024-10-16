@@ -1,25 +1,22 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
 
-.wot-theme-dark {
-  @include b(sidebar) {
-    background: $-dark-background;
-    @include e(padding){
-      background: $-dark-background2;
-    }
-  }
+.wot-theme-dark .wd-sidebar {
+  background: #131313
 }
 
-@include b(sidebar) {
+.wot-theme-dark .wd-sidebar__padding {
+  background: #1b1b1b
+}
+
+.wd-sidebar {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  width: $-sidebar-width;
-  height: $-sidebar-height;
-  background: $-color-white;
-  
-  @include e(padding){
-    flex: 1 1 auto;
-    background: $-sidebar-bg;
-  }
+  width: var(--wot-sidebar-width, 104px);
+  height: var(--wot-sidebar-height, 100%);
+  background: var(--wot-color-white, rgb(255, 255, 255))
+}
+
+.wd-sidebar__padding {
+  flex: 1 1 auto;
+  background: var(--wot-sidebar-bg, var(--wot-color-gray-1, #f7f8fa))
 }

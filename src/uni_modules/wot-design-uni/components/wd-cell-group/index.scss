@@ -1,56 +1,75 @@
-@import '../common/abstracts/variable.scss';
-@import '../common/abstracts/_mixin.scss';
-
-.wot-theme-dark {
-  @include b(cell-group) {
-    background-color: $-dark-background2;
-
-    @include when(border) {
-      .wd-cell-group__title {
-        @include halfPixelBorder('bottom', 0, $-dark-border-color);
-      }
-    }
-
-    @include e(title) {
-      background: $-dark-background2;
-      color: $-dark-color;
-    }
-
-    @include e(right) {
-      color: $-dark-color3;
-    }
-
-    @include e(body) {
-      background: $-dark-background2;
-    }
-
-  }
+.wot-theme-dark .wd-cell-group {
+  background-color: #1b1b1b
 }
 
-@include b(cell-group) {
-  background-color: $-color-white;
+.wot-theme-dark .wd-cell-group.is-border .wd-cell-group__title {
+  position: relative
+}
 
-  @include when(border) {
-    .wd-cell-group__title {
-      @include halfPixelBorder;
-    }
-  }
-  @include e(title) {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    padding: $-cell-group-padding;
-    background: $-color-white;
-    font-size: $-cell-group-title-fs;
-    color: $-cell-group-title-color;
-    font-weight: $-fw-medium;
-    line-height: 1.43;
-  }
-  @include e(right) {
-    color: $-cell-group-value-color;
-    font-size: $-cell-group-value-fs;
-  }
-  @include e(body) {
-    background: $-color-white;
-  }
+.wot-theme-dark .wd-cell-group.is-border .wd-cell-group__title:after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  left: 0;
+  bottom: 0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  background: var(--wot-dark-border-color, #3a3a3c)
+}
+
+.wot-theme-dark .wd-cell-group__title {
+  background: #1b1b1b;
+  color: #fff
+}
+
+.wot-theme-dark .wd-cell-group__right {
+  color: rgba(232,230,227,.8)
+}
+
+.wot-theme-dark .wd-cell-group__body {
+  background: #1b1b1b
+}
+
+.wd-cell-group {
+  background-color: var(--wot-color-white, rgb(255, 255, 255))
+}
+
+.wd-cell-group.is-border .wd-cell-group__title {
+  position: relative
+}
+
+.wd-cell-group.is-border .wd-cell-group__title:after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  left: 0;
+  bottom: 0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  background: var(--wot-color-border-light, #e8e8e8)
+}
+
+.wd-cell-group__title {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--wot-cell-group-padding, 13px var(--wot-cell-padding, var(--wot-size-side-padding, 15px)));
+  background: var(--wot-color-white, rgb(255, 255, 255));
+  font-size: var(--wot-cell-group-title-fs, var(--wot-fs-title, 16px));
+  color: var(--wot-cell-group-title-color, rgba(0, 0, 0, .85));
+  font-weight: var(--wot-fw-medium, 500);
+  line-height: 1.43
+}
+
+.wd-cell-group__right {
+  color: var(--wot-cell-group-value-color, var(--wot-color-content, #262626));
+  font-size: var(--wot-cell-group-value-fs, var(--wot-fs-content, 14px))
+}
+
+.wd-cell-group__body {
+  background: var(--wot-color-white, rgb(255, 255, 255))
 }

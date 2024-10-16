@@ -1,189 +1,201 @@
-@import '../common/abstracts/variable.scss';
-@import '../common/abstracts/_mixin.scss';
 
-.wot-theme-dark {
-  @include b(cell) {
-    background-color: $-dark-background2;
-    color: $-dark-color;
-
-    @include e(value) {
-      color: $-dark-color3;
-    }
-
-    @include e(label) {
-      color: $-dark-color3;
-    }
-
-    @include when(hover) {
-      background-color: $-dark-background4;
-    }
-
-    @include when(border) {
-      .wd-cell__wrapper {
-        @include halfPixelBorder('top', 0, $-dark-border-color);
-      }
-    }
-
-    :deep(.wd-cell__arrow-right) {
-      color: $-dark-color;
-    }
-  }
+.wot-theme-dark .wd-cell {
+  background-color: #1b1b1b;
+  color: #fff
 }
 
-@include b(cell) {
+.wot-theme-dark .wd-cell__value,.wot-theme-dark .wd-cell__label {
+  color: rgba(232,230,227,.8)
+}
+
+.wot-theme-dark .wd-cell.is-hover {
+  background-color: #323233
+}
+
+.wot-theme-dark .wd-cell.is-border .wd-cell__wrapper {
+  position: relative
+}
+
+.wot-theme-dark .wd-cell.is-border .wd-cell__wrapper:after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  left: 0;
+  top: 0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  background: var(--wot-dark-border-color, #3a3a3c)
+}
+
+.wot-theme-dark .wd-cell .wd-cell__arrow-right {
+  color: #fff
+}
+
+.wd-cell {
   position: relative;
-  padding-left: $-cell-padding;
-  background-color: $-color-white;
+  padding-left: var(--wot-cell-padding, var(--wot-size-side-padding, 15px));
+  background-color: var(--wot-color-white, rgb(255, 255, 255));
   text-decoration: none;
-  color: $-cell-title-color;
-  line-height: $-cell-line-height;
-  -webkit-tap-highlight-color: transparent;
+  color: var(--wot-cell-title-color, rgba(0, 0, 0, .85));
+  line-height: var(--wot-cell-line-height, 24px);
+  -webkit-tap-highlight-color: transparent
+}
 
-  @include when(border) {
-    .wd-cell__wrapper {
-      @include halfPixelBorder('top');
-    }
-  }
+.wd-cell.is-border .wd-cell__wrapper {
+  position: relative
+}
 
-  @include e(wrapper) {
-    position: relative;
-    display: flex;
-    padding: $-cell-wrapper-padding $-cell-padding $-cell-wrapper-padding 0;
-    justify-content: space-between;
-    align-items: flex-start;
+.wd-cell.is-border .wd-cell__wrapper:after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  left: 0;
+  top: 0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  background: var(--wot-color-border-light, #e8e8e8)
+}
 
-    @include when(vertical) {
-      display: block;
+.wd-cell__wrapper {
+  position: relative;
+  display: flex;
+  padding: var(--wot-cell-wrapper-padding, 10px) var(--wot-cell-padding, var(--wot-size-side-padding, 15px)) var(--wot-cell-wrapper-padding, 10px) 0;
+  justify-content: space-between;
+  align-items: flex-start
+}
 
-      .wd-cell__right {
-        margin-top: $-cell-vertical-top;
-      }
+.wd-cell__wrapper.is-vertical {
+  display: block
+}
 
-      .wd-cell__value {
-        text-align: left;
-      }
+.wd-cell__wrapper.is-vertical .wd-cell__right {
+  margin-top: var(--wot-cell-vertical-top, 16px)
+}
 
-      .wd-cell__left {
-        margin-right: 0;
-      }
-    }
+.wd-cell__wrapper.is-vertical .wd-cell__value {
+  text-align: left
+}
 
-    @include when(label) {
-      padding: $-cell-wrapper-padding-with-label $-cell-padding $-cell-wrapper-padding-with-label 0;
-    }
-  }
+.wd-cell__wrapper.is-vertical .wd-cell__left {
+  margin-right: 0
+}
 
-  @include e(left) {
-    position: relative;
-    flex: 1;
-    display: flex;
-    text-align: left;
-    font-size: $-cell-title-fs;
-    box-sizing: border-box;
-    margin-right: $-cell-padding;
+.wd-cell__wrapper.is-label {
+  padding: var(--wot-cell-wrapper-padding-with-label, 16px) var(--wot-cell-padding, var(--wot-size-side-padding, 15px)) var(--wot-cell-wrapper-padding-with-label, 16px) 0
+}
 
-    @include when(required) {
-      padding-left: 12px;
+.wd-cell__left {
+  position: relative;
+  flex: 1;
+  display: flex;
+  text-align: left;
+  font-size: var(--wot-cell-title-fs, 14px);
+  box-sizing: border-box;
+  margin-right: var(--wot-cell-padding, var(--wot-size-side-padding, 15px))
+}
 
-      &::after {
-        position: absolute;
-        content: '*';
-        top: 0;
-        left: 0;
-        font-size: $-cell-required-size;
-        color: $-cell-required-color;
-      }
-    }
-  }
+.wd-cell__left.is-required {
+  padding-left: 12px
+}
 
-  @include e(right) {
-    position: relative;
-    flex: 1;
-  }
+.wd-cell__left.is-required:after {
+  position: absolute;
+  content: "*";
+  top: 0;
+  left: 0;
+  font-size: var(--wot-cell-required-size, 18px);
+  color: var(--wot-cell-required-color, var(--wot-color-danger, #fa4350))
+}
 
-  @include e(title) {
-    flex: 1;
-    width: 100%;
-    font-size: $-cell-title-fs;
-  }
+.wd-cell__right {
+  position: relative;
+  flex: 1
+}
 
-  @include e(label) {
-    margin-top: 2px;
-    font-size: $-cell-label-fs;
-    color: $-cell-label-color;
-    @include lineEllipsis;
-  }
+.wd-cell__title {
+  flex: 1;
+  width: 100%;
+  font-size: var(--wot-cell-title-fs, 14px)
+}
 
-  @include edeep(icon) {
-    display: block;
-    position: relative;
-    margin-right: $-cell-icon-right;
-    font-size: $-cell-icon-size;
-    height: $-cell-line-height;
-    line-height: $-cell-line-height;
-  }
+.wd-cell__label {
+  margin-top: 2px;
+  font-size: var(--wot-cell-label-fs, 12px);
+  color: var(--wot-cell-label-color, rgba(0, 0, 0, .45));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
 
-  @include e(body){
-    display: flex;
-  }
+ .wd-cell__icon {
+  display: block;
+  position: relative;
+  margin-right: var(--wot-cell-icon-right, 4px);
+  font-size: var(--wot-cell-icon-size, 16px);
+  height: var(--wot-cell-line-height, 24px);
+  line-height: var(--wot-cell-line-height, 24px)
+}
 
-  @include e(value) {
-    position: relative;
-    flex: 1;
-    font-size: $-cell-value-fs;
-    color: $-cell-value-color;
-    text-align: right;
-    vertical-align: middle;
-  }
+.wd-cell__body {
+  display: flex
+}
 
-  @include edeep(arrow-right) {
-    display: block;
-    margin-left: 8px;
-    width: $-cell-arrow-size;
-    font-size: $-cell-arrow-size;
-    color: $-cell-arrow-color;
-    height: $-cell-line-height;
-    line-height: $-cell-line-height;
-  }
+.wd-cell__value {
+  position: relative;
+  flex: 1;
+  font-size: var(--wot-cell-value-fs, 14px);
+  color: var(--wot-cell-value-color, rgba(0, 0, 0, .85));
+  text-align: right;
+  vertical-align: middle
+}
 
-  @include e(error-message){
-    color: $-form-item-error-message-color;
-    font-size: $-form-item-error-message-font-size;
-    line-height: $-form-item-error-message-line-height;
-    text-align: left;
-    vertical-align: middle;
-  }
+ .wd-cell__arrow-right {
+  display: block;
+  margin-left: 8px;
+  width: var(--wot-cell-arrow-size, 18px);
+  font-size: var(--wot-cell-arrow-size, 18px);
+  color: var(--wot-cell-arrow-color, rgba(0, 0, 0, .25));
+  height: var(--wot-cell-line-height, 24px);
+  line-height: var(--wot-cell-line-height, 24px)
+}
 
-  @include when(link) {
-    -webkit-tap-highlight-color: $-cell-tap-bg;
-  }
+.wd-cell__error-message {
+  color: var(--wot-form-item-error-message-color, var(--wot-color-danger, #fa4350));
+  font-size: var(--wot-form-item-error-message-font-size, var(--wot-fs-secondary, 12px));
+  line-height: var(--wot-form-item-error-message-line-height, 24px);
+  text-align: left;
+  vertical-align: middle
+}
 
-  @include when(hover) {
-    background-color: $-cell-tap-bg;
-  }
+.wd-cell.is-link {
+  -webkit-tap-highlight-color: var(--wot-cell-tap-bg, rgba(0, 0, 0, .06))
+}
 
-  @include when(large) {
-    .wd-cell__title {
-      font-size: $-cell-title-fs-large;
-    }
+.wd-cell.is-hover {
+  background-color: var(--wot-cell-tap-bg, rgba(0, 0, 0, .06))
+}
 
-    .wd-cell__wrapper {
-      padding-top: $-cell-wrapper-padding-large;
-      padding-bottom: $-cell-wrapper-padding-large;
-    }
+.wd-cell.is-large .wd-cell__title {
+  font-size: var(--wot-cell-title-fs-large, 16px)
+}
 
-    .wd-cell__label {
-      font-size: $-cell-label-fs-large;
-    }
+.wd-cell.is-large .wd-cell__wrapper {
+  padding-top: var(--wot-cell-wrapper-padding-large, 12px);
+  padding-bottom: var(--wot-cell-wrapper-padding-large, 12px)
+}
 
-    :deep(.wd-cell__icon) {
-      font-size: $-cell-icon-size-large;
-    }
-  }
+.wd-cell.is-large .wd-cell__label {
+  font-size: var(--wot-cell-label-fs-large, 14px)
+}
 
-  @include when(center) {
-    .wd-cell__wrapper {
-      align-items: center;
-    }
-  }
+.wd-cell.is-large .wd-cell__icon {
+  font-size: var(--wot-cell-icon-size-large, 18px)
+}
+
+.wd-cell.is-center .wd-cell__wrapper {
+  align-items: center
 }

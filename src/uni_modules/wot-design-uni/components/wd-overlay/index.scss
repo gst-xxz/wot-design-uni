@@ -1,17 +1,13 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
 
-.wot-theme-dark {
-  @include b(overlay) {
-    background: $-overlay-bg-dark;
-  }
+.wot-theme-dark .wd-overlay {
+  background: var(--wot-overlay-bg-dark, rgba(0, 0, 0, .75))
 }
 
-@include b(overlay) {
+.wd-overlay {
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  background: $-overlay-bg;
+  background: var(--wot-overlay-bg, rgba(0, 0, 0, .65))
 }
