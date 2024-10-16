@@ -1,7 +1,14 @@
 <template>
   <!--注意阻止横向滑动的穿透：横向移动时阻止冒泡-->
-  <view :class="`wd-swipe-action ${customClass}`" :style="customStyle" @click.stop="onClick()" @touchstart="startDrag"
-    @touchmove="onDrag" @touchend="endDrag" @touchcancel="endDrag">
+  <view
+    :class="`wd-swipe-action ${customClass}`"
+    :style="customStyle"
+    @click.stop="onClick()"
+    @touchstart="startDrag"
+    @touchmove="onDrag"
+    @touchend="endDrag"
+    @touchcancel="endDrag"
+  >
     <!--容器-->
     <view class="wd-swipe-action__wrapper" :style="wrapperStyle">
       <!--左侧操作-->
