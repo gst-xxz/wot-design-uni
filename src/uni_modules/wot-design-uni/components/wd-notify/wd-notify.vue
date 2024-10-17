@@ -1,7 +1,8 @@
 <template>
   <wd-popup v-model="state.visible" :custom-style="customStyle" :position="state.position" :z-index="state.zIndex"
     :duration="250" :modal="false" @leave="onClosed" @enter="onOpened">
-    <view class="wd-notify" :class="[`wd-notify--${state.type}`]"
+    <view
+      :class="cn('wd-notify flex items-center justify-center box-border py-2 px-4 text-sm text-white whitespace-pre-wrap text-center', `wd-notify--${state.type}`)"
       :style="{ color: state.color, background: state.background }" @click="onClick">
       <slot>{{ state.message }}</slot>
     </view>
@@ -9,9 +10,7 @@
 </template>
 <script lang="ts">
 export default {
-  // #ifdef H5
   name: 'wd-notify',
-  // #endif
   options: { virtualHost: true, addGlobalClass: true, }
 }
 </script>
@@ -22,6 +21,7 @@ import { inject, computed, watch } from 'vue'
 import { notifyProps, type NotifyProps } from './types'
 import { getNotifyOptionKey } from '.'
 import { addUnit, isFunction } from '../common/util'
+import { cn } from '../common/cn'
 
 const props = defineProps(notifyProps)
 const emits = defineEmits<{

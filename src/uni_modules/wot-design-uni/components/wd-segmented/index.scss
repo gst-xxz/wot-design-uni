@@ -1,14 +1,4 @@
-.wd-segmented {
-  position: relative;
-  display: flex;
-  align-items: stretch;
-  justify-items: flex-start;
-  width: 100%;
-  background-color: var(--wot-segmented-item-bg-color, #eeeeee);
-  padding: var(--wot-segmented-padding, 4px);
-  border-radius: 4px;
-  box-sizing: border-box
-}
+
 
 .wd-segmented__item {
   position: relative;

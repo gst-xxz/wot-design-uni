@@ -1,14 +1,16 @@
 <template>
-  <view class="wd-index-bar" :id="indexBarId">
-    <scroll-view :scrollTop="scrollState.scrollTop" :scroll-y="true" class="wd-index-bar__content"
+  <view class="wd-index-bar relative w-full h-full" :id="indexBarId">
+    <scroll-view :scrollTop="scrollState.scrollTop" :scroll-y="true" class="wd-index-bar__content w-full h-full"
       @scroll="hanleScroll">
       <slot></slot>
     </scroll-view>
-    <view class="wd-index-bar__sidebar" @touchstart.stop.prevent="handleTouchStart"
-      @touchmove.stop.prevent="handleTouchMove" @touchend.stop.prevent="handleTouchEnd"
-      @touchcancel.stop.prevent="handleTouchEnd">
-      <view class="wd-index-bar__index" :class="{ 'is-active': item.index === state.activeIndex }"
-        v-for="item in children" :key="item.index">
+    <view class="wd-index-bar__sidebar absolute top-1/2 right-1 -translate-y-1/2"
+      @touchstart.stop.prevent="handleTouchStart" @touchmove.stop.prevent="handleTouchMove"
+      @touchend.stop.prevent="handleTouchEnd" @touchcancel.stop.prevent="handleTouchEnd">
+      <view :class="cn(
+        'wd-index-bar__index text-xs font-medium text-black py-1 px-1.5',
+        item.index === state.activeIndex ? 'is-active text-primary' : ''
+      )" v-for="item in children" :key="item.index">
         {{ item.index }}
       </view>
     </view>
@@ -21,6 +23,7 @@ import { indexBarInjectionKey, indexBarProps } from './type'
 import { ref, getCurrentInstance, onMounted, reactive, nextTick, watch } from 'vue'
 import { getRect, isDef, uuid, requestAnimationFrame } from '../common/util'
 import { useChildren } from '../composables/useChildren'
+import { cn } from '../common/cn'
 
 const props = defineProps(indexBarProps)
 
@@ -143,7 +146,3 @@ function setScrollTop(top: number) {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

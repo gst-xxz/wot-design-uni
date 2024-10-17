@@ -1,11 +1,12 @@
 <template>
   <wd-toast selector="wd-year" />
 
-  <view class="wd-year year">
-    <view class="wd-year__title">{{ yearTitle(date) }}</view>
-    <view class="wd-year__months">
+  <view class="wd-year ">
+    <view class="wd-year__title flex items-center justify-center h-[45px] text-sm text-black/85">
+      {{ yearTitle(date) }}</view>
+    <view class="wd-year__months flex flex-wrap text-base text-black/85">
       <view v-for="(item, index) in months" :key="index"
-        :class="`wd-year__month ${item.disabled ? 'is-disabled' : ''} ${item.type ? itemClass(item.type, value!, type) : ''}`"
+        :class="`wd-year__month flex w-1/4 h-16 leading-[64px] text-center ${item.disabled ? 'is-disabled' : ''} ${item.type ? itemClass(item.type, value!, type) : ''}`"
         @click="handleDateClick(index)">
         <view class="wd-year__month-top">{{ item.topInfo }}</view>
         <view class="wd-year__month-text">{{ getMonthLabel(item.date) }}</view>
@@ -34,6 +35,7 @@ import { useTranslate } from '../../composables/useTranslate'
 import { dayjs } from '../../common/dayjs'
 import { yearProps } from './types'
 import type { CalendarDayItem, CalendarDayType, CalendarType } from '../types'
+import { cn } from '../../common/cn'
 
 const props = defineProps(yearProps)
 const emit = defineEmits(['change'])

@@ -1,40 +1,4 @@
 
-.wot-theme-dark .wd-drop-menu {
-  color: #fff
-}
-
-.wot-theme-dark .wd-drop-menu__list {
-  background-color: #1b1b1b
-}
-
-.wot-theme-dark .wd-drop-menu__item.is-disabled {
-  color: #595959
-}
-
-.wd-drop-menu {
-  box-sizing: border-box;
-  color: var(--wot-drop-menu-color, var(--wot-color-content, #262626));
-  font-size: var(--wot-drop-menu-fs, var(--wot-fs-content, 14px));
-  position: relative
-}
-
-.wd-drop-menu__list {
-  display: flex;
-  text-align: center;
-  background-color: #fff
-}
-
-.wd-drop-menu__item {
-  flex: 1;
-  min-width: 0;
-  height: var(--wot-drop-menu-height, 48px);
-  line-height: var(--wot-drop-menu-height, 48px);
-  text-align: center
-}
-
-.wd-drop-menu__item.is-active {
-  font-weight: var(--wot-fw-medium, 500)
-}
 
 .wd-drop-menu__item.is-active .wd-drop-menu__item-title:after {
   opacity: 1

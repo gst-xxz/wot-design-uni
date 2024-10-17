@@ -487,7 +487,3 @@ function getSelects() {
   return [pickerVal]
 }
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

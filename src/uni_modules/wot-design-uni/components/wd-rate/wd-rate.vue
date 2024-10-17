@@ -1,12 +1,14 @@
 <template>
-  <view :class="`wd-rate ${customClass}`" :style="customStyle">
+  <view :class="cn('wd-rate inline-block align-middle leading-[1] ', customClass)" :style="customStyle">
     <view v-for="(rate, index) in rateList" :key="index" :data-index="index"
-      :style="{ 'margin-right': index == rateList.length - 1 ? 0 : space }" class="wd-rate__item"
+      :style="{ 'margin-right': index == rateList.length - 1 ? 0 : space }" class="wd-rate__item relative inline-block"
       @click="changeRate(index)">
-      <view class="wd-rate__item-star" :style="{ width: size, height: size }">
+      <view class="wd-rate__item-star inline-block align-top" :style="{ width: size, height: size }">
         <wd-icon :name="icon" :size="size" :custom-style="iconStyle" />
       </view>
-      <view class="wd-rate__item-star wd-rate__item-star--active" :style="{ width: rate, height: size }">
+      <view
+        class="wd-rate__item-star inline-block align-top wd-rate__item-star--active absolute left-0 top-0 overflow-hidden"
+        :style="{ width: rate, height: size }">
         <wd-icon :name="activeIcon" :size="size" :custom-style="iconActiveStyle" />
       </view>
     </view>
@@ -27,7 +29,7 @@ export default {
 import wdIcon from '../wd-icon/wd-icon.vue'
 import { computed, ref, watch } from 'vue'
 import { rateProps } from './types'
-
+import { cn } from '../common/cn'
 const props = defineProps(rateProps)
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -118,6 +120,3 @@ function changeRate(index: number) {
   })
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

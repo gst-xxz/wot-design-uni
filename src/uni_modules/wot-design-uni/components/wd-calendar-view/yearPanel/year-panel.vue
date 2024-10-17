@@ -1,6 +1,8 @@
 <template>
-  <view class="wd-year-panel">
-    <view v-if="showPanelTitle" class="wd-year-panel__title">{{ title }}</view>
+  <view class="wd-year-panel text-base py-0 px-3">
+    <view v-if="showPanelTitle"
+      class="wd-year-panel__title py-[5px] px-0 text-center text-sm text-black/85 shadow-[0_4px_8px_rgba(0,0,0,.02)]">
+      {{ title }}</view>
     <scroll-view class="wd-year-panel__container" :style="`height: ${scrollHeight}px`" scroll-y @scroll="yearScroll"
       :scroll-top="scrollTop">
       <view v-for="(item, index) in years" :key="index" :id="`year${index}`">
@@ -119,7 +121,3 @@ defineExpose<YearPanelExpose>({
   scrollIntoView
 })
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

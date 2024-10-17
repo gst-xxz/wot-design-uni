@@ -1,34 +1,4 @@
-.wot-theme-dark .wd-year__title,.wot-theme-dark .wd-year__months {
-  color: #fff
-}
 
-.wot-theme-dark .wd-year__month.is-disabled .wd-year__month-text {
-  color: #595959
-}
-
-.wd-year__title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 45px;
-  font-size: var(--wot-calendar-panel-title-fs, 14px);
-  color: var(--wot-calendar-panel-title-color, rgba(0, 0, 0, .85))
-}
-
-.wd-year__months {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: var(--wot-calendar-day-fs, 16px);
-  color: var(--wot-calendar-day-color, rgba(0, 0, 0, .85))
-}
-
-.wd-year__month {
-  position: relative;
-  width: 25%;
-  height: var(--wot-calendar-day-height, 64px);
-  line-height: var(--wot-calendar-day-height, 64px);
-  text-align: center
-}
 
 .wd-year__month.is-disabled .wd-year__month-text {
   color: var(--wot-calendar-disabled-color, rgba(0, 0, 0, .25))

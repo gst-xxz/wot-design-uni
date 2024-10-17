@@ -1,11 +1,17 @@
 <template>
-  <view :style="customStyle" :class="`wd-drop-menu ${customClass}`" @click.stop="noop" :id="dropMenuId">
+  <view :style="customStyle" :class="cn(
+    'wd-drop-menu box-border text-[#262626] text-sm relative',
+    customClass
+  )" @click.stop="noop" :id="dropMenuId">
     <!-- #ifdef MP-DINGTALK -->
     <view :id="dropMenuId">
       <!-- #endif -->
-      <view class="wd-drop-menu__list">
-        <view v-for="(child, index) in children" :key="index" @click="toggle(child)"
-          :class="`wd-drop-menu__item ${child.disabled ? 'is-disabled' : ''} ${child.$.exposed!.getShowPop() ? 'is-active' : ''}`">
+      <view class="wd-drop-menu__list flex text-center bg-white">
+        <view v-for="(child, index) in children" :key="index" @click="toggle(child)" :class="cn(
+          'wd-drop-menu__item flex-1 min-w-0 h-12 leading-[48px] text-center',
+          child.disabled ? 'is-disabled' : '',
+          child.$.exposed!.getShowPop() ? 'is-active font-medium' : ''
+        )">
           <view class="wd-drop-menu__item-title">
             <view class="wd-drop-menu__item-title-text">{{ getDisplayTitle(child) }}</view>
             <wd-icon :name="child.icon" :size="child.iconSize" custom-class="wd-drop-menu__arrow" />
@@ -36,6 +42,7 @@ import { type Queue, queueKey } from '../composables/useQueue'
 import { getRect, uuid } from '../common/util'
 import { useChildren } from '../composables/useChildren'
 import { DROP_MENU_KEY, dropMenuProps } from './types'
+import { cn } from '../common/cn'
 
 const props = defineProps(dropMenuProps)
 const queue = inject<Queue | null>(queueKey, null)

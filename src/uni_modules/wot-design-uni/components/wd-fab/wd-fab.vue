@@ -1,6 +1,7 @@
 <template>
-  <view @touchmove.stop.prevent="handleTouchMove" @touchstart="handleTouchStart" @touchend="handleTouchEnd"
-    :class="`wd-fab ${customClass}`" :style="rootStyle" @click.stop="">
+  <view @touchmove.stop.prevent="handleTouchMove" @touchstart="handleTouchStart" @touchend="handleTouchEnd" :class="cn(
+    'wd-fab fixed z-[99]', customClass
+  )" :style="rootStyle" @click.stop="">
     <view @click.stop="" :style="{ visibility: inited ? 'visible' : 'hidden' }" id="trigger">
       <slot name="trigger" v-if="$slots.trigger"></slot>
       <wd-button v-else @click="handleClick" custom-class="wd-fab__trigger" round :type="type" :disabled="disabled">
@@ -11,7 +12,8 @@
       enter-active-class="wd-fab__transition-enter-active"
       :leave-to-class="`wd-fab__transition-leave-to--${fabDirection}`"
       leave-active-class="wd-fab__transition-leave-active"
-      :custom-class="`wd-fab__actions wd-fab__actions--${fabDirection}`" :show="isActive" :duration="300" name="">
+      :custom-class="`wd-fab__actions absolute z-0 flex justify-center items-center py-3 px-0 wd-fab__actions--${fabDirection}`"
+      :show="isActive" :duration="300" name="">
       <slot></slot>
     </wd-transition>
   </view>
@@ -39,7 +41,7 @@ import { closeOther, pushToQueue, removeFromQueue } from '../common/clickoutside
 import { fabProps, type FabExpose } from './types'
 import { reactive } from 'vue'
 import { useRaf } from '../composables/useRaf'
-
+import { cn } from '../common/cn'
 const props = defineProps(fabProps)
 const emit = defineEmits(['update:active', 'click'])
 const inited = ref<boolean>(false) // 是否初始化完成

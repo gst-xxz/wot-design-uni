@@ -145,26 +145,3 @@
 .wd-swiper-nav--vertical {
   flex-direction: column
 }
-
-.wd-swiper[data-v-fda0b2a7] {
-  position: relative
-}
-
-.wd-swiper__track[data-v-fda0b2a7] {
-  border-radius: var(--wot-swiper-radius, 8px);
-  overflow: hidden;
-  -webkit-transform: translateY(0);
-  transform: translateY(0)
-}
-
-.wd-swiper__item[data-v-fda0b2a7] {
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  padding: var(--wot-swiper-item-padding, 0)
-}
-
-.wd-swiper__image[data-v-fda0b2a7] {
-  width: 100%;
-  transition: all .3s ease
-}

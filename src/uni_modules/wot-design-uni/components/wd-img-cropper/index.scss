@@ -1,27 +1,3 @@
-.wd-img-cropper {
-  background: #000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1
-}
-
-.wd-img-cropper__wrapper {
-  position: relative;
-  background: rgba(0,0,0,.45)
-}
-
-.wd-img-cropper__cut {
-  z-index: 9;
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none
-}
 
 .wd-img-cropper__cut .wd-img-cropper__cut--top,.wd-img-cropper__cut .wd-img-cropper__cut--bottom,.wd-img-cropper__cut .wd-img-cropper__cut--left,.wd-img-cropper__cut .wd-img-cropper__cut--right {
   background-color: rgba(0,0,0,.85);
@@ -36,14 +12,6 @@
   flex: auto
 }
 
-.wd-img-cropper__cut--middle {
-  display: flex
-}
-
-.wd-img-cropper__cut--body {
-  background-color: transparent;
-  position: relative
-}
 
 .wd-img-cropper__cut--body:before {
   content: "";
@@ -102,9 +70,6 @@
   display: flex
 }
 
-.wd-img-cropper__cut--body .is-gridlines-x {
-  justify-content: center
-}
 
 .wd-img-cropper__cut--body .is-gridlines-x:before {
   content: "";
@@ -118,9 +83,6 @@
   transform: scale(.5) translateY(-50%)
 }
 
-.wd-img-cropper__cut--body .is-gridlines-y {
-  align-items: center
-}
 
 .wd-img-cropper__cut--body .is-gridlines-y:after {
   content: "";
@@ -135,61 +97,3 @@
   transform: scale(.5) translate(-50%)
 }
 
-.wd-img-cropper__img {
-  z-index: 2;
-  top: 0;
-  left: 0;
-  position: absolute;
-  border: none;
-  width: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform-origin: center;
-  transform-origin: center
-}
-
-.wd-img-cropper__canvas {
-  position: fixed;
-  background: #fff;
-  width: 150px;
-  height: 150px;
-  z-index: 10;
-  top: -200%;
-  pointer-events: none
-}
-
-.wd-img-cropper__footer {
-  position: fixed;
-  z-index: 10;
-  bottom: 10px;
-  width: 100%;
-  height: 15vh;
-  text-align: center
-}
-
-.wd-img-cropper__footer--button {
-  position: relative;
-  text-align: left;
-  margin: 0 20px;
-  padding-top: 4vh;
-  box-sizing: border-box
-}
-
-.wd-img-cropper__footer--button .is-cancel {
-  display: inline-block;
-  color: #fff;
-  font-size: 16px
-}
-
-.wd-img-cropper__footer--button .is-confirm {
-  position: absolute;
-  right: 0;
-  width: 56px;
-  border-radius: 16px;
-  font-size: 16px
-}
-
- .wd-img-cropper__rotate {
-  font-size: var(--wot-img-cropper-icon-size, var(--wot-fs-big, 24px));
-  color: var(--wot-img-cropper-icon-color, #fff)
-}

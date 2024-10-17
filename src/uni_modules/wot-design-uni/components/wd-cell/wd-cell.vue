@@ -1,39 +1,57 @@
 <template>
-  <view
-    :class="['wd-cell', isBorder ? 'is-border' : '', size ? 'is-' + size : '', center ? 'is-center' : '', customClass]"
-    :style="customStyle" :hover-class="isLink || clickable ? 'is-hover' : 'none'" :hover-stay-time="70"
+  <view :class="cn(
+    'wd-cell relative pl-[15px] bg-white text-black/85 leading-6 tap-transparent no-underline',
+    isBorder ? 'is-border' : '',
+    size ? 'is-' + size : '',
+    center ? 'is-center' : '',
+    customClass
+  )" :style="customStyle" :hover-class="isLink || clickable ? 'is-hover bg-black/5' : 'none'" :hover-stay-time="70"
     @click="onClick">
-    <view :class="['wd-cell__wrapper', vertical ? 'is-vertical' : '']">
-      <view :class="['wd-cell__left', isRequired ? 'is-required' : '']"
-        :style="titleWidth ? 'min-width:' + titleWidth + ';max-width:' + titleWidth + ';' : ''">
+    <view :class="cn(
+      'wd-cell__wrapper relative flex justify-between items-start py-2.5 px-[15px]',
+      vertical ? 'is-vertical block' : '',
+      center ? 'items-center' : '',
+      { 'relative': isBorder }
+    )">
+      <view :class="cn(
+        'wd-cell__left relative flex-1 flex text-left text-sm box-border mr-[15px]',
+        isRequired ? `is-required pl-3 after:content-['*'] after:text-danger after:text-lg after:absolute after:top-0 after:left-0` : '',
+        vertical ? 'mr-0' : ''
+      )" :style="titleWidth ? 'min-width:' + titleWidth + ';max-width:' + titleWidth + ';' : ''">
         <!--左侧icon部位-->
-        <wd-icon v-if="icon" :name="icon" :custom-class="`wd-cell__icon  ${customIconClass}`"></wd-icon>
+        <wd-icon v-if="icon" :name="icon"
+          :custom-class="cn('wd-cell__icon block relative mr-1 text-base h-6', customIconClass)"></wd-icon>
         <slot v-else name="icon" />
 
-        <view class="wd-cell__title">
+        <view class="wd-cell__title flex-1 w-full text-sm">
           <!--title BEGIN-->
           <view v-if="title" :class="customTitleClass">{{ title }}</view>
           <slot v-else name="title"></slot>
           <!--title END-->
 
           <!--label BEGIN-->
-          <view v-if="label" :class="`wd-cell__label ${customLabelClass}`">{{ label }}</view>
+          <view v-if="label"
+            :class="cn('wd-cell__label mt-0.5 text-xs text-black/45 overflow-hidden text-ellipsis whitespace-nowrap', customLabelClass)">
+            {{ label }}</view>
           <slot v-else name="label" />
           <!--label END-->
         </view>
       </view>
       <!--right content BEGIN-->
-      <view class="wd-cell__right">
-        <view class="wd-cell__body">
+      <view :class='cn("wd-cell__right relative flex-1", { "mt-4": vertical })'>
+        <view class="wd-cell__body flex">
           <!--文案内容-->
-          <view :class="`wd-cell__value ${customValueClass}`">
+          <view
+            :class="cn('wd-cell__value relative flex-1 text-sm text-black/85 text-right align-middle', customValueClass)">
             <slot>{{ value }}</slot>
           </view>
           <!--箭头-->
-          <wd-icon v-if="isLink" custom-class="wd-cell__arrow-right" name="arrow-right" />
+          <wd-icon v-if="isLink" custom-class="wd-cell__arrow-right block ml-2 w-[18px] text-black/25 h-6 leading-6"
+            name="arrow-right" />
           <slot v-else name="right-icon" />
         </view>
-        <view v-if="errorMessage" class="wd-cell__error-message">{{ errorMessage }}</view>
+        <view v-if="errorMessage" class="wd-cell__error-message text-danger text-xs leading-6 text-left align-middle">{{
+          errorMessage }}</view>
       </view>
       <!--right content END-->
     </view>
@@ -59,6 +77,7 @@ import { useParent } from '../composables/useParent'
 import { FORM_KEY } from '../wd-form/types'
 import { cellProps } from './types'
 import { isDef } from '../common/util'
+import { cn } from '../common/cn'
 
 const props = defineProps(cellProps)
 const emit = defineEmits(['click'])

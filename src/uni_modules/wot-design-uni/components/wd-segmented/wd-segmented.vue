@@ -1,7 +1,10 @@
 <template>
-  <view :class="`wd-segmented ${customClass}`" :style="customStyle">
-    <view :class="`wd-segmented__item is-${size} ${state.activeIndex === index ? 'is-active' : ''} ${disabled || (isObj(option) ? option.disabled : false) ? 'is-disabled' : ''
-      }`" @click="handleClick(option, index)" v-for="(option, index) in options" :key="index">
+  <view
+    :class="cn('wd-segmented relative flex items-stretch justify-start w-full bg-[#eeeeee] rounded p-1 box-border', customClass)"
+    :style="customStyle">
+    <view
+      :class="cn('wd-segmented__item is-' + size, state.activeIndex === index ? 'is-active' : '', disabled || (isObj(option) ? option.disabled : false) ? 'is-disabled' : '')"
+      @click="handleClick(option, index)" v-for="(option, index) in options" :key="index">
       <view class="wd-segmented__item-label overflow-hidden whitespace-nowrap text-ellipsis">
         <slot name="label" v-if="$slots.label" :option="isObj(option) ? option : { value: option }"></slot>
         <template v-else>
@@ -10,7 +13,7 @@
       </view>
     </view>
     <view
-      :class="`wd-segmented__item--active bg-white rounded h-[calc(100%-8px)] ${activeDisabled ? 'is-disabled opacity-80' : ''}`"
+      :class="cn('wd-segmented__item--active bg-white rounded h-[calc(100%-8px)]', activeDisabled ? 'is-disabled opacity-80' : '')"
       :style="state.activeStyle">
     </view>
   </view>
@@ -32,6 +35,7 @@ import { computed, getCurrentInstance, onMounted, reactive, watch } from 'vue'
 import { requestAnimationFrame, getRect, isObj, objToStyle, addUnit } from '../common/util'
 import type { CSSProperties } from 'vue'
 import { segmentedProps, type SegmentedOption } from './types'
+import { cn } from '../common/cn'
 const $item = '.wd-segmented__item'
 
 const props = defineProps(segmentedProps)

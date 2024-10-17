@@ -1,14 +1,16 @@
 <template>
-  <view :class="`wd-picker-view ${customClass}`" :style="customStyle">
+  <view :class="`wd-picker-view relative py-2.5 px-0 ${customClass}`" :style="customStyle">
     <view class="wd-picker-view__loading" v-if="loading">
       <wd-loading :color="loadingColor" />
     </view>
     <view :style="`height: ${columnsHeight - 20}px;`">
-      <picker-view mask-class="wd-picker-view__mask" indicator-class="wd-picker-view__roller"
+      <picker-view mask-class="wd-picker-view__mask"
+        indicator-class="wd-picker-view__roller bg-[#f5f5f5] z-0 before:hidden after:hidden"
         :indicator-style="`height: ${itemHeight}px;`" :style="`height: ${columnsHeight - 20}px;`" :value="selectedIndex"
         :immediate-change="immediateChange" @change="onChange" @pickstart="onPickStart" @pickend="onPickEnd">
-        <picker-view-column v-for="(col, colIndex) in formatColumns" :key="colIndex" class="wd-picker-view-column">
-          <view v-for="(row, rowIndex) in col" :key="rowIndex" :class="`wd-picker-view-column__item ${row['disabled'] ? 'wd-picker-view-column__item--disabled' : ''}  ${selectedIndex[colIndex] == rowIndex ? 'wd-picker-view-column__item--active' : ''
+        <picker-view-column v-for="(col, colIndex) in formatColumns" :key="colIndex"
+          class="wd-picker-view-column flex-1 text-base text-black/85 text-center">
+          <view v-for="(row, rowIndex) in col" :key="rowIndex" :class="`wd-picker-view-column__item ${row['disabled'] ? 'wd-picker-view-column__item--disabled text-black/25' : ''}  ${selectedIndex[colIndex] == rowIndex ? 'wd-picker-view-column__item--active' : ''
             }`" :style="`line-height: ${itemHeight}px;`">
             {{ row[labelKey] }}
           </view>

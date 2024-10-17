@@ -1,46 +1,24 @@
 <template>
-  <view :class="`wd-swiper ${customClass}`" :style="customStyle">
-    <swiper
-      class="wd-swiper__track"
-      :autoplay="autoplay"
-      :current="current"
-      :interval="interval"
-      :duration="duration"
-      :circular="loop"
-      :vertical="direction == 'vertical'"
-      :easing-function="easingFunction"
-      :previous-margin="addUnit(previousMargin)"
-      :next-margin="addUnit(nextMargin)"
-      :snap-to-edge="snapToEdge"
-      :display-multiple-items="displayMultipleItems"
-      :style="{ height: addUnit(height) }"
-      @change="handleChange"
-      @animationfinish="handleAnimationfinish"
-    >
-      <swiper-item v-for="(item, index) in list" :key="index" class="wd-swiper__item" @click="handleClick(index, item)">
-        <image
-          :src="isObj(item) ? item[valueKey] : item"
-          :class="`wd-swiper__image ${customImageClass} ${getCustomImageClass(navCurrent, index, list)}`"
-          :style="{ height: addUnit(height) }"
-          :mode="imageMode"
-        />
+  <view :class="cn('wd-swiper relative ', customClass)" :style="customStyle">
+    <swiper class="wd-swiper__track rounded-lg overflow-hidden translate-y-0" :autoplay="autoplay" :current="current"
+      :interval="interval" :duration="duration" :circular="loop" :vertical="direction == 'vertical'"
+      :easing-function="easingFunction" :previous-margin="addUnit(previousMargin)" :next-margin="addUnit(nextMargin)"
+      :snap-to-edge="snapToEdge" :display-multiple-items="displayMultipleItems" :style="{ height: addUnit(height) }"
+      @change="handleChange" @animationfinish="handleAnimationfinish">
+      <swiper-item v-for="(item, index) in list" :key="index" class="wd-swiper__item flex items-center box-border p-0"
+        @click="handleClick(index, item)">
+        <image :src="isObj(item) ? item[valueKey] : item"
+          :class="cn('wd-swiper__image w-full transition-[all_0.3s_ease]', customImageClass, getCustomImageClass(navCurrent, index, list))"
+          :style="{ height: addUnit(height) }" :mode="imageMode" />
       </swiper-item>
     </swiper>
 
     <template v-if="indicator">
       <slot name="indicator" :current="navCurrent" :total="list.length"></slot>
-      <wd-swiper-nav
-        v-if="!$slots.indicator"
-        :custom-class="customIndicatorClass"
-        :type="swiperIndicator.type"
-        :current="swiperIndicator.current"
-        :total="swiperIndicator.total"
-        :direction="swiperIndicator.direction"
-        :indicator-position="swiperIndicator.indicatorPosition"
-        :min-show-num="swiperIndicator.minShowNum"
-        :show-controls="swiperIndicator.showControls"
-        @change="handleIndicatorChange"
-      />
+      <wd-swiper-nav v-if="!$slots.indicator" :custom-class="customIndicatorClass" :type="swiperIndicator.type"
+        :current="swiperIndicator.current" :total="swiperIndicator.total" :direction="swiperIndicator.direction"
+        :indicator-position="swiperIndicator.indicatorPosition" :min-show-num="swiperIndicator.minShowNum"
+        :show-controls="swiperIndicator.showControls" @change="handleIndicatorChange" />
     </template>
   </view>
 </template>
@@ -51,6 +29,7 @@ import { computed, watch, ref } from 'vue'
 import { addUnit, isObj } from '../common/util'
 import { swiperProps, type SwiperList } from './types'
 import type { SwiperNavProps } from '../wd-swiper-nav/types'
+import { cn } from '../common/cn'
 
 const props = defineProps(swiperProps)
 const emit = defineEmits(['click', 'change', 'animationfinish', 'update:current'])

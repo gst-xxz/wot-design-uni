@@ -3,7 +3,8 @@
     :custom-style="modalStyle" @click="handleClickModal" @touchmove="noop" />
   <view v-if="!lazyRender || inited" :class="rootClass" :style="style" @transitionend="onTransitionEnd">
     <slot />
-    <wd-icon v-if="closable" custom-class="wd-popup__close" name="add" @click="close" />
+    <wd-icon v-if="closable" custom-class="wd-popup__close absolute top-2.5 right-2.5 text-[#666] text-2xl -rotate-45"
+      name="add" @click="close" />
   </view>
 </template>
 
@@ -24,6 +25,7 @@ import wdOverlay from '../wd-overlay/wd-overlay.vue'
 import { computed, onBeforeMount, ref, watch } from 'vue'
 import { isObj, requestAnimationFrame } from '../common/util'
 import { popupProps } from './types'
+import { cn } from '../common/cn'
 
 const props = defineProps(popupProps)
 const emit = defineEmits([
@@ -79,7 +81,13 @@ const style = computed(() => {
 })
 
 const rootClass = computed(() => {
-  return `wd-popup wd-popup--${props.position} ${props.customClass || ''} ${classes.value || ''}`
+  return cn('wd-popup fixed max-h-full overflow-y-auto bg-white ', {
+    'wd-popup--center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2': props.position === 'center',
+    'wd-popup--left left-0 top-0 bottom-0': props.position === 'left',
+    'wd-popup--right right-0 top-0 bottom-0': props.position === 'right',
+    'wd-popup--top left-0 right-0 top-0': props.position === 'top',
+    'wd-popup--bottom left-0 right-0 bottom-0': props.position === 'bottom',
+  }, props.customClass, classes.value)
 })
 
 onBeforeMount(() => {

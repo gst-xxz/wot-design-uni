@@ -1,7 +1,7 @@
 <template>
   <view :class="cn('wd-resize', customClass)" :style="rootStyle">
     <!--插槽需要脱离父容器文档流，防止父容器固宽固高，进而导致插槽大小被被父容器限制-->
-    <view :id="resizeId" :class="`wd-resize__container ${customContainerClass}`">
+    <view :id="resizeId" :class="`wd-resize__container absolute min-w-[1px] min-h-[1px] ${customContainerClass}`">
       <!--被监听的插槽-->
       <slot />
       <!--监听插槽变大-->

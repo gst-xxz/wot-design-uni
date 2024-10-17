@@ -3,8 +3,10 @@
     <wd-toast selector="wd-month" />
     <view class="month">
       <view class="wd-month">
-        <view class="wd-month__title">{{ monthTitle(date) }}</view>
-        <view class="wd-month__days">
+        <view class="wd-month__title flex items-center justify-center h-[45px] text-sm text-black/85">
+          {{ monthTitle(date) }}
+        </view>
+        <view class="wd-month__days flex flex-wrap text-base text-black/85">
           <view v-for="(item, index) in days" :key="index"
             :class="`wd-month__day ${item.disabled ? 'is-disabled' : ''} ${item.type ? itemClass(item.type, value!, type) : ''}`"
             :style="firstDayStyle(index, item.date, firstDayOfWeek)" @click="handleDateClick(index)">

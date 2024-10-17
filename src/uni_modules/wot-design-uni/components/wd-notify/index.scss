@@ -1,15 +1,5 @@
 
 .wd-notify {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: var(--wot-notify-padding, 8px 16px);
-  font-size: var(--wot-notify-font-size, var(--wot-fs-content, 14px));
-  line-height: var(--wot-notify-line-height, 20px);
-  color: var(--wot-notify-text-color, var(--wot-color-white, rgb(255, 255, 255)));
-  white-space: pre-wrap;
-  text-align: center;
   word-wrap: break-word
 }
 

@@ -1,18 +1,14 @@
-<!--
- * @Author: weisheng
- * @Date: 2023-06-12 10:04:19
- * @LastEditTime: 2024-09-20 10:23:38
- * @LastEditors: jiaoxueyan
- * @Description: 
- * @FilePath: \wot-design-uni\src\uni_modules\wot-design-uni\components\wd-status-tip\wd-status-tip.vue
- * 记得注释
--->
 <template>
-  <view :class="`wd-status-tip  ${customClass}`" :style="customStyle">
+  <view
+    :class="cn('wd-status-tip py-[5px] px-2.5 w-full my-0 mx-auto text-black/45 text-sm box-border flex flex-col items-center', customClass)"
+    :style="customStyle">
     <slot name="image" v-if="$slots.image"></slot>
-    <wd-img v-else-if="imgUrl" :mode="imageMode" :src="imgUrl" custom-class="wd-status-tip__image"
-      :custom-style="imgStyle"></wd-img>
-    <view v-if="tip" class="wd-status-tip__text">{{ tip }}</view>
+    <wd-img v-else-if="imgUrl" :mode="imageMode" :src="imgUrl"
+      custom-class="wd-status-tip__image my-0 mx-auto w-40 h-40" :custom-style="imgStyle"></wd-img>
+    <view v-if="tip"
+      class="wd-status-tip__text mt-5 mx-auto mb-0 text-sm leading-4 text-black/45 text-center break-all">{{ tip
+      }}
+    </view>
   </view>
 </template>
 
@@ -32,7 +28,7 @@ import wdImg from '../wd-img/wd-img.vue'
 import { computed, type CSSProperties } from 'vue'
 import { addUnit, isDef, isObj, objToStyle } from '../common/util'
 import { statusTipProps } from './types'
-
+import { cn } from '../common/cn'
 const props = defineProps(statusTipProps)
 
 // 图片地址
@@ -66,6 +62,3 @@ const imgStyle = computed(() => {
   return `${objToStyle(style)}`
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

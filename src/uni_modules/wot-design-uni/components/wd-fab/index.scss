@@ -1,7 +1,4 @@
-.wd-fab {
-  position: fixed;
-  z-index: 99
-}
+
 
  .wd-fab__trigger {
   min-width: auto!important;
@@ -11,14 +8,6 @@
   border-radius: calc(var(--wot-fab-trigger-height, 56px) / 2)!important
 }
 
-.wd-fab .wd-fab__actions {
-  position: absolute;
-  z-index: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--wot-actions-padding, 12px) 0
-}
 
 .wd-fab .wd-fab__actions--left,.wd-fab .wd-fab__actions--right {
   height: 100%;
