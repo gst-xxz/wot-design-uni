@@ -1,14 +1,6 @@
 <template>
-  <wd-overlay
-    v-if="modal"
-    :show="modelValue"
-    :z-index="zIndex"
-    :lock-scroll="lockScroll"
-    :duration="duration"
-    :custom-style="modalStyle"
-    @click="handleClickModal"
-    @touchmove="noop"
-  />
+  <wd-overlay v-if="modal" :show="modelValue" :z-index="zIndex" :lock-scroll="lockScroll" :duration="duration"
+    :custom-style="modalStyle" @click="handleClickModal" @touchmove="noop" />
   <view v-if="!lazyRender || inited" :class="rootClass" :style="style" @transitionend="onTransitionEnd">
     <slot />
     <wd-icon v-if="closable" custom-class="wd-popup__close" name="add" @click="close" />
@@ -21,7 +13,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -82,9 +74,8 @@ const safeBottom = ref<number>(0)
 const name = ref<string>('') // 动画名
 
 const style = computed(() => {
-  return `z-index: ${props.zIndex}; padding-bottom: ${safeBottom.value}px; -webkit-transition-duration: ${
-    currentDuration.value
-  }ms; transition-duration: ${currentDuration.value}ms; ${display.value || !props.hideWhenClose ? '' : 'display: none;'} ${props.customStyle}`
+  return `z-index: ${props.zIndex}; padding-bottom: ${safeBottom.value}px; -webkit-transition-duration: ${currentDuration.value
+    }ms; transition-duration: ${currentDuration.value}ms; ${display.value || !props.hideWhenClose ? '' : 'display: none;'} ${props.customStyle}`
 })
 
 const rootClass = computed(() => {
@@ -207,7 +198,7 @@ function close() {
   emit('close')
   emit('update:modelValue', false)
 }
-function noop() {}
+function noop() { }
 </script>
 <style lang="scss" scoped>
 @import './index.scss';

@@ -1,6 +1,8 @@
 <template>
-  <view :class="`wd-grid-item ${border && !gutter ? itemClass : ''} ${customClass}`" @click="click" :style="`${style};${customStyle}`">
-    <view :class="`wd-grid-item__content ${square ? 'is-square' : ''} ${border && gutter > 0 ? 'is-round' : ''}`" :style="gutterContentStyle">
+  <view :class="`wd-grid-item ${border && !gutter ? itemClass : ''} ${customClass}`" @click="click"
+    :style="`${style};${customStyle}`">
+    <view :class="`wd-grid-item__content ${square ? 'is-square' : ''} ${border && gutter > 0 ? 'is-round' : ''}`"
+      :style="gutterContentStyle">
       <slot v-if="useSlot" />
       <block v-else>
         <view :style="'width:' + iconSize + '; height: ' + iconSize" class="wd-grid-item__wrapper">
@@ -23,7 +25,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

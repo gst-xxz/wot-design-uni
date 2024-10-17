@@ -89,7 +89,6 @@ declare module 'vue' {
     WdSkeleton: typeof import('./components/wd-skeleton/wd-skeleton.vue')['default']
     WdIndexBar: typeof import('./components/wd-index-bar/wd-index-bar.vue')['default']
     WdIndexAnchor: typeof import('./components/wd-index-anchor/wd-index-anchor.vue')['default']
-    WdText: typeof import('./components/wd-text/wd-text.vue')['default']
     WdCountTo: typeof import('./components/wd-count-to/wd-count-to.vue')['default']
   }
 }

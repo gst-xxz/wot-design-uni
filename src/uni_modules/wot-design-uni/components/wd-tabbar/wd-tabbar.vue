@@ -1,11 +1,8 @@
 <template>
-  <view :class="{ 'wd-tabbar__placeholder': fixed && placeholder && safeAreaInsetBottom && shape === 'round' }" :style="{ height: addUnit(height) }">
-    <view
-      :class="`wd-tabbar wd-tabbar--${shape} ${customClass} ${fixed ? 'is-fixed' : ''} ${safeAreaInsetBottom ? 'is-safe' : ''} ${
-        bordered ? 'is-border' : ''
-      }`"
-      :style="rootStyle"
-    >
+  <view :class="{ 'wd-tabbar__placeholder': fixed && placeholder && safeAreaInsetBottom && shape === 'round' }"
+    :style="{ height: addUnit(height) }">
+    <view :class="`wd-tabbar wd-tabbar--${shape} ${customClass} ${fixed ? 'is-fixed' : ''} ${safeAreaInsetBottom ? 'is-safe' : ''} ${bordered ? 'is-border' : ''
+      }`" :style="rootStyle">
       <slot></slot>
     </view>
   </view>
@@ -16,7 +13,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

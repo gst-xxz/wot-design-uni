@@ -1,4 +1,4 @@
-.wd-swiper-nav__btn--prev[data-v-3164f56d],.wd-swiper-nav__btn--next[data-v-3164f56d] {
+.wd-swiper-nav__btn--prev,.wd-swiper-nav__btn--next {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -9,7 +9,7 @@
   background: var(--wot-swiper-nav-btn-bg-color, var(--wot-font-gray-3, rgba(0, 0, 0, .4)))
 }
 
-.wd-swiper-nav__btn--prev[data-v-3164f56d]:after,.wd-swiper-nav__btn--next[data-v-3164f56d]:after {
+.wd-swiper-nav__btn--prev:after,.wd-swiper-nav__btn--next:after {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -21,34 +21,34 @@
   border-style: solid
 }
 
-.wd-swiper-nav__btn--prev[data-v-3164f56d] {
+.wd-swiper-nav__btn--prev {
   left: .9375rem
 }
 
-.wd-swiper-nav__btn--prev[data-v-3164f56d]:after {
+.wd-swiper-nav__btn--prev:after {
   margin-left: .125rem;
   border-width: .0625rem 0 0 .0625rem;
   -webkit-transform: translate(-50%,-50%) rotateZ(-45deg);
   transform: translate(-50%,-50%) rotate(-45deg)
 }
 
-.wd-swiper-nav__btn--next[data-v-3164f56d] {
+.wd-swiper-nav__btn--next {
   right: .9375rem
 }
 
-.wd-swiper-nav__btn--next[data-v-3164f56d]:after {
+.wd-swiper-nav__btn--next:after {
   margin-left: -.125rem;
   border-width: .0625rem .0625rem 0 0;
   -webkit-transform: translate(-50%,-50%) rotateZ(45deg);
   transform: translate(-50%,-50%) rotate(45deg)
 }
 
-.wd-swiper-nav--dots[data-v-3164f56d],.wd-swiper-nav--dots-bar[data-v-3164f56d] {
+.wd-swiper-nav--dots,.wd-swiper-nav--dots-bar {
   display: flex;
   flex-direction: row
 }
 
-.wd-swiper-nav--fraction[data-v-3164f56d] {
+.wd-swiper-nav--fraction {
   padding: 0 .5rem;
   height: var(--wot-swiper-nav-fraction-height, 1.5rem);
   line-height: var(--wot-swiper-nav-fraction-height, 1.5rem);
@@ -58,7 +58,7 @@
   font-size: var(--wot-swiper-nav-fraction-font-size, .75rem)
 }
 
-.wd-swiper-nav__item--dots[data-v-3164f56d],.wd-swiper-nav__item--dots-bar[data-v-3164f56d] {
+.wd-swiper-nav__item--dots,.wd-swiper-nav__item--dots-bar {
   width: var(--wot-swiper-nav-dot-size, .375rem);
   height: var(--wot-swiper-nav-dot-size, .375rem);
   background: var(--wot-swiper-nav-dot-color, var(--wot-font-white-2, rgba(255, 255, 255, .55)));
@@ -67,26 +67,26 @@
   transition: all .4s ease-in
 }
 
-.wd-swiper-nav__item--dots.is-vertical[data-v-3164f56d],.wd-swiper-nav__item--dots-bar.is-vertical[data-v-3164f56d] {
+.wd-swiper-nav__item--dots.is-vertical,.wd-swiper-nav__item--dots-bar.is-vertical {
   margin: .3125rem 0
 }
 
-.wd-swiper-nav__item--dots.is-active[data-v-3164f56d],.wd-swiper-nav__item--dots-bar.is-active[data-v-3164f56d] {
+.wd-swiper-nav__item--dots.is-active,.wd-swiper-nav__item--dots-bar.is-active {
   background-color: var(--wot-swiper-nav-dot-active-color, var(--wot-font-white-1, rgb(255, 255, 255)))
 }
 
-.wd-swiper-nav__item--dots-bar.is-vertical.is-active[data-v-3164f56d] {
+.wd-swiper-nav__item--dots-bar.is-vertical.is-active {
   width: var(--wot-swiper-nav-dot-size, .375rem);
   height: var(--wot-swiper-nav-dots-bar-active-width, 1.25rem)
 }
 
-.wd-swiper-nav__item--dots-bar.is-active[data-v-3164f56d] {
+.wd-swiper-nav__item--dots-bar.is-active {
   width: var(--wot-swiper-nav-dots-bar-active-width, 1.25rem);
   border-radius: calc(var(--wot-swiper-nav-dot-size, .375rem) / 2);
   background-color: var(--wot-swiper-nav-dot-active-color, var(--wot-font-white-1, rgb(255, 255, 255)))
 }
 
-.wd-swiper-nav--left[data-v-3164f56d] {
+.wd-swiper-nav--left {
   position: absolute;
   left: .75rem;
   top: 50%;
@@ -94,7 +94,7 @@
   transform: translateY(-50%)
 }
 
-.wd-swiper-nav--right[data-v-3164f56d] {
+.wd-swiper-nav--right {
   position: absolute;
   right: .75rem;
   top: 50%;
@@ -102,13 +102,13 @@
   transform: translateY(-50%)
 }
 
-.wd-swiper-nav--top-left[data-v-3164f56d] {
+.wd-swiper-nav--top-left {
   position: absolute;
   top: .75rem;
   left: .75rem
 }
 
-.wd-swiper-nav--top[data-v-3164f56d] {
+.wd-swiper-nav--top {
   position: absolute;
   left: 50%;
   top: .75rem;
@@ -116,19 +116,19 @@
   transform: translate(-50%)
 }
 
-.wd-swiper-nav--top-right[data-v-3164f56d] {
+.wd-swiper-nav--top-right {
   position: absolute;
   top: .75rem;
   right: .75rem
 }
 
-.wd-swiper-nav--bottom-left[data-v-3164f56d] {
+.wd-swiper-nav--bottom-left {
   position: absolute;
   left: .75rem;
   bottom: .75rem
 }
 
-.wd-swiper-nav--bottom[data-v-3164f56d] {
+.wd-swiper-nav--bottom {
   position: absolute;
   left: 50%;
   bottom: .75rem;
@@ -136,13 +136,13 @@
   transform: translate(-50%)
 }
 
-.wd-swiper-nav--bottom-right[data-v-3164f56d] {
+.wd-swiper-nav--bottom-right {
   position: absolute;
   right: .75rem;
   bottom: .75rem
 }
 
-.wd-swiper-nav--vertical[data-v-3164f56d] {
+.wd-swiper-nav--vertical {
   flex-direction: column
 }
 

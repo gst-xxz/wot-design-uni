@@ -24,7 +24,7 @@ export default {
   // #ifdef H5
   name: 'wd-skeleton',
   // #endif
-  options: { virtualHost: true, addGlobalClass: true, styleIsolation: 'shared' }
+  options: { virtualHost: true, addGlobalClass: true, }
 }
 </script>
 
@@ -96,7 +96,7 @@ function getColItemStyle(rowCol: SkeletonRowColObj) {
         style.width = px
         style.height = px
       } else {
-        ;(style as any)[name] = px
+        ; (style as any)[name] = px
       }
     }
   }

@@ -1,16 +1,11 @@
 <template>
   <view
     :class="['wd-cell', isBorder ? 'is-border' : '', size ? 'is-' + size : '', center ? 'is-center' : '', customClass]"
-    :style="customStyle"
-    :hover-class="isLink || clickable ? 'is-hover' : 'none'"
-    :hover-stay-time="70"
-    @click="onClick"
-  >
+    :style="customStyle" :hover-class="isLink || clickable ? 'is-hover' : 'none'" :hover-stay-time="70"
+    @click="onClick">
     <view :class="['wd-cell__wrapper', vertical ? 'is-vertical' : '']">
-      <view
-        :class="['wd-cell__left', isRequired ? 'is-required' : '']"
-        :style="titleWidth ? 'min-width:' + titleWidth + ';max-width:' + titleWidth + ';' : ''"
-      >
+      <view :class="['wd-cell__left', isRequired ? 'is-required' : '']"
+        :style="titleWidth ? 'min-width:' + titleWidth + ';max-width:' + titleWidth + ';' : ''">
         <!--左侧icon部位-->
         <wd-icon v-if="icon" :name="icon" :custom-class="`wd-cell__icon  ${customIconClass}`"></wd-icon>
         <slot v-else name="icon" />
@@ -51,7 +46,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

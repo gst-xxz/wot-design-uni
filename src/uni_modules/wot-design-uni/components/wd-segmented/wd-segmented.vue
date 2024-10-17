@@ -1,21 +1,18 @@
 <template>
   <view :class="`wd-segmented ${customClass}`" :style="customStyle">
-    <view
-      :class="`wd-segmented__item is-${size} ${state.activeIndex === index ? 'is-active' : ''} ${
-        disabled || (isObj(option) ? option.disabled : false) ? 'is-disabled' : ''
-      }`"
-      @click="handleClick(option, index)"
-      v-for="(option, index) in options"
-      :key="index"
-    >
-      <view class="wd-segmented__item-label">
+    <view :class="`wd-segmented__item is-${size} ${state.activeIndex === index ? 'is-active' : ''} ${disabled || (isObj(option) ? option.disabled : false) ? 'is-disabled' : ''
+      }`" @click="handleClick(option, index)" v-for="(option, index) in options" :key="index">
+      <view class="wd-segmented__item-label overflow-hidden whitespace-nowrap text-ellipsis">
         <slot name="label" v-if="$slots.label" :option="isObj(option) ? option : { value: option }"></slot>
         <template v-else>
           {{ isObj(option) ? option.value : option }}
         </template>
       </view>
     </view>
-    <view :class="`wd-segmented__item--active ${activeDisabled ? 'is-disabled' : ''}`" :style="state.activeStyle"></view>
+    <view
+      :class="`wd-segmented__item--active bg-white rounded h-[calc(100%-8px)] ${activeDisabled ? 'is-disabled opacity-80' : ''}`"
+      :style="state.activeStyle">
+    </view>
   </view>
 </template>
 
@@ -25,7 +22,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

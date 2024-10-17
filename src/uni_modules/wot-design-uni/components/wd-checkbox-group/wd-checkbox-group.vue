@@ -1,5 +1,9 @@
 <template>
-  <view :class="`wd-checkbox-group ${shape === 'button' && cell ? 'is-button' : ''} ${customClass}`" :style="customStyle">
+  <view :class="cn(
+    'wd-checkbox-group bg-white',
+    shape === 'button' && cell ? 'is-button w-full pt-2 pr-[3px] pb-5 pl-[15px] box-border overflow-hidden h-auto' : '',
+    customClass
+  )" :style="customStyle">
     <slot />
   </view>
 </template>
@@ -9,7 +13,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -19,7 +23,7 @@ import { watch } from 'vue'
 import { checkNumRange, deepClone } from '../common/util'
 import { useChildren } from '../composables/useChildren'
 import { CHECKBOX_GROUP_KEY, checkboxGroupProps } from './types'
-
+import { cn } from '../common/cn'
 const props = defineProps(checkboxGroupProps)
 const emit = defineEmits(['change', 'update:modelValue'])
 
@@ -94,7 +98,3 @@ function changeSelectState(value: string | number | boolean) {
   })
 }
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

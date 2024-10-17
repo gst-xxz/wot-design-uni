@@ -1,5 +1,7 @@
 <template>
-  <view :class="`wd-radio-group  ${customClass} ${cell && shape === 'button' ? 'is-button' : ''}`" :style="customStyle">
+  <view
+    :class="cn('wd-radio-group', 'bg-white text-[0]', customClass, cell && shape === 'button' ? 'is-button w-full pt-2 pr-[3px] pb-5 pl-[15px] box-border overflow-hidden h-auto' : '')"
+    :style="customStyle">
     <slot />
   </view>
 </template>
@@ -8,8 +10,6 @@ export default {
   name: 'wd-radio-group',
   options: {
     virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared'
   }
 }
 </script>
@@ -18,6 +18,7 @@ export default {
 import { watch } from 'vue'
 import { useChildren } from '../composables/useChildren'
 import { RADIO_GROUP_KEY, radioGroupProps } from './types'
+import { cn } from '../common/cn'
 
 const props = defineProps(radioGroupProps)
 const emit = defineEmits(['change', 'update:modelValue'])
@@ -46,6 +47,3 @@ function updateValue(value: string | number | boolean) {
   })
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

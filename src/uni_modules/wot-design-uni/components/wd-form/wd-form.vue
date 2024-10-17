@@ -11,7 +11,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -181,7 +181,3 @@ function reset() {
 
 defineExpose<FormExpose>({ validate, reset })
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

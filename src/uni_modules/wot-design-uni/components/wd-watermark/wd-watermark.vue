@@ -1,21 +1,10 @@
-<!--
- * @Author: weisheng
- * @Date: 2023-04-05 21:32:56
- * @LastEditTime: 2024-04-01 20:40:34
- * @LastEditors: weisheng
- * @Description: 水印组件
- * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-watermark/wd-watermark.vue
- * 记得注释
--->
 <template>
-  <view :class="rootClass" :style="rootStyle">
-    <canvas
-      v-if="!canvasOffScreenable && showCanvas"
-      type="2d"
-      :style="{ height: canvasHeight + 'px', width: canvasWidth + 'px', visibility: 'hidden' }"
-      :canvas-id="canvasId"
-      :id="canvasId"
-    />
+  <view
+    :class="cn('absolute z-[1100] opacity-50 left-0 right-0 top-0 bottom-0 pointer-events-none bg-repeat', { 'fixed': fullScreen }, customClass)"
+    :style="rootStyle">
+    <canvas v-if="!canvasOffScreenable && showCanvas" type="2d"
+      :style="{ height: canvasHeight + 'px', width: canvasWidth + 'px', visibility: 'hidden' }" :canvas-id="canvasId"
+      :id="canvasId" />
   </view>
 </template>
 
@@ -25,7 +14,6 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
   }
 }
 </script>
@@ -34,6 +22,7 @@ export default {
 import { computed, onMounted, ref, watch, nextTick } from 'vue'
 import { addUnit, buildUrlWithParams, isBase64Image, objToStyle, uuid } from '../common/util'
 import { watermarkProps } from './types'
+import { cn } from '../common/cn'
 
 const props = defineProps(watermarkProps)
 
@@ -52,17 +41,6 @@ const pixelRatio = ref<number>(uni.getSystemInfoSync().pixelRatio) // 像素比
 const canvasHeight = ref<number>((props.height + props.gutterY) * pixelRatio.value) // canvas画布高度
 const canvasWidth = ref<number>((props.width + props.gutterX) * pixelRatio.value) // canvas画布宽度
 const showCanvas = ref<boolean>(true) // 是否展示canvas
-
-/**
- * 水印css类
- */
-const rootClass = computed(() => {
-  let classess: string = 'wd-watermark'
-  if (props.fullScreen) {
-    classess = `${classess} is-fullscreen`
-  }
-  return `${classess} ${props.customClass}`
-})
 
 /**
  * 水印样式
@@ -369,14 +347,14 @@ function drawTextOnScreen(ctx: UniApp.CanvasContext, content: string, contentWid
   ctx.fillText(content, 0, 0)
   ctx.restore()
   ctx.draw()
-  // #ifdef MP-DINGTALK
-  // 钉钉小程序的canvasToTempFilePath接口与其他平台不一样
-  ;(ctx as any).toTempFilePath({
-    success(res: any) {
-      showCanvas.value = false
-      waterMarkUrl.value = res.filePath
-    }
-  })
+    // #ifdef MP-DINGTALK
+    // 钉钉小程序的canvasToTempFilePath接口与其他平台不一样
+    ; (ctx as any).toTempFilePath({
+      success(res: any) {
+        showCanvas.value = false
+        waterMarkUrl.value = res.filePath
+      }
+    })
   // #endif
   // #ifndef MP-DINGTALK
   uni.canvasToTempFilePath({
@@ -470,7 +448,7 @@ function drawImageOnScreen(
   ctx.draw(false, () => {
     // #ifdef MP-DINGTALK
     // 钉钉小程序的canvasToTempFilePath接口与其他平台不一样
-    ;(ctx as any).toTempFilePath({
+    ; (ctx as any).toTempFilePath({
       success(res: any) {
         showCanvas.value = false
         waterMarkUrl.value = res.filePath
@@ -489,7 +467,3 @@ function drawImageOnScreen(
   })
 }
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

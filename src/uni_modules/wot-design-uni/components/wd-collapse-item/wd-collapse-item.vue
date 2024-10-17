@@ -1,13 +1,21 @@
 <template>
-  <view :class="`wd-collapse-item ${disabled ? 'is-disabled' : ''} is-border ${customClass}`" :style="customStyle">
-    <view :class="`wd-collapse-item__header  ${isFirst ? 'wd-collapse-item__header-first' : ''}`" @click="handleClick">
+  <view :class="cn(`wd-collapse-item relative ${disabled ? 'is-disabled' : ''} is-border`,
+    'after:absolute after:left-0 after:top-0 after:w-full after:h-[1px] after:bg-[#e8e8e8] after:scale-y-1/2 after:block ',
+    customClass)" :style="customStyle">
+    <view
+      :class="cn(`wd-collapse-item__header relative flex justify-between items-center py-[13px] px-[15px] overflow-hidden select-none`, { 'wd-collapse-item__header-first': isFirst })"
+      @click="handleClick">
       <slot name="title" :expanded="expanded" :disabled="disabled" :isFirst="isFirst">
-        <text class="wd-collapse-item__title">{{ title }}</text>
-        <wd-icon name="arrow-down" :custom-class="`wd-collapse-item__arrow ${expanded ? 'is-retract' : ''}`" />
+        <text
+          :class='cn("wd-collapse-item__title text-black/85 text-base font-medium", { "text-black/15": disabled })'>{{
+            title }}</text>
+        <wd-icon name="arrow-down"
+          :custom-class="cn(`wd-collapse-item__arrow block text-lg text-[#d8d8d8] transition-transform duration-300`, { 'is-retract -rotate-180': expanded, 'text-black/15': disabled })" />
       </slot>
     </view>
-    <view class="wd-collapse-item__wrapper" :style="contentStyle" @transitionend="handleTransitionEnd">
-      <view class="wd-collapse-item__body" :id="collapseId">
+    <view class="wd-collapse-item__wrapper relative overflow-hidden will-change-[height]" :style="contentStyle"
+      @transitionend="handleTransitionEnd">
+      <view class="wd-collapse-item__body text-black/65 text-sm py-[14px] px-[25px] leading-[1.43]" :id="collapseId">
         <slot />
       </view>
     </view>
@@ -19,7 +27,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -31,6 +39,7 @@ import { addUnit, getRect, isArray, isDef, isPromise, objToStyle, requestAnimati
 import { useParent } from '../composables/useParent'
 import { COLLAPSE_KEY } from '../wd-collapse/types'
 import { collapseItemProps, type CollapseItemExpose } from './types'
+import { cn } from '../common/cn'
 
 const collapseId = ref<string>(`collapseId${uuid()}`)
 
@@ -155,7 +164,3 @@ function getExpanded() {
 
 defineExpose<CollapseItemExpose>({ getExpanded })
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-count-down ${customClass}`" :style="customStyle">
+  <view :class="cn('wd-count-down text-[#323233] text-sm', customClass)" :style="customStyle">
     <slot :current="current" v-if="$slots.default" />
     <block v-else>{{ timeText }}</block>
   </view>
@@ -11,7 +11,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -21,6 +21,7 @@ import { watch, computed, onMounted } from 'vue'
 import { parseFormat } from './utils'
 import { useCountDown } from '../composables/useCountDown'
 import { countDownProps, type CountDownExpose } from './types'
+import { cn } from '../common/cn'
 
 const props = defineProps(countDownProps)
 
@@ -54,7 +55,3 @@ defineExpose<CountDownExpose>({
   reset: resetTime
 })
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

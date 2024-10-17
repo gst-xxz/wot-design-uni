@@ -1,43 +1,14 @@
 <template>
   <view :class="`wd-calendar-view ${customClass}`">
-    <year-panel
-      v-if="type === 'month' || type === 'monthrange'"
-      ref="yearPanelRef"
-      :type="type"
-      :value="modelValue"
-      :min-date="minDate"
-      :max-date="maxDate"
-      :formatter="formatter"
-      :max-range="maxRange"
-      :range-prompt="rangePrompt"
-      :allow-same-day="allowSameDay"
-      :show-panel-title="showPanelTitle"
-      :default-time="formatDefauleTime"
-      :panel-height="panelHeight"
-      @change="handleChange"
-    />
-    <month-panel
-      v-else
-      ref="monthPanelRef"
-      :type="type"
-      :value="modelValue"
-      :min-date="minDate"
-      :max-date="maxDate"
-      :first-day-of-week="firstDayOfWeek"
-      :formatter="formatter"
-      :max-range="maxRange"
-      :range-prompt="rangePrompt"
-      :allow-same-day="allowSameDay"
-      :show-panel-title="showPanelTitle"
-      :default-time="formatDefauleTime"
-      :panel-height="panelHeight"
-      :immediate-change="immediateChange"
-      :time-filter="timeFilter"
-      :hide-second="hideSecond"
-      @change="handleChange"
-      @pickstart="handlePickStart"
-      @pickend="handlePickEnd"
-    />
+    <year-panel v-if="type === 'month' || type === 'monthrange'" ref="yearPanelRef" :type="type" :value="modelValue"
+      :min-date="minDate" :max-date="maxDate" :formatter="formatter" :max-range="maxRange" :range-prompt="rangePrompt"
+      :allow-same-day="allowSameDay" :show-panel-title="showPanelTitle" :default-time="formatDefauleTime"
+      :panel-height="panelHeight" @change="handleChange" />
+    <month-panel v-else ref="monthPanelRef" :type="type" :value="modelValue" :min-date="minDate" :max-date="maxDate"
+      :first-day-of-week="firstDayOfWeek" :formatter="formatter" :max-range="maxRange" :range-prompt="rangePrompt"
+      :allow-same-day="allowSameDay" :show-panel-title="showPanelTitle" :default-time="formatDefauleTime"
+      :panel-height="panelHeight" :immediate-change="immediateChange" :time-filter="timeFilter"
+      :hide-second="hideSecond" @change="handleChange" @pickstart="handlePickStart" @pickend="handlePickEnd" />
   </view>
 </template>
 <script lang="ts">
@@ -46,7 +17,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

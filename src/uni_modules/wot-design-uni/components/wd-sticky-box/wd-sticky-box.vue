@@ -1,6 +1,6 @@
 <template>
-  <view style="position: relative">
-    <view :class="`wd-sticky-box ${props.customClass}`" :style="customStyle" :id="styckyBoxId">
+  <view class="relative">
+    <view :class="cn('wd-sticky-box relative', customClass)" :style="customStyle" :id="styckyBoxId">
       <wd-resize @resize="handleResize">
         <slot />
       </wd-resize>
@@ -14,7 +14,7 @@ export default {
   options: {
     addGlobalClass: true,
     // virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -26,8 +26,9 @@ import { getRect, uuid } from '../common/util'
 import { baseProps } from '../common/props'
 import { STICKY_BOX_KEY } from './types'
 import { useChildren } from '../composables/useChildren'
+import { cn } from '../common/cn'
 
-const props = defineProps(baseProps)
+defineProps(baseProps)
 
 const styckyBoxId = ref<string>(`wd-sticky-box${uuid()}`)
 
@@ -150,6 +151,3 @@ function handleRelativeTo(exposed: any, { boundingClientRect }: any) {
   }
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

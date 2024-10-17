@@ -12,6 +12,7 @@ import App from './App.vue'
 // #ifdef H5
 import '@vant/touch-emulator'
 // #endif
+import '@/main.css'
 
 export function createApp() {
   const app = createSSRApp(App)

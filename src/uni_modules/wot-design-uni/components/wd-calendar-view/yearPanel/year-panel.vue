@@ -1,21 +1,12 @@
 <template>
   <view class="wd-year-panel">
     <view v-if="showPanelTitle" class="wd-year-panel__title">{{ title }}</view>
-    <scroll-view class="wd-year-panel__container" :style="`height: ${scrollHeight}px`" scroll-y @scroll="yearScroll" :scroll-top="scrollTop">
+    <scroll-view class="wd-year-panel__container" :style="`height: ${scrollHeight}px`" scroll-y @scroll="yearScroll"
+      :scroll-top="scrollTop">
       <view v-for="(item, index) in years" :key="index" :id="`year${index}`">
-        <year
-          :type="type"
-          :date="item.date"
-          :value="value"
-          :min-date="minDate"
-          :max-date="maxDate"
-          :max-range="maxRange"
-          :formatter="formatter"
-          :range-prompt="rangePrompt"
-          :allow-same-day="allowSameDay"
-          :default-time="defaultTime"
-          @change="handleDateChange"
-        />
+        <year :type="type" :date="item.date" :value="value" :min-date="minDate" :max-date="maxDate"
+          :max-range="maxRange" :formatter="formatter" :range-prompt="rangePrompt" :allow-same-day="allowSameDay"
+          :default-time="defaultTime" @change="handleDateChange" />
       </view>
     </scroll-view>
   </view>
@@ -25,7 +16,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

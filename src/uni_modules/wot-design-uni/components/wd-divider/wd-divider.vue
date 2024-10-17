@@ -13,7 +13,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

@@ -1,20 +1,9 @@
 <template>
   <view>
-    <wd-picker-view
-      ref="datePickerview"
-      :custom-class="customClass"
-      :custom-style="customStyle"
-      :immediate-change="immediateChange"
-      v-model="pickerValue"
-      :columns="columns"
-      :columns-height="columnsHeight"
-      :columnChange="columnChange"
-      :loading="loading"
-      :loading-color="loadingColor"
-      @change="onChange"
-      @pickstart="onPickStart"
-      @pickend="onPickEnd"
-    ></wd-picker-view>
+    <wd-picker-view ref="datePickerview" :custom-class="customClass" :custom-style="customStyle"
+      :immediate-change="immediateChange" v-model="pickerValue" :columns="columns" :columns-height="columnsHeight"
+      :columnChange="columnChange" :loading="loading" :loading-color="loadingColor" @change="onChange"
+      @pickstart="onPickStart" @pickend="onPickEnd"></wd-picker-view>
   </view>
 </template>
 <script lang="ts">
@@ -22,7 +11,7 @@ export default {
   name: 'wd-datetime-picker-view',
   virtualHost: true,
   addGlobalClass: true,
-  styleIsolation: 'shared'
+
 }
 </script>
 

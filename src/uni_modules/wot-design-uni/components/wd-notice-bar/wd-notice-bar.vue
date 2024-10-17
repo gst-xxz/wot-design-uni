@@ -21,7 +21,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -190,13 +190,13 @@ function animationEnd() {
 function handleClick() {
   const result = isArray(props.text)
     ? {
-        index: currentIndex.value,
-        text: props.text[currentIndex.value]
-      }
+      index: currentIndex.value,
+      text: props.text[currentIndex.value]
+    }
     : {
-        index: 0,
-        text: props.text
-      }
+      index: 0,
+      text: props.text
+    }
   emit('click', result)
 }
 </script>

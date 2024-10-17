@@ -1,12 +1,14 @@
 <template>
   <view :style="{ height: addUnit(height) }">
-    <view :class="`wd-navbar ${customClass} ${fixed ? 'is-fixed' : ''} ${bordered ? 'is-border' : ''}`" :style="rootStyle">
+    <view :class="`wd-navbar ${customClass} ${fixed ? 'is-fixed' : ''} ${bordered ? 'is-border' : ''}`"
+      :style="rootStyle">
       <view class="wd-navbar__content">
         <view class="wd-navbar__capsule" v-if="$slots.capsule">
           <slot name="capsule" />
         </view>
 
-        <view :class="`wd-navbar__left ${leftDisabled ? 'is-disabled' : ''}`" @click="handleClickLeft" v-else-if="!$slots.left">
+        <view :class="`wd-navbar__left ${leftDisabled ? 'is-disabled' : ''}`" @click="handleClickLeft"
+          v-else-if="!$slots.left">
           <wd-icon v-if="leftArrow" name="arrow-left" custom-class="wd-navbar__arrow" />
           <view v-if="leftText" class="wd-navbar__text">{{ leftText }}</view>
         </view>
@@ -19,10 +21,12 @@
           <slot name="title" />
           <block v-if="!$slots.title && title">{{ title }}</block>
         </view>
-        <view :class="`wd-navbar__right ${rightDisabled ? 'is-disabled' : ''}`" @click="handleClickRight" v-if="$slots.right || rightText">
+        <view :class="`wd-navbar__right ${rightDisabled ? 'is-disabled' : ''}`" @click="handleClickRight"
+          v-if="$slots.right || rightText">
           <slot name="right" />
 
-          <view v-if="!$slots.right && rightText" class="wd-navbar__text" hover-class="wd-navbar__text--hover" :hover-stay-time="70">
+          <view v-if="!$slots.right && rightText" class="wd-navbar__text" hover-class="wd-navbar__text--hover"
+            :hover-stay-time="70">
             {{ rightText }}
           </view>
         </view>
@@ -36,7 +40,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

@@ -1,13 +1,8 @@
 <template>
   <view :class="`wd-rate ${customClass}`" :style="customStyle">
-    <view
-      v-for="(rate, index) in rateList"
-      :key="index"
-      :data-index="index"
-      :style="{ 'margin-right': index == rateList.length - 1 ? 0 : space }"
-      class="wd-rate__item"
-      @click="changeRate(index)"
-    >
+    <view v-for="(rate, index) in rateList" :key="index" :data-index="index"
+      :style="{ 'margin-right': index == rateList.length - 1 ? 0 : space }" class="wd-rate__item"
+      @click="changeRate(index)">
       <view class="wd-rate__item-star" :style="{ width: size, height: size }">
         <wd-icon :name="icon" :size="size" :custom-style="iconStyle" />
       </view>
@@ -24,7 +19,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

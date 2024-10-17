@@ -1,14 +1,17 @@
 <template>
-  <view :class="['wd-loadmore', customClass]" :style="customStyle" @click="reload">
+  <view :class="['wd-loadmore w-full h-12 leading-[48px] text-center text-black/45', customClass]" :style="customStyle"
+    @click="reload">
     <wd-divider v-if="state === 'finished'">{{ finishedText || translate('finished') }}</wd-divider>
     <block v-if="state === 'error'">
-      <text class="wd-loadmore__text">{{ errorText || translate('error') }}</text>
-      <text class="wd-loadmore__text is-light">{{ translate('retry') }}</text>
-      <wd-icon name="refresh" custom-class="wd-loadmore__refresh" />
+      <text class="wd-loadmore__text inline-block align-middle text-sm">{{ errorText || translate('error') }}</text>
+      <text class="wd-loadmore__text inline-block align-middle text-sm is-light my-0 mx-1.5 text-primary">{{
+        translate('retry')
+      }}</text>
+      <wd-icon name="refresh" custom-class="wd-loadmore__refresh inline-block align-middle text-base text-primary" />
     </block>
     <block v-if="state === 'loading'">
-      <wd-loading custom-class="wd-loadmore__loading" />
-      <text class="wd-loadmore__text">{{ loadingText || translate('loading') }}</text>
+      <wd-loading custom-class="wd-loadmore__loading inline-block mr-2 align-middle w-4 h-4" />
+      <text class="wd-loadmore__text inline-block align-middle text-sm">{{ loadingText || translate('loading') }}</text>
     </block>
   </view>
 </template>
@@ -19,7 +22,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -45,7 +48,3 @@ function reload() {
   emit('reload')
 }
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

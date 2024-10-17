@@ -1,7 +1,7 @@
 <template>
-  <view :style="`${rootStyle};display: inline-block;`">
-    <view :class="`wd-sticky ${customClass}`" :style="stickyStyle" :id="styckyId">
-      <view class="wd-sticky__container" :style="containerStyle">
+  <view :style="rootStyle" class='inline-block'>
+    <view :class="cn('wd-sticky inline-block', customClass)" :style="stickyStyle" :id="styckyId">
+      <view class="wd-sticky__container inline-block" :style="containerStyle">
         <wd-resize @resize="handleResize" custom-style="display: inline-block;">
           <slot />
         </wd-resize>
@@ -16,7 +16,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -28,6 +28,7 @@ import { addUnit, getRect, objToStyle, requestAnimationFrame, uuid } from '../co
 import { stickyProps } from './types'
 import { useParent } from '../composables/useParent'
 import { STICKY_BOX_KEY } from '../wd-sticky-box/types'
+import { cn } from '../common/cn'
 
 const props = defineProps(stickyProps)
 const styckyId = ref<string>(`wd-sticky${uuid()}`)

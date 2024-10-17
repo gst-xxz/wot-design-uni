@@ -1,65 +1,47 @@
 <template>
   <view :class="rootClass" :style="customStyle" @click="handleClick">
     <view v-if="label || useLabelSlot" :class="labelClass" :style="labelStyle">
-      <view v-if="prefixIcon || usePrefixSlot" class="wd-input__prefix">
-        <wd-icon v-if="prefixIcon && !usePrefixSlot" custom-class="wd-input__icon" :name="prefixIcon" @click="onClickPrefixIcon" />
+      <view v-if="prefixIcon || usePrefixSlot" class="wd-input__prefix mr-2 text-sm leading-[initial]">
+        <wd-icon v-if="prefixIcon && !usePrefixSlot" custom-class="wd-input__icon" :name="prefixIcon"
+          @click="onClickPrefixIcon" />
         <slot v-else name="prefix"></slot>
       </view>
-      <view class="wd-input__label-inner">
+      <view class="wd-input__label-inner inline-block text-sm leading-6">
         <template v-if="label">{{ label }}</template>
         <slot v-else name="label"></slot>
       </view>
     </view>
-    <view class="wd-input__body">
-      <view class="wd-input__value">
-        <view v-if="(prefixIcon || usePrefixSlot) && !label" class="wd-input__prefix">
+    <view class="wd-input__body flex-1">
+      <view class="wd-input__value relative flex flex-row items-center">
+        <view v-if="(prefixIcon || usePrefixSlot) && !label" class="wd-input__prefix mr-2 text-sm leading-[initial]">
           <wd-icon v-if="prefixIcon" custom-class="wd-input__icon" :name="prefixIcon" @click="onClickPrefixIcon" />
           <slot name="prefix"></slot>
         </view>
-        <input
-          :class="[
-            'wd-input__inner',
-            prefixIcon ? 'wd-input__inner--prefix' : '',
-            showWordCount ? 'wd-input__inner--count' : '',
-            alignRight ? 'is-align-right' : '',
-            customInputClass
-          ]"
-          :type="type"
-          :password="showPassword && !isPwdVisible"
-          v-model="inputValue"
-          :placeholder="placeholderValue"
-          :disabled="disabled || readonly"
-          :maxlength="maxlength"
-          :focus="focused"
-          :confirm-type="confirmType"
-          :confirm-hold="confirmHold"
-          :cursor="cursor"
-          :cursor-spacing="cursorSpacing"
-          :placeholder-style="placeholderStyle"
-          :selection-start="selectionStart"
-          :selection-end="selectionEnd"
-          :adjust-position="adjustPosition"
-          :hold-keyboard="holdKeyboard"
-          :always-embed="alwaysEmbed"
-          :placeholder-class="inputPlaceholderClass"
-          :ignoreCompositionEvent="ignoreCompositionEvent"
-          @input="handleInput"
-          @focus="handleFocus"
-          @blur="handleBlur"
-          @confirm="handleConfirm"
-          @keyboardheightchange="handleKeyboardheightchange"
-        />
-        <view v-if="readonly" class="wd-input__readonly-mask" />
-        <view v-if="showClear || showPassword || suffixIcon || showWordCount || $slots.suffix" class="wd-input__suffix">
+        <input :class="[
+          'wd-input__inner',
+          prefixIcon ? 'wd-input__inner--prefix' : '',
+          showWordCount ? 'wd-input__inner--count' : '',
+          alignRight ? 'is-align-right text-right' : '',
+          customInputClass
+        ]" :type="type" :password="showPassword && !isPwdVisible" v-model="inputValue" :placeholder="placeholderValue"
+          :disabled="disabled || readonly" :maxlength="maxlength" :focus="focused" :confirm-type="confirmType"
+          :confirm-hold="confirmHold" :cursor="cursor" :cursor-spacing="cursorSpacing"
+          :placeholder-style="placeholderStyle" :selection-start="selectionStart" :selection-end="selectionEnd"
+          :adjust-position="adjustPosition" :hold-keyboard="holdKeyboard" :always-embed="alwaysEmbed"
+          :placeholder-class="inputPlaceholderClass" :ignoreCompositionEvent="ignoreCompositionEvent"
+          @input="handleInput" @focus="handleFocus" @blur="handleBlur" @confirm="handleConfirm"
+          @keyboardheightchange="handleKeyboardheightchange" />
+        <view v-if="readonly" class="wd-input__readonly-mask absolute top-0 left-0 w-full h-full z-[2]" />
+        <view v-if="showClear || showPassword || suffixIcon || showWordCount || $slots.suffix"
+          class="wd-input__suffix flex-shrink-0 leading-[initial] ml-2">
           <wd-icon v-if="showClear" custom-class="wd-input__clear" name="error-fill" @click="handleClear" />
-          <wd-icon v-if="showPassword" custom-class="wd-input__icon" :name="isPwdVisible ? 'view' : 'eye-close'" @click="togglePwdVisible" />
+          <wd-icon v-if="showPassword" custom-class="wd-input__icon" :name="isPwdVisible ? 'view' : 'eye-close'"
+            @click="togglePwdVisible" />
           <view v-if="showWordCount" class="wd-input__count">
-            <text
-              :class="[
-                inputValue && String(inputValue).length > 0 ? 'wd-input__count-current' : '',
-                String(inputValue).length > maxlength! ? 'is-error' : ''
-              ]"
-            >
+            <text :class="[
+              inputValue && String(inputValue).length > 0 ? 'wd-input__count-current' : '',
+              String(inputValue).length > maxlength! ? 'is-error' : ''
+            ]">
               {{ String(inputValue).length }}
             </text>
             /{{ maxlength }}
@@ -68,7 +50,9 @@
           <slot name="suffix"></slot>
         </view>
       </view>
-      <view v-if="errorMessage" class="wd-input__error-message">{{ errorMessage }}</view>
+      <view v-if="errorMessage" class="wd-input__error-message text-danger text-xs leading-6 text-left align-baseline">
+        {{
+          errorMessage }}</view>
     </view>
   </view>
 </template>
@@ -79,7 +63,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -93,6 +77,7 @@ import { FORM_KEY, type FormItemRule } from '../wd-form/types'
 import { useParent } from '../composables/useParent'
 import { useTranslate } from '../composables/useTranslate'
 import { inputProps } from './types'
+import { cn } from '../common/cn'
 
 const props = defineProps(inputProps)
 const emit = defineEmits([
@@ -185,15 +170,25 @@ const isRequired = computed(() => {
 })
 
 const rootClass = computed(() => {
-  return `wd-input  ${props.label || props.useLabelSlot ? 'is-cell' : ''} ${props.center ? 'is-center' : ''} ${
-    cell.border.value ? 'is-border' : ''
-  } ${props.size ? 'is-' + props.size : ''} ${props.error ? 'is-error' : ''} ${props.disabled ? 'is-disabled' : ''}  ${
-    inputValue.value && String(inputValue.value).length > 0 ? 'is-not-empty' : ''
-  }  ${props.noBorder ? 'is-no-border' : ''} ${props.customClass}`
+  return cn(
+    'wd-input relative text-left bg-white tap-transparent',
+    'after:contents after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-[#dadada] after:scale-y-1/2 after:transition-[background-color_.2s_ease-in-out]',
+    props.label || props.useLabelSlot ? 'is-cell' : '',
+    props.center ? 'is-center' : '',
+    cell.border.value ? 'is-border' : '',
+    props.size ? 'is-' + props.size : '',
+    props.error ? 'is-error' : '',
+    props.disabled ? 'is-disabled' : '',
+    inputValue.value && String(inputValue.value).length > 0 ? 'is-not-empty' : '',
+    props.noBorder ? 'is-no-border' : '', props.customClass)
 })
 
 const labelClass = computed(() => {
-  return `wd-input__label ${props.customLabelClass} ${isRequired.value ? 'is-required' : ''}`
+  return cn(
+    'wd-input__label relative flex w-1/3 text-black/85 mr-[15px] box-border text-sm flex-shrink-0',
+    props.customLabelClass,
+    isRequired.value ? 'is-required pl-3' : ''
+  )
 })
 
 const inputPlaceholderClass = computed(() => {
@@ -203,9 +198,9 @@ const inputPlaceholderClass = computed(() => {
 const labelStyle = computed(() => {
   return props.labelWidth
     ? objToStyle({
-        'min-width': props.labelWidth,
-        'max-width': props.labelWidth
-      })
+      'min-width': props.labelWidth,
+      'max-width': props.labelWidth
+    })
     : ''
 })
 

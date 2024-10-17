@@ -1,23 +1,14 @@
 <template>
-  <view
-    :class="`wd-radio ${cellValue ? 'is-cell-radio' : ''} ${cellValue && shapeValue == 'button' ? 'is-button-radio' : ''} ${
-      sizeValue ? 'is-' + sizeValue : ''
-    } ${inlineValue ? 'is-inline' : ''} ${isChecked ? 'is-checked' : ''} ${shapeValue !== 'check' ? 'is-' + shapeValue : ''} ${
-      disabledValue ? 'is-disabled' : ''
-    } ${customClass}`"
-    :style="customStyle"
-    @click="handleClick"
-  >
-    <view
-      class="wd-radio__label"
-      :style="`${maxWidth ? 'max-width:' + maxWidth : ''};  ${
-        isChecked && shapeValue === 'button' && !disabledValue ? 'color :' + checkedColorValue : ''
-      }`"
-    >
+  <view :class="`wd-radio ${cellValue ? 'is-cell-radio' : ''} ${cellValue && shapeValue == 'button' ? 'is-button-radio' : ''} ${sizeValue ? 'is-' + sizeValue : ''
+    } ${inlineValue ? 'is-inline' : ''} ${isChecked ? 'is-checked' : ''} ${shapeValue !== 'check' ? 'is-' + shapeValue : ''} ${disabledValue ? 'is-disabled' : ''
+    } ${customClass}`" :style="customStyle" @click="handleClick">
+    <view class="wd-radio__label" :style="`${maxWidth ? 'max-width:' + maxWidth : ''};  ${isChecked && shapeValue === 'button' && !disabledValue ? 'color :' + checkedColorValue : ''
+      }`">
       <slot></slot>
     </view>
     <view class="wd-radio__shape" :style="isChecked && !disabledValue ? 'color: ' + checkedColorValue : ''">
-      <wd-icon v-if="shapeValue === 'check'" :style="isChecked && !disabledValue ? 'color: ' + checkedColorValue : ''" name="check"></wd-icon>
+      <wd-icon v-if="shapeValue === 'check'" :style="isChecked && !disabledValue ? 'color: ' + checkedColorValue : ''"
+        name="check"></wd-icon>
     </view>
   </view>
 </template>
@@ -27,7 +18,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

@@ -1,25 +1,21 @@
 <template>
   <view>
-    <wd-popup
-      v-model="show"
-      transition="zoom-in"
-      position="center"
-      :close-on-click-modal="closeOnClickModal"
-      :hide-when-close="hideWhenClose"
-      @before-enter="beforeenter"
-      @enter="enter"
-      @after-enter="afterenter"
-      @before-leave="beforeleave"
-      @leave="leave"
-      @after-leave="afterleave"
-      @close="close"
-      @click-modal="clickModal"
-      :custom-class="`wd-curtain ${customClass}`"
-      :custom-style="customStyle"
-    >
-      <view class="wd-curtain__content">
-        <image :src="src" class="wd-curtain__content-img" :style="imgStyle" @click="clickImage" @error="imgErr" @load="imgLoad"></image>
-        <wd-icon name="close-outline" :custom-class="`wd-curtain__content-close ${closePosition}`" @click="close" />
+    <wd-popup v-model="show" transition="zoom-in" position="center" :close-on-click-modal="closeOnClickModal"
+      :hide-when-close="hideWhenClose" @before-enter="beforeenter" @enter="enter" @after-enter="afterenter"
+      @before-leave="beforeleave" @leave="leave" @after-leave="afterleave" @close="close" @click-modal="clickModal"
+      :custom-class="cn(`wd-curtain inline-block rounded-3xl overflow-y-visible bg-transparent text-[0] ${customClass}`)"
+      :custom-style="customStyle">
+      <view class="wd-curtain__content relative inline-block bg-transparent rounded-3xl">
+        <image :src="src" class="wd-curtain__content-img block w-auto h-auto rounded-3xl" :style="imgStyle"
+          @click="clickImage" @error="imgErr" @load="imgLoad"></image>
+        <wd-icon name="close-outline" :custom-class="cn(`wd-curtain__content-close absolute top-2.5 right-2.5 m-0 p-1.5 text-white text-3xl tap-transparent`, {
+          'm-0 ml-[-18px] top-[-62px] right-[unset] left-1/2 bottom-[unset]': closePosition === 'top',
+          'm-0 ml-[-18px] top-[-62px] right-[unset] -left-1.5 bottom-[unset]': closePosition === 'top-left',
+          'm-0 ml-[-18px] top-[-62px] -right-1.5 left-[unset] bottom-[unset]': closePosition === 'top-right',
+          'm-0 ml-[-18px] top-[unset] right-[unset] left-[unset] bottom-[-62px]': closePosition === 'bottom',
+          'm-0 top-[unset] right-[unset] -left-1.5 bottom-[-62px]': closePosition === 'bottom-left',
+          'm-0 top-[unset] right-[-6px] -left-1.5 bottom-[-62px]': closePosition === 'bottom-right',
+        })" @click="close" class="right-unset " />
       </view>
     </wd-popup>
   </view>
@@ -31,7 +27,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -41,7 +37,7 @@ import wdIcon from '../wd-icon/wd-icon.vue'
 import wdPopup from '../wd-popup/wd-popup.vue'
 import { ref, watch } from 'vue'
 import { curtainProps } from './types'
-
+import { cn } from '../common/cn'
 const props = defineProps(curtainProps)
 
 const emit = defineEmits([
@@ -159,7 +155,3 @@ function clickImage() {
   close()
 }
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

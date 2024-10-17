@@ -1,11 +1,18 @@
 <template>
-  <view :class="['wd-badge', customClass]" :style="customStyle">
+  <view :class="cn('wd-badge relative align-middle inline-block', customClass)" :style="customStyle">
     <slot></slot>
-    <view
-      v-if="isBadgeShow"
-      :class="['wd-badge__content', 'is-fixed', type ? 'wd-badge__content--' + type : '', isDot ? 'is-dot' : '']"
-      :style="contentStyle"
-    >
+    <view v-if="isBadgeShow" :class="cn(
+      'wd-badge__content inline-block h-4 leading-4 py-0 px-[5px] text-center text-[#fff] bg-danger rounded-[10px] text-xs whitespace-nowrap border-[2px] border-solid border-white font-medium',
+      'is-fixed absolute translate-x-1/2 -translate-y-1/2',
+      {
+        'bg-primary': type === 'primary',
+        'bg-success': type === 'success',
+        'bg-warning': type === 'warning',
+        'bg-info': type === 'info',
+        'bg-danger': type === 'danger',
+      },
+      isDot ? 'is-dot w-1.5 h-1.5 p-0 rounded-full' : ''
+    )" :style="contentStyle">
       {{ content }}
     </view>
   </view>
@@ -16,13 +23,14 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { badgeProps } from './types'
+import { cn } from '../common/cn'
 
 const props = defineProps(badgeProps)
 const content = ref<number | string | null>(null)
@@ -58,7 +66,3 @@ function notice() {
   content.value = value
 }
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

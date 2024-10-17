@@ -19,7 +19,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -64,6 +64,7 @@ onMounted(() => {
     background: #000;
   }
 }
+
 .page-wraper {
   min-height: calc(100vh - var(--window-top));
   box-sizing: border-box;

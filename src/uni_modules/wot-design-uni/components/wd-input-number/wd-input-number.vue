@@ -1,21 +1,14 @@
 <template>
-  <view :class="`wd-input-number ${customClass} ${disabled ? 'is-disabled' : ''} ${withoutInput ? 'is-without-input' : ''}`" :style="customStyle">
+  <view
+    :class="`wd-input-number ${customClass} ${disabled ? 'is-disabled' : ''} ${withoutInput ? 'is-without-input' : ''}`"
+    :style="customStyle">
     <view :class="`wd-input-number__action ${minDisabled || disableMinus ? 'is-disabled' : ''}`" @click="sub">
       <wd-icon name="decrease" custom-class="wd-input-number__action-icon"></wd-icon>
     </view>
     <view v-if="!withoutInput" class="wd-input-number__inner" @click.stop="">
-      <input
-        class="wd-input-number__input"
-        :style="`${inputWidth ? 'width: ' + inputWidth : ''}`"
-        type="digit"
-        :disabled="disabled || disableInput"
-        v-model="inputValue"
-        :placeholder="placeholder"
-        :adjust-position="adjustPosition"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-      />
+      <input class="wd-input-number__input" :style="`${inputWidth ? 'width: ' + inputWidth : ''}`" type="digit"
+        :disabled="disabled || disableInput" v-model="inputValue" :placeholder="placeholder"
+        :adjust-position="adjustPosition" @input="handleInput" @focus="handleFocus" @blur="handleBlur" />
       <view class="wd-input-number__input-border"></view>
     </view>
     <view :class="`wd-input-number__action ${maxDisabled || disablePlus ? 'is-disabled' : ''}`" @click="add">
@@ -30,7 +23,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

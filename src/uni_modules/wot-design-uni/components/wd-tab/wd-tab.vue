@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-tab ${customClass}`" :style="customStyle">
+  <view :class="cn('wd-tab w-full flex-shrink-0 box-border', customClass)" :style="customStyle">
     <view v-if="painted" class="wd-tab__body" :style="isShow ? '' : 'display: none;'">
       <slot />
     </view>
@@ -11,7 +11,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -22,6 +22,7 @@ import { useParent } from '../composables/useParent'
 import { TABS_KEY } from '../wd-tabs/types'
 import { computed } from 'vue'
 import { tabProps } from './types'
+import { cn } from '../common/cn'
 
 const props = defineProps(tabProps)
 
@@ -96,6 +97,3 @@ defineExpose({
   painted
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

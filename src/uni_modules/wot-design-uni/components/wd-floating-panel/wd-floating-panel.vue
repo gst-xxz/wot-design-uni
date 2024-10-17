@@ -1,23 +1,16 @@
 <template>
-  <view
-    :class="`wd-floating-panel ${customClass} ${safeAreaInsetBottom ? 'is-safe' : ''}`"
-    :style="rootStyle"
-    @touchstart.passive="handleTouchStart"
-    @touchmove.passive="handleTouchMove"
-    @touchend="handleTouchEnd"
-    @touchcancel="handleTouchEnd"
-  >
-    <view :class="`wd-floating-panel__header`">
-      <view :class="`wd-floating-panel__header-bar`"></view>
+  <view :class="cn(
+    `wd-floating-panel fixed bottom-0 left-0 z-[99] flex flex-col box-border w-screen will-change-transform rounded-tl-2xl rounded-tr-2xl bg-white touch-none`,
+    customClass,
+    safeAreaInsetBottom ? 'is-safe pb-safe after:absolute after:bottom-[-100vh] after:w-screen after:h-screen after:bg-[inherit]' : ''
+  )" :style="rootStyle" @touchstart.passive="handleTouchStart" @touchmove.passive="handleTouchMove"
+    @touchend="handleTouchEnd" @touchcancel="handleTouchEnd">
+    <view class="wd-floating-panel__header flex justify-center items-center h-[30px] cursor-grab select-none">
+      <view class="wd-floating-panel__header-bar w-5 h-[3px] bg-gray-5 rounded"></view>
     </view>
 
-    <scroll-view
-      :class="`wd-floating-panel__content`"
-      data-id="content"
-      :show-scrollbar="showScrollbar"
-      scroll-y
-      @touchmove.stop.prevent="handleTouchMove"
-    >
+    <scroll-view class="wd-floating-panel__content flex-1 min-w-0 min-h-0 bg-white" data-id="content"
+      :show-scrollbar="showScrollbar" scroll-y @touchmove.stop.prevent="handleTouchMove">
       <slot />
     </scroll-view>
   </view>
@@ -29,7 +22,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -39,6 +32,7 @@ import { computed, onBeforeMount, ref, watch, type CSSProperties } from 'vue'
 import { floatingPanelProps } from './type'
 import { addUnit, closest, objToStyle } from '../common/util'
 import { useTouch } from '../composables/useTouch'
+import { cn } from '../common/cn'
 
 const touch = useTouch()
 
@@ -128,7 +122,3 @@ onBeforeMount(() => {
   windowHeight.value = _windowHeight
 })
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

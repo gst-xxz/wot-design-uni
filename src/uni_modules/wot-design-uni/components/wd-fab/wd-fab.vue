@@ -1,29 +1,17 @@
 <template>
-  <view
-    @touchmove.stop.prevent="handleTouchMove"
-    @touchstart="handleTouchStart"
-    @touchend="handleTouchEnd"
-    :class="`wd-fab ${customClass}`"
-    :style="rootStyle"
-    @click.stop=""
-  >
+  <view @touchmove.stop.prevent="handleTouchMove" @touchstart="handleTouchStart" @touchend="handleTouchEnd"
+    :class="`wd-fab ${customClass}`" :style="rootStyle" @click.stop="">
     <view @click.stop="" :style="{ visibility: inited ? 'visible' : 'hidden' }" id="trigger">
       <slot name="trigger" v-if="$slots.trigger"></slot>
       <wd-button v-else @click="handleClick" custom-class="wd-fab__trigger" round :type="type" :disabled="disabled">
         <wd-icon custom-class="wd-fab__icon" :name="isActive ? activeIcon : inactiveIcon"></wd-icon>
       </wd-button>
     </view>
-    <wd-transition
-      v-if="expandable"
-      :enter-class="`wd-fab__transition-enter--${fabDirection}`"
+    <wd-transition v-if="expandable" :enter-class="`wd-fab__transition-enter--${fabDirection}`"
       enter-active-class="wd-fab__transition-enter-active"
       :leave-to-class="`wd-fab__transition-leave-to--${fabDirection}`"
       leave-active-class="wd-fab__transition-leave-active"
-      :custom-class="`wd-fab__actions wd-fab__actions--${fabDirection}`"
-      :show="isActive"
-      :duration="300"
-      name=""
-    >
+      :custom-class="`wd-fab__actions wd-fab__actions--${fabDirection}`" :show="isActive" :duration="300" name="">
       <slot></slot>
     </wd-transition>
   </view>
@@ -35,7 +23,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
-  <view :class="`wd-sort-button ${line ? 'wd-sort-button--line' : ''} ${customClass}`" :style="customStyle" @click="handleClick">
+  <view :class="`wd-sort-button ${line ? 'wd-sort-button--line' : ''} ${customClass}`" :style="customStyle"
+    @click="handleClick">
     <view class="wd-sort-button__wrapper">
       <view :class="`wd-sort-button__left ${modelValue !== 0 ? 'is-active' : ''}`">
         {{ title }}
@@ -18,7 +19,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

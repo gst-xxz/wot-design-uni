@@ -1,55 +1,42 @@
 <template>
   <view :class="rootClass" :style="customStyle">
     <view v-if="label || useLabelSlot" :class="labelClass" :style="labelStyle">
-      <view v-if="prefixIcon || usePrefixSlot" class="wd-textarea__prefix">
-        <wd-icon v-if="prefixIcon && !usePrefixSlot" custom-class="wd-textarea__icon" :name="prefixIcon" @click="onClickPrefixIcon" />
+      <view v-if="prefixIcon || usePrefixSlot" class="wd-textarea__prefix mr-2 text-sm leading-[initial]">
+        <wd-icon v-if="prefixIcon && !usePrefixSlot"
+          custom-class="wd-textarea__icon ml-2 text-base text-[#bfbfbf] bg-white" :name="prefixIcon"
+          @click="onClickPrefixIcon" />
         <slot v-else name="prefix"></slot>
       </view>
-      <view class="wd-textarea__label-inner">
+      <view class="wd-textarea__label-inner inline-block text-sm leading-[24px]">
         <text v-if="label">{{ label }}</text>
         <slot v-else name="label"></slot>
       </view>
     </view>
 
     <!-- 文本域 -->
-    <view :class="`wd-textarea__value ${showClear ? 'is-suffix' : ''} ${customTextareaContainerClass} ${showWordCount ? 'is-show-limit' : ''}`">
+    <view
+      :class="cn(`wd-textarea__value relative p-0 text-[0] bg-white box-border ${showClear ? 'is-suffix pr-6' : ''} ${customTextareaContainerClass} ${showWordCount ? 'is-show-limit pb-9' : ''}`)">
       <textarea
-        :class="`wd-textarea__inner ${customTextareaClass}`"
-        v-model="inputValue"
-        :show-count="false"
-        :placeholder="placeholderValue"
-        :disabled="disabled || readonly"
-        :maxlength="maxlength"
-        :focus="focused"
-        :auto-focus="autoFocus"
-        :placeholder-style="placeholderStyle"
-        :placeholder-class="inputPlaceholderClass"
-        :auto-height="autoHeight"
-        :cursor-spacing="cursorSpacing"
-        :fixed="fixed"
-        :cursor="cursor"
-        :show-confirm-bar="showConfirmBar"
-        :selection-start="selectionStart"
-        :selection-end="selectionEnd"
-        :adjust-position="adjustPosition"
-        :hold-keyboard="holdKeyboard"
-        :confirm-type="confirmType"
-        :confirm-hold="confirmHold"
-        :disable-default-padding="disableDefaultPadding"
-        :ignoreCompositionEvent="ignoreCompositionEvent"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @confirm="handleConfirm"
-        @linechange="handleLineChange"
-        @keyboardheightchange="handleKeyboardheightchange"
-      />
-      <view v-if="errorMessage" class="wd-textarea__error-message">{{ errorMessage }}</view>
+        :class="cn(`wd-textarea__inner p-0 w-full text-sm leading-[24px] text-[#262626] outline-none bg-[none] border-none box-border break-words min-h-[24px] ${customTextareaClass}`)"
+        v-model="inputValue" :show-count="false" :placeholder="placeholderValue" :disabled="disabled || readonly"
+        :maxlength="maxlength" :focus="focused" :auto-focus="autoFocus" :placeholder-style="placeholderStyle"
+        :placeholder-class="inputPlaceholderClass" :auto-height="autoHeight" :cursor-spacing="cursorSpacing"
+        :fixed="fixed" :cursor="cursor" :show-confirm-bar="showConfirmBar" :selection-start="selectionStart"
+        :selection-end="selectionEnd" :adjust-position="adjustPosition" :hold-keyboard="holdKeyboard"
+        :confirm-type="confirmType" :confirm-hold="confirmHold" :disable-default-padding="disableDefaultPadding"
+        :ignoreCompositionEvent="ignoreCompositionEvent" @input="handleInput" @focus="handleFocus" @blur="handleBlur"
+        @confirm="handleConfirm" @linechange="handleLineChange" @keyboardheightchange="handleKeyboardheightchange" />
+      <view v-if="errorMessage"
+        class="wd-textarea__error-message text-danger text-xs leading-[24px] text-left align-middle">{{ errorMessage }}
+      </view>
 
       <view v-if="readonly" class="wd-textarea__readonly-mask" />
-      <view class="wd-textarea__suffix">
-        <wd-icon v-if="showClear" custom-class="wd-textarea__clear" name="error-fill" @click="handleClear" />
-        <view v-if="showWordCount" class="wd-textarea__count">
+      <view class="wd-textarea__suffix flex-shrink-0 leading-[initial] absolute z-[1] top-0 right-0 bottom-0">
+        <wd-icon v-if="showClear"
+          custom-class="wd-textarea__clear ml-2 text-base text-[#585858] bg-white align-middle leading-[24px]"
+          name="error-fill" @click="handleClear" />
+        <view v-if="showWordCount"
+          class="wd-textarea__count absolute bottom-2 right-0 text-sm text-[#bfbfbf] bg-white leading-5 inline-flex">
           <text :class="countClass">
             {{ currentLength }}
           </text>
@@ -66,7 +53,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -80,6 +67,7 @@ import { FORM_KEY, type FormItemRule } from '../wd-form/types'
 import { useParent } from '../composables/useParent'
 import { useTranslate } from '../composables/useTranslate'
 import { textareaProps } from './types'
+import { cn } from '../common/cn'
 
 const { translate } = useTranslate('textarea')
 
@@ -175,31 +163,42 @@ const currentLength = computed(() => {
 })
 
 const rootClass = computed(() => {
-  return `wd-textarea   ${props.label || props.useLabelSlot ? 'is-cell' : ''} ${props.center ? 'is-center' : ''} ${
-    cell.border.value ? 'is-border' : ''
-  } ${props.size ? 'is-' + props.size : ''} ${props.error ? 'is-error' : ''} ${props.disabled ? 'is-disabled' : ''} ${
-    props.autoHeight ? 'is-auto-height' : ''
-  } ${currentLength.value > 0 ? 'is-not-empty' : ''}  ${props.noBorder ? 'is-no-border' : ''} ${props.customClass}`
+  return cn(
+    'wd-textarea relative text-left bg-white py-2.5 px-[15px]',
+    'after:contents after:absolute after:hidden after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-[#dadada] after:scale-y-1/2 after:transition-[background-color_.2s_ease-in-out]',
+    props.label || props.useLabelSlot ? 'is-cell' : '',
+    props.center ? 'is-center' : '',
+    cell.border.value ? 'is-border' : '',
+    props.size ? 'is-' + props.size : '',
+    props.error ? 'is-error' : '',
+    props.disabled ? 'is-disabled' : '',
+    props.autoHeight ? 'is-auto-height' : '',
+    currentLength.value > 0 ? 'is-not-empty' : '',
+    props.noBorder ? 'is-no-border' : '', props.customClass)
 })
 
 const labelClass = computed(() => {
-  return `wd-textarea__label ${props.customLabelClass} ${isRequired.value ? 'is-required' : ''}`
+  return cn(
+    'wd-textarea__label relative flex w-1/3 text-black/85 mr-[15px] box-border text-sm flex-shrink-0',
+    props.customLabelClass,
+    isRequired.value ? 'is-required pl-3 after:content-["*"] after:text-lg after:leading-[1.1] after:text-danger after:absolute after:left-0 after:top-0.5' : ''
+  )
 })
 
 const inputPlaceholderClass = computed(() => {
-  return `wd-textarea__placeholder  ${props.placeholderClass}`
+  return `wd-textarea__placeholder text-[#bfbfbf] ${props.placeholderClass}`
 })
 
 const countClass = computed(() => {
-  return `${currentLength.value > 0 ? 'wd-textarea__count-current' : ''} ${currentLength.value > props.maxlength ? 'is-error' : ''}`
+  return `${currentLength.value > 0 ? 'wd-textarea__count-current text-[#262626]' : ''} ${currentLength.value > props.maxlength ? 'is-error text-danger' : ''}`
 })
 
 const labelStyle = computed(() => {
   return props.labelWidth
     ? objToStyle({
-        'min-width': props.labelWidth,
-        'max-width': props.labelWidth
-      })
+      'min-width': props.labelWidth,
+      'max-width': props.labelWidth
+    })
     : ''
 })
 

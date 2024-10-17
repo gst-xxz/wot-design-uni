@@ -11,17 +11,12 @@
         <text>{{ subDesc }}</text>
       </view>
       <view class="wd-privacy-popup__footer">
-        <wd-button custom-class="wd-privacy-popup__footer-disagree " size="medium" round plain buttonId="disagree-btn" @click="handleDisagree">
+        <wd-button custom-class="wd-privacy-popup__footer-disagree " size="medium" round plain buttonId="disagree-btn"
+          @click="handleDisagree">
           拒绝
         </wd-button>
-        <wd-button
-          class="wd-privacy-popup__footer-agree"
-          round
-          size="medium"
-          buttonId="agree-btn"
-          open-type="agreePrivacyAuthorization"
-          @agreeprivacyauthorization="handleAgree"
-        >
+        <wd-button class="wd-privacy-popup__footer-agree" round size="medium" buttonId="agree-btn"
+          open-type="agreePrivacyAuthorization" @agreeprivacyauthorization="handleAgree">
           同意
         </wd-button>
       </view>
@@ -35,7 +30,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -110,7 +105,7 @@ function handleDisagree() {
  * 打开隐私协议
  */
 function openPrivacyContract() {
-  ;(wx as any).openPrivacyContract({
+  ; (wx as any).openPrivacyContract({
     success: (res: any) => {
       console.log('openPrivacyContract success')
     },

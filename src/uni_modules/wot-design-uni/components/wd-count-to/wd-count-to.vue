@@ -1,16 +1,22 @@
 <template>
-  <view :class="rootClass">
+  <view :class="cn('wd-count-to align-bottom', {
+    'text-primary': props.type === 'primary',
+    'text-error': props.type === 'error',
+    'text-warning': props.type === 'warning',
+    'text-success': props.type === 'success',
+    'text-default': props.type === 'default',
+  }, customClass)">
     <!-- 前缀插槽 -->
     <slot name="prefix">
-      <wd-text :type="props.type" :color="props.color" :size="`${props.fontSize * 0.7}px`" :text="props.prefix"></wd-text>
+      <text :style="utilTextStyle">{{ props.prefix }}</text>
     </slot>
     <!-- 默认文本插槽 -->
     <slot>
-      <wd-text :type="props.type" :color="props.color" :size="`${props.fontSize}px`" :text="timeText"></wd-text>
+      <text :style="textStyle">{{ timeText }}</text>
     </slot>
     <!-- 后缀插槽 -->
     <slot name="suffix">
-      <wd-text :type="props.type" :color="props.color" :size="`${props.fontSize * 0.7}px`" :text="props.suffix"></wd-text>
+      <text :style="utilTextStyle">{{ props.suffix }}</text>
     </slot>
   </view>
 </template>
@@ -21,18 +27,18 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
 
 <script lang="ts" setup>
-import wdText from '../wd-text/wd-text.vue'
 import { computed, watch, onMounted } from 'vue'
 import { countToProps } from './types'
-import { easingFn, isNumber } from '../common/util'
+import { easingFn, isNumber, objToStyle } from '../common/util'
 import { useCountDown } from '../composables/useCountDown'
 import type { CountDownExpose } from '../wd-count-down/types'
+import { cn } from '../common/cn'
 
 const props = defineProps(countToProps)
 const emit = defineEmits(['mounted', 'finish'])
@@ -43,13 +49,30 @@ const { start, pause, reset, current } = useCountDown({
   onFinish: () => emit('finish')
 })
 
-// 计算根元素的类名
-const rootClass = computed(() => {
-  return `wd-count-to ${props.customClass}`
-})
-
 const timeText = computed(() => {
   return parseFormat(current.value.total)
+})
+
+const textStyle = computed(() => {
+  const rootStyle: Record<string, any> = {}
+  if (props.color) {
+    rootStyle['color'] = props.color
+  }
+  if (props.fontSize) {
+    rootStyle['font-size'] = `${props.fontSize}px`
+  }
+  return `${objToStyle(rootStyle)};${props.customStyle}`
+})
+
+const utilTextStyle = computed(() => {
+  const rootStyle: Record<string, any> = {}
+  if (props.color) {
+    rootStyle['color'] = props.color
+  }
+  if (props.fontSize) {
+    rootStyle['font-size'] = `${props.fontSize * 0.7}px`
+  }
+  return `${objToStyle(rootStyle)};${props.customStyle}`
 })
 
 watch([() => props.startVal, () => props.endVal, () => props.duration], resetTime, { immediate: false })
@@ -119,7 +142,3 @@ function formatNumber(num: any): string {
 
 defineExpose<CountDownExpose>({ start, reset: resetTime, pause })
 </script>
-
-<style lang="scss" scoped>
-@import './index.scss';
-</style>

@@ -8,15 +8,8 @@
  * 记得注释
 -->
 <template>
-  <wd-cell
-    custom-class="wd-form-item"
-    :required="required"
-    :title="label"
-    :center="center"
-    :border="border"
-    :title-width="labelWidth"
-    :is-link="isLink"
-  >
+  <wd-cell custom-class="wd-form-item" :required="required" :title="label" :center="center" :border="border"
+    :title-width="labelWidth" :is-link="isLink">
     <slot></slot>
     <view v-if="errorMessage" class="wd-form-item__error-message">{{ errorMessage }}</view>
   </wd-cell>
@@ -27,7 +20,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

@@ -1,14 +1,7 @@
 <template>
-  <wd-popup
-    v-model="show"
-    position="bottom"
-    :z-index="zIndex"
-    :safe-area-inset-bottom="safeAreaInsetBottom"
-    :modal-style="modal ? '' : 'opacity: 0;'"
-    :modal="hideOnClickOutside"
-    :lockScroll="lockScroll"
-    @click-modal="handleClose"
-  >
+  <wd-popup v-model="show" position="bottom" :z-index="zIndex" :safe-area-inset-bottom="safeAreaInsetBottom"
+    :modal-style="modal ? '' : 'opacity: 0;'" :modal="hideOnClickOutside" :lockScroll="lockScroll"
+    @click-modal="handleClose">
     <view :class="`wd-keyboard ${customClass}`" :style="customStyle">
       <view class="wd-keyboard__header" v-if="showTitle">
         <slot name="title">
@@ -21,7 +14,8 @@
       <template v-if="mode !== 'car'">
         <view class="wd-keyboard__body">
           <view class="wd-keyboard__keys">
-            <wd-key v-for="key in keys" :key="key.text" :text="key.text" :type="key.type" :wider="key.wider" @press="handlePress"></wd-key>
+            <wd-key v-for="key in keys" :key="key.text" :text="key.text" :type="key.type" :wider="key.wider"
+              @press="handlePress"></wd-key>
           </view>
           <view class="wd-keyboard__sidebar" v-if="mode === 'custom'">
             <wd-key v-if="showDeleteKey" large :text="deleteText" type="delete" @press="handlePress"></wd-key>
@@ -32,7 +26,8 @@
       <template v-if="mode === 'car'">
         <view class="wd-keyboard-car__body">
           <view class="wd-keyboard-car__keys">
-            <wd-key v-for="key in keys" :key="key.text" :text="key.text" :type="key.type" :wider="key.wider" @press="handlePress"></wd-key>
+            <wd-key v-for="key in keys" :key="key.text" :text="key.text" :type="key.type" :wider="key.wider"
+              @press="handlePress"></wd-key>
           </view>
         </view>
       </template>
@@ -45,7 +40,7 @@ export default {
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
@@ -91,8 +86,8 @@ function shuffleArray<T>(arr: T[]): T[] {
     // 生成一个随机索引 j，范围是 [0, i]
     const j = Math.floor(Math.random() * (i + 1))
 
-    // 交换索引 i 和 j 处的元素
-    ;[newArr[i], newArr[j]] = [newArr[j], newArr[i]]
+      // 交换索引 i 和 j 处的元素
+      ;[newArr[i], newArr[j]] = [newArr[j], newArr[i]]
   }
   return newArr
 }

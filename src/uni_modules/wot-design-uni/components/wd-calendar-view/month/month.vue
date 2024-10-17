@@ -5,19 +5,20 @@
       <view class="wd-month">
         <view class="wd-month__title">{{ monthTitle(date) }}</view>
         <view class="wd-month__days">
-          <view
-            v-for="(item, index) in days"
-            :key="index"
+          <view v-for="(item, index) in days" :key="index"
             :class="`wd-month__day ${item.disabled ? 'is-disabled' : ''} ${item.type ? itemClass(item.type, value!, type) : ''}`"
-            :style="firstDayStyle(index, item.date, firstDayOfWeek)"
-            @click="handleDateClick(index)"
-          >
+            :style="firstDayStyle(index, item.date, firstDayOfWeek)" @click="handleDateClick(index)">
             <view class="wd-month__day-container">
-              <view class="wd-month__day-top">{{ item.topInfo }}</view>
-              <view class="wd-month__day-text">
+              <view class="wd-month__day-top absolute top-2.5 left-0 right-0 text-center text-[10px] leading-[1.1]">
+                {{ item.topInfo }}
+              </view>
+              <view class="wd-month__day-text font-medium">
                 {{ item.text }}
               </view>
-              <view class="wd-month__day-bottom">{{ item.bottomInfo }}</view>
+              <view
+                class="wd-month__day-bottom absolute bottom-2.5 left-0 right-0 text-center text-[10px] leading-[1.1]">
+                {{ item.bottomInfo }}
+              </view>
             </view>
           </view>
         </view>
@@ -31,7 +32,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>

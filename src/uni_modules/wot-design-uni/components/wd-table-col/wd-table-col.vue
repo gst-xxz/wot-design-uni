@@ -1,15 +1,10 @@
 <template>
   <view
     :class="`wd-table-col ${fixed ? 'wd-table-col--fixed' : ''} ${isLastFixed && isDef(table) && table.scrollLeft ? 'is-shadow' : ''}`"
-    :style="columnStyle"
-  >
+    :style="columnStyle">
     <view
       :class="`wd-table__cell ${stripe && isOdd(index) ? 'is-stripe' : ''} ${border ? 'is-border' : ''} is-${align}`"
-      v-for="(row, index) in column"
-      :key="index"
-      :style="cellStyle"
-      @click="handleRowClick(index)"
-    >
+      v-for="(row, index) in column" :key="index" :style="cellStyle" @click="handleRowClick(index)">
       <slot name="value" v-if="$slots.value" :row="getScope(index)" :index="index"></slot>
       <text :class="`wd-table__value ${ellipsis ? 'is-ellipsis' : ''}`" v-else>{{ row }}</text>
     </view>
@@ -22,7 +17,7 @@ export default {
   options: {
     addGlobalClass: true,
     virtualHost: true,
-    styleIsolation: 'shared'
+
   }
 }
 </script>
